@@ -1,0 +1,57 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeComponent } from './pages/home/home.component';
+import { RegisterComponent } from './pages/auth/register/register.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './pages/auth/login/login.component';
+import { JwtInterceptor } from './service/interceptors/jwt.interceptor';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
+import { ManageDoctorsComponent } from './pages/admin/manage-doctors/manage-doctors.component';
+import { AddDoctorComponent } from './pages/admin/add-doctor/add-doctor.component';
+import { ManageDepartmentsComponent } from './pages/admin/manage-departments/manage-departments.component';
+import { AddDepartmentComponent } from './pages/admin/add-department/add-department.component';
+import { AddReceptionistComponent } from './pages/admin/add-receptionist/add-receptionist.component';
+import { CommonModule } from '@angular/common';
+import { ManageReceptionistsComponent } from './pages/admin/manage-receptionists/manage-receptionists.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ToastModule } from 'primeng/toast';
+import { TimeAgoPipe } from './service/pipes/time-ago.pipe';
+@NgModule({
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    RegisterComponent,
+    LoginComponent,
+    DashboardComponent,
+    AdminDashboardComponent,
+    ManageDoctorsComponent,
+    AddDoctorComponent,
+    ManageDepartmentsComponent,
+    AddDepartmentComponent,
+    AddReceptionistComponent,
+    ManageReceptionistsComponent,
+    TimeAgoPipe,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    HttpClientModule,
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}

@@ -1,0 +1,42 @@
+.main-container {
+    text-align: center;
+    padding: 40px;
+}
+
+.title {
+    font-size: 48px;
+    font-weight: bold;
+    color: #1976d2;
+}
+
+.subtitle {
+    font-size: 20px;
+    margin-bottom: 40px;
+    color: #666;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.role-card {
+    width: 250px;
+    padding: 25px;
+    border-radius: 16px;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.role-card:hover {
+    transform: translateY(-5px);
+}
+
+.role-card h2 {
+    margin-bottom: 10px;
+    color: #1976d2;
+}

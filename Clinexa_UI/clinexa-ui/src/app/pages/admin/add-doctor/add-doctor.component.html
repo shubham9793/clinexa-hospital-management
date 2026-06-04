@@ -1,0 +1,93 @@
+<div class="page">
+
+    <div class="doctor-card">
+
+        <div class="header">
+            <h1>
+                {{ isEditMode ? 'Edit Doctor' : 'Add Doctor' }}
+            </h1>
+
+            <p>
+                Create and manage 🩺 doctor profiles for Clinexa
+            </p>
+
+        </div>
+
+        <form (ngSubmit)="createDoctor()">
+
+            <div class="input-group">
+
+                <label>Doctor Name</label>
+
+                <input type="text" placeholder="Enter doctor name" [(ngModel)]="doctor.name" name="name">
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Email Address</label>
+
+                <input type="email" placeholder="Enter email" [(ngModel)]="doctor.email" name="email">
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Phone Number</label>
+
+                <input type="text" placeholder="Enter phone number" [(ngModel)]="doctor.phone" name="phone">
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Password</label>
+
+                <input type="password" placeholder="Create password" [(ngModel)]="doctor.password" name="password">
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Department</label>
+
+                <select [(ngModel)]="doctor.departmentId" name="departmentId">
+
+                    <option value="">
+                        Select Department
+                    </option>
+
+                    <option *ngFor="let dept of departments" [value]="dept.id">
+                        {{ dept.name }}
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Category</label>
+
+                <select [(ngModel)]="doctor.categoryId" name="categoryId">
+
+                    <option value="">
+                        Select Category
+                    </option>
+
+                    <option *ngFor="let cat of categories" [value]="cat.id">
+                        {{ cat.name }}
+                    </option>
+
+                </select>
+
+            </div>
+
+            <button type="submit" class="submit-btn">
+                + {{ isEditMode ? 'Update Doctor' : 'Create Doctor' }}
+            </button>
+
+        </form>
+
+    </div>
+</div>

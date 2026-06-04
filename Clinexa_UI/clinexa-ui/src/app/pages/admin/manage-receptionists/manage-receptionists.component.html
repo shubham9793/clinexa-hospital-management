@@ -1,0 +1,94 @@
+<div class="page-container">
+
+    <!-- HEADER -->
+
+    <div class="top-bar">
+
+        <div>
+
+            <h1 class="title">
+                👩‍💼 Manage Receptionists
+            </h1>
+
+            <p class="subtitle">
+                Manage hospital front desk staff
+            </p>
+
+        </div>
+
+        <button class="add-btn" routerLink="/add-receptionist">
+            + Add Receptionist
+        </button>
+
+    </div>
+
+    <!-- SEARCH -->
+
+    <div class="search-bar">
+
+        <input type="text" placeholder="🔍 Search receptionist..." [(ngModel)]="searchText">
+
+    </div>
+
+    <!-- GRID -->
+
+    <div class="receptionist-grid">
+
+        <div class="receptionist-card" *ngFor="let receptionist of filteredReceptionists()">
+
+            <div class="card-top">
+
+                <div class="avatar">
+                    {{ receptionist.name.charAt(0) }}
+                </div>
+
+                <button class="status-btn" [class.active]="receptionist.active" [class.inactive]="!receptionist.active"
+                    (click)="toggleStatus(receptionist.id)">
+
+                    {{ receptionist.active ? 'Active' : 'Inactive' }}
+
+                </button>
+
+            </div>
+
+            <div class="card-body">
+
+                <h2>{{ receptionist.name }}</h2>
+
+                <p class="role">
+                    Front Desk Receptionist
+                </p>
+
+                <div class="info-item">
+                    <span>📧</span>
+                    <p>{{ receptionist.email }}</p>
+                </div>
+
+                <div class="info-item">
+                    <span>📱</span>
+                    <p>{{ receptionist.phone }}</p>
+                </div>
+
+            </div>
+
+            <div class="card-actions">
+
+                <button class="edit-btn" [routerLink]="['/edit-receptionist', receptionist.id]">
+
+                    Edit
+
+                </button>
+
+                <button class="delete-btn" (click)="deleteReceptionist(receptionist.id)">
+
+                    Delete
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

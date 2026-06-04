@@ -1,0 +1,41 @@
+<div class="container">
+
+    <div class="form-card">
+
+        <h1>
+            {{
+            isEdit
+            ? '✏️ Edit Receptionist'
+            : '👩‍💼 Add Receptionist'
+            }}
+        </h1>
+
+        <p>
+            Create new receptionist account
+        </p>
+
+        <form (ngSubmit)="saveReceptionist()">
+
+            <input type="text" placeholder="Receptionist Name" [(ngModel)]="receptionist.name" name="name">
+
+            <input type="email" placeholder="Email" [(ngModel)]="receptionist.email" name="email">
+
+            <input type="text" placeholder="Phone" [(ngModel)]="receptionist.phone" name="phone">
+
+            <input type="password" placeholder="Password" [(ngModel)]="receptionist.password" name="password">
+
+            <button type="submit">
+            
+                {{
+                isEdit
+                ? 'Update Receptionist'
+                : 'Create Receptionist'
+                }}
+            
+            </button>
+
+        </form>
+
+    </div>
+
+</div>

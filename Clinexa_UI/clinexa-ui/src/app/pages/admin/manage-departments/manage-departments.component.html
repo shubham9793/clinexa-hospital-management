@@ -1,0 +1,56 @@
+<div class="page-container">
+
+    <div class="top-bar">
+        
+
+        <div>
+
+            <h1 class="title">
+                🏥 Manage Departments
+            </h1>
+
+            <p class="subtitle">
+                Manage all hospital departments
+            </p>
+
+        </div>
+
+        <button class="add-btn" routerLink="/add-department">
+            + Add Department
+        </button>
+
+    </div>
+
+    <div class="department-grid">
+
+        <div class="department-card" *ngFor="let dept of departments">
+
+            <div class="icon">
+                🏥
+            </div>
+
+            <h2>
+                {{ dept.name }}
+            </h2>
+
+            <p>
+                {{ dept.description }}
+            </p>
+
+            <div class="card-actions">
+
+                <button class="edit-btn">
+                    Edit
+                </button>
+
+                <button class="delete-btn">
+                    Delete
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,19 @@
+<div class="dashboard">
+
+  <h1>
+    Welcome {{ user?.name }}
+  </h1>
+
+  <h3>
+    Role: {{ user?.role }}
+  </h3>
+
+  <p>
+    Email: {{ user?.email }}
+  </p>
+
+  <button (click)="logout()">
+    Logout
+  </button>
+
+</div>

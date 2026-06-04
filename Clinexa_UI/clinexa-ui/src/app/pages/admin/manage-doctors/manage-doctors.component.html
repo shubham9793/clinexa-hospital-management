@@ -1,0 +1,133 @@
+<div class="page-container">
+
+    <!-- HEADER -->
+
+    <div class="top-bar">
+
+        <div>
+
+            <h1 class="title">
+                👨‍⚕️ Manage Doctors
+            </h1>
+
+            <p class="subtitle">
+                Manage all doctors and their departments
+            </p>
+
+        </div>
+
+        <button class="add-btn" routerLink="/add-doctor">
+            + Add Doctor
+        </button>
+
+    </div>
+
+    <!-- FILTER SECTION -->
+
+    <div class="filter-section">
+
+        <input type="text" placeholder="🔍 Search doctor..." [(ngModel)]="searchText">
+
+        <select [(ngModel)]="selectedDepartment">
+
+            <option value="">
+                All Departments
+            </option>
+
+            <option *ngFor="let dept of departments" [value]="dept.name">
+                {{ dept.name }}
+            </option>
+
+        </select>
+
+        <select [(ngModel)]="selectedCategory">
+
+            <option value="">
+                All Categories
+            </option>
+
+            <option *ngFor="let cat of categories" [value]="cat.name">
+                {{ cat.name }}
+            </option>
+
+        </select>
+
+    </div>
+
+    <!-- DOCTOR GRID -->
+
+    <div class="doctor-grid">
+
+        <div class="doctor-card" *ngFor="let doctor of filteredDoctors()">
+
+            <!-- HEADER -->
+
+            <div class="doctor-header">
+
+                <div class="avatar">
+                    {{ doctor.name.charAt(0) }}
+                </div>
+
+                <div>
+
+                    <h2>
+                        {{ doctor.name }}
+                    </h2>
+
+                    <span class="category">
+                        {{ doctor.category?.name }}
+                    </span>
+
+                </div>
+
+            </div>
+
+            <!-- INFO -->
+
+            <div class="doctor-info">
+
+                <p>
+                    📧 {{ doctor.email }}
+                </p>
+
+                <p>
+                    📱 {{ doctor.phone }}
+                </p>
+
+                <p>
+                    🏥 {{ doctor.department?.name }}
+                </p>
+
+            </div>
+
+            <!-- AVAILABILITY BUTTON -->
+
+            <div class="availability-status" [class.available]="doctor.active" [class.unavailable]="!doctor.active"
+                (click)="toggleAvailability($event, doctor)">
+            
+                <div class="status-dot"></div>
+            
+                <span>
+                    {{ doctor.active ? 'Active' : 'Inactive' }}
+                </span>
+            
+            </div>
+            <!-- ACTION BUTTONS -->
+
+            <div class="card-actions">
+
+                <button class="edit-btn" [routerLink]="['/edit-doctor', doctor.id]">
+                    Edit
+                </button>
+
+                <button class="delete-btn" (click)="deleteDoctor(doctor.id)">
+                    Delete
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,27 @@
+<div class="page">
+
+    <div class="card">
+
+        <h1>
+            🏥 Add Department
+        </h1>
+
+        <p>
+            Create hospital departments
+        </p>
+
+        <form (ngSubmit)="createDepartment()">
+
+            <input type="text" placeholder="Department Name" [(ngModel)]="department.name" name="name">
+
+            <textarea placeholder="Description" [(ngModel)]="department.description" name="description"></textarea>
+
+            <button type="submit">
+                Create Department
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
