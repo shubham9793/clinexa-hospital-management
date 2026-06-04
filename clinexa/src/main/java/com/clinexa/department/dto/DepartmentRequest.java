@@ -1,0 +1,9 @@
+package com.clinexa.department.dto;
+
+import lombok.Data;
+
+@Data
+public class DepartmentRequest {
+    private String name;
+    private String description;
+}

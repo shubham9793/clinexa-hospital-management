@@ -1,0 +1,19 @@
+# IntelliJ
+.idea/
+*.iml
+
+# Spring Boot
+clinexa/target/
+clinexa/.mvn/
+
+# Angular
+Clinexa_UI/node_modules/
+Clinexa_UI/dist/
+Clinexa_UI/.angular/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
