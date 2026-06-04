@@ -31,4 +31,27 @@ public class DepartmentController {
         return service
                 .getDepartmentCount();
     }
+
+    @GetMapping("/{id}")
+    public Department getById(
+            @PathVariable Long id
+    ) {
+        return service.getById(id);
+    }
+
+
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        service.delete(id);
+    }
+
+
+    @PutMapping("/{id}")
+    public Department update(
+            @PathVariable Long id,
+            @RequestBody DepartmentRequest request
+    ) {
+        return service.update(id, request);
+    }
 }

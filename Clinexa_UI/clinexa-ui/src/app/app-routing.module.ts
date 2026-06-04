@@ -55,6 +55,10 @@ const routes: Routes = [
     path: 'add-department',
     component: AddDepartmentComponent,
   },
+  {
+    path: 'edit-department/:id',
+    component: AddDepartmentComponent,
+  },
 
   {
     path: 'edit-doctor/:id',

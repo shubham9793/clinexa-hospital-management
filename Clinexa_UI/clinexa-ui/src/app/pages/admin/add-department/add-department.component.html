@@ -3,21 +3,30 @@
     <div class="card">
 
         <h1>
-            🏥 Add Department
+            {{ isEditMode ? '✏️ Edit Department' : '🏥 Add Department' }}
         </h1>
 
         <p>
-            Create hospital departments
+            {{ isEditMode
+            ? 'Update hospital department'
+            : 'Create hospital department'
+            }}
         </p>
 
         <form (ngSubmit)="createDepartment()">
 
             <input type="text" placeholder="Department Name" [(ngModel)]="department.name" name="name">
 
-            <textarea placeholder="Description" [(ngModel)]="department.description" name="description"></textarea>
+            <textarea placeholder="Description" [(ngModel)]="department.description" name="description">
+            </textarea>
 
             <button type="submit">
-                Create Department
+
+                {{ isEditMode
+                ? 'Update Department'
+                : 'Create Department'
+                }}
+
             </button>
 
         </form>

@@ -35,4 +35,46 @@ public class DepartmentService {
 
         return repo.count();
     }
+
+
+    public Department getById(Long id) {
+
+        return repo.findById(id)
+                .orElseThrow(() ->
+                        new RuntimeException(
+                                "Department not found"
+                        )
+                );
+    }
+
+    public void delete(Long id) {
+
+        repo.deleteById(id);
+    }
+
+    public Department update(
+            Long id,
+            DepartmentRequest request
+    ) {
+
+        Department department =
+                repo.findById(id)
+                        .orElseThrow(() ->
+                                new RuntimeException(
+                                        "Department not found"
+                                ));
+
+        department.setName(
+                request.getName()
+        );
+
+        department.setDescription(
+                request.getDescription()
+        );
+
+        return repo.save(
+                department
+        );
+    }
+
 }

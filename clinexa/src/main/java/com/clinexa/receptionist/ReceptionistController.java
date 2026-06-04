@@ -36,19 +36,6 @@ public class ReceptionistController {
         service.delete(id);
     }
 
-    @PutMapping("/{id}")
-    public Receptionist update(
-            @PathVariable Long id,
-            @RequestBody Receptionist receptionist
-    ) {
-
-        return service.updateReceptionist(
-                id,
-                receptionist
-        );
-    }
-
-
     @GetMapping("/{id}")
     public Receptionist getReceptionistById(
             @PathVariable Long id

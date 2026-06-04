@@ -21,4 +21,17 @@ export class DepartmentService {
   getDepartmentCount() {
     return this.http.get(`${this.baseUrl}/count`);
   }
+
+  updateDepartment(id: number, data: any) {
+    return this.http.put(`${this.baseUrl}/${id}`, data);
+  }
+
+  deleteDepartment(id: number) {
+    return this.http.delete(`${this.baseUrl}/${id}`);
+  }
+
+  getById(id: number) {
+    return this.http.get(`${this.baseUrl}/${id}`);
+  }
+
 }
