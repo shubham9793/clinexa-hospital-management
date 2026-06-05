@@ -1,0 +1,64 @@
+<div class="page">
+
+    <div class="card">
+
+        <h1>
+            {{ isEditMode ? '✏️ Edit Patient' : '👤 Add Patient' }}
+        </h1>
+
+        <p>
+            {{
+            isEditMode
+            ? 'Update patient information'
+            : 'Register a new patient'
+            }}
+        </p>
+
+        <form (ngSubmit)="savePatient()">
+
+            <input type="text" placeholder="Patient Name" [(ngModel)]="patient.name" name="name" required>
+
+            <input type="email" placeholder="Email" [(ngModel)]="patient.email" name="email" required>
+
+            <input type="text" placeholder="Phone Number" [(ngModel)]="patient.phone" name="phone" required>
+
+            <select [(ngModel)]="patient.gender" name="gender" required>
+
+                <option value="">
+                    Select Gender
+                </option>
+
+                <option value="Male">
+                    Male
+                </option>
+
+                <option value="Female">
+                    Female
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+            </select>
+
+            <input type="date" [(ngModel)]="patient.dob" name="dob" required>
+
+            <textarea placeholder="Address" [(ngModel)]="patient.address" name="address">
+      </textarea>
+
+            <button type="submit">
+
+                {{
+                isEditMode
+                ? 'Update Patient'
+                : 'Create Patient'
+                }}
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>

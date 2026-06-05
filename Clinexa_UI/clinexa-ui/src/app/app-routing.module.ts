@@ -13,6 +13,9 @@ import { ManageDepartmentsComponent } from './pages/admin/manage-departments/man
 import { AddDepartmentComponent } from './pages/admin/add-department/add-department.component';
 import { ManageReceptionistsComponent } from './pages/admin/manage-receptionists/manage-receptionists.component';
 import { AddReceptionistComponent } from './pages/admin/add-receptionist/add-receptionist.component';
+import { ManagePatientsComponent } from './pages/receptionist/manage-patients/manage-patients.component';
+import { AddPatientComponent } from './pages/receptionist/add-patient/add-patient.component';
+import { ReceptionistDashboardComponent } from './pages/receptionist/receptionist-dashboard/receptionist-dashboard.component';
 
 const routes: Routes = [
   {
@@ -77,6 +80,37 @@ const routes: Routes = [
   {
     path: 'edit-receptionist/:id',
     component: AddReceptionistComponent,
+  },
+
+  {
+    path: 'manage-patients',
+    component: ManagePatientsComponent,
+  },
+
+  {
+    path: 'add-patient',
+    component: AddPatientComponent,
+  },
+
+  {
+    path: 'edit-patient/:id',
+    component: AddPatientComponent,
+  },
+  {
+    path: 'manage-patients',
+    component: ManagePatientsComponent,
+  },
+  {
+    path: 'add-patient',
+    component: AddPatientComponent,
+  },
+  {
+    path: 'edit-patient/:id',
+    component: AddPatientComponent,
+  },
+  {
+    path: 'receptionist-dashboard',
+    component: ReceptionistDashboardComponent,
   },
 ];
 

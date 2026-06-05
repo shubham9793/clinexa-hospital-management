@@ -22,6 +22,9 @@ import { ManageReceptionistsComponent } from './pages/admin/manage-receptionists
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import { TimeAgoPipe } from './service/pipes/time-ago.pipe';
+import { ManagePatientsComponent } from './pages/receptionist/manage-patients/manage-patients.component';
+import { AddPatientComponent } from './pages/receptionist/add-patient/add-patient.component';
+import { ReceptionistDashboardComponent } from './pages/receptionist/receptionist-dashboard/receptionist-dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +40,9 @@ import { TimeAgoPipe } from './service/pipes/time-ago.pipe';
     AddReceptionistComponent,
     ManageReceptionistsComponent,
     TimeAgoPipe,
+    ManagePatientsComponent,
+    AddPatientComponent,
+    ReceptionistDashboardComponent,
   ],
   imports: [
     BrowserModule,

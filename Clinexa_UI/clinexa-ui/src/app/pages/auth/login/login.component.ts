@@ -35,6 +35,12 @@ export class LoginComponent {
 
         if (this.role === 'admin') {
           this.router.navigate(['/admin-dashboard']);
+        } else if (this.role === 'receptionist') {
+          this.router.navigate(['/receptionist-dashboard']);
+        } else if (this.role === 'doctor') {
+          this.router.navigate(['/doctor-dashboard']);
+        } else if (this.role === 'super-admin') {
+          this.router.navigate(['/super-admin-dashboard']);
         } else {
           this.router.navigate(['/dashboard']);
         }
