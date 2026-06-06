@@ -2,11 +2,11 @@ package com.clinexa.appointment;
 
 import com.clinexa.User.User;
 import com.clinexa.doctor.Doctor;
+import com.clinexa.patient.Patient;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
-
 import java.time.LocalTime;
 
 @Entity
@@ -21,12 +21,31 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /*
+     * Used when a registered Patient books their own appointment.
+     * This account comes from the users table.
+     */
     @ManyToOne
+    @JoinColumn(name = "patient_user_id")
     private User patient;
 
+    /*
+     * Used when a Receptionist books an appointment
+     * for a Patient record from the patient table.
+     */
     @ManyToOne
+    @JoinColumn(name = "patient_record_id")
+    private Patient patientRecord;
+
+    @ManyToOne
+    @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 
+    /*
+     * Snapshot details stored with the appointment.
+     * This keeps appointment history stable even if
+     * the Patient profile changes later.
+     */
     private String patientName;
 
     private Integer age;

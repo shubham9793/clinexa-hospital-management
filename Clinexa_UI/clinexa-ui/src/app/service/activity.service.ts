@@ -12,4 +12,5 @@ export class ActivityService {
   getActivities() {
     return this.http.get<any[]>(this.baseUrl);
   }
+
 }

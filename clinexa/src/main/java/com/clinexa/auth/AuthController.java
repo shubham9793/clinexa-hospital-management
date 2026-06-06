@@ -2,7 +2,7 @@ package com.clinexa.auth;
 
 import com.clinexa.auth.dto.AuthResponse;
 import com.clinexa.auth.dto.LoginRequest;
-import com.clinexa.auth.dto.RegisterRequest;
+import com.clinexa.patient.dto.PatientRegisterRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,17 +13,29 @@ public class AuthController {
 
     private final AuthService authService;
 
-    @PostMapping("/register")
-    public String register(
-            @RequestBody RegisterRequest request
+    /*
+     * Public Patient self-registration.
+     *
+     * POST /auth/register/patient
+     */
+    @PostMapping("/register/patient")
+    public String registerPatient(
+            @RequestBody PatientRegisterRequest request
     ) {
-        return authService.register(request);
+
+        return authService.registerPatient(request);
     }
 
+    /*
+     * Login for all roles.
+     *
+     * POST /auth/login
+     */
     @PostMapping("/login")
     public AuthResponse login(
             @RequestBody LoginRequest request
     ) {
+
         return authService.login(request);
     }
 }

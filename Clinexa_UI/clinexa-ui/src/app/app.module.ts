@@ -25,6 +25,9 @@ import { TimeAgoPipe } from './service/pipes/time-ago.pipe';
 import { ManagePatientsComponent } from './pages/receptionist/manage-patients/manage-patients.component';
 import { AddPatientComponent } from './pages/receptionist/add-patient/add-patient.component';
 import { ReceptionistDashboardComponent } from './pages/receptionist/receptionist-dashboard/receptionist-dashboard.component';
+import { PatientDashboardComponent } from './pages/patient/patient-dashboard/patient-dashboard.component';
+import { ManagePatientComponent } from './pages/patient/manage-patient/manage-patient.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +46,8 @@ import { ReceptionistDashboardComponent } from './pages/receptionist/receptionis
     ManagePatientsComponent,
     AddPatientComponent,
     ReceptionistDashboardComponent,
+    PatientDashboardComponent,
+    ManagePatientComponent,
   ],
   imports: [
     BrowserModule,

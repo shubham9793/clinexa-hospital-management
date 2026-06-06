@@ -4,6 +4,7 @@ import { DepartmentService } from 'src/app/service/department.service';
 import { DoctorService } from 'src/app/service/doctor.service';
 import { ReceptionistService } from 'src/app/service/receptionist.service';
 import { ActivityService } from 'src/app/service/activity.service';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -17,6 +18,7 @@ export class AdminDashboardComponent implements OnInit {
     private categoryService: CategoryService,
     private receptionistService: ReceptionistService,
     private activityService: ActivityService,
+    private authService: AuthService,
   ) {}
 
   // Doctor Stats
@@ -46,8 +48,17 @@ export class AdminDashboardComponent implements OnInit {
   // Activities
   activities: any[] = [];
 
+  //show popup
+  showProfilePopup = false;
+  isProfileLoading = false;
+  loggedInUser: any = null;
+
   ngOnInit(): void {
     this.loadStats();
+  }
+
+  logout(): void {
+    this.authService.logout();
   }
 
   loadStats(): void {
@@ -108,5 +119,31 @@ export class AdminDashboardComponent implements OnInit {
       this.activeCategoryCount = res;
       this.inactiveCategoryCount = 0;
     });
+  }
+
+  openProfile(): void {
+    this.showProfilePopup = true;
+
+    if (this.loggedInUser) {
+      return;
+    }
+
+    this.isProfileLoading = true;
+
+    this.authService.getProfile().subscribe({
+      next: (res: any) => {
+        this.loggedInUser = res;
+        this.isProfileLoading = false;
+      },
+      error: (err) => {
+        console.error('Failed to load logged-in user profile', err);
+        this.isProfileLoading = false;
+        alert('Unable to load profile details');
+      },
+    });
+  }
+
+  closeProfile(): void {
+    this.showProfilePopup = false;
   }
 }

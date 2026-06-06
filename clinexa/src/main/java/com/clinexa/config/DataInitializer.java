@@ -49,7 +49,7 @@ public class DataInitializer implements CommandLineRunner {
     private void createDefaultSuperAdmin() {
 
         boolean exists = userRepository
-                .findByEmail("superadmin@clinexa.com")
+                .findByEmailIgnoreCase("superadmin@clinexa.com")
                 .isPresent();
 
         if (exists) {

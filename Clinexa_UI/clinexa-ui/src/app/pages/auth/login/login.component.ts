@@ -11,17 +11,19 @@ export class LoginComponent {
   email: string = '';
   password: string = '';
 
-  role :string = '';
+  // Role selected from the login page URL.
+  // This is used only to check whether the user selected the correct portal.
+  selectedRole: string = '';
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
   ) {
-    this.role = this.route.snapshot.params['role'];
+    this.selectedRole = this.route.snapshot.params['role'];
   }
 
-  login() {
+  login(): void {
     const data = {
       email: this.email,
       password: this.password,
@@ -29,29 +31,48 @@ export class LoginComponent {
 
     this.authService.login(data).subscribe({
       next: (res: any) => {
+        const actualRole = res.role?.toLowerCase();
+
+        if (!res.token || !actualRole) {
+          alert('Role information was not returned by the server');
+          return;
+        }
+
+        // Prevent login through the wrong portal.
+        if (actualRole !== this.selectedRole) {
+          alert(
+            `Access denied. This account belongs to the ${actualRole} module.`,
+          );
+          return;
+        }
+
         localStorage.setItem('token', res.token);
+        localStorage.setItem('role', actualRole);
 
         alert('Login successful');
 
-        if (this.role === 'admin') {
-          this.router.navigate(['/admin-dashboard']);
-        } else if (this.role === 'receptionist') {
-          this.router.navigate(['/receptionist-dashboard']);
-        } else if (this.role === 'doctor') {
-          this.router.navigate(['/doctor-dashboard']);
-        } else if (this.role === 'super-admin') {
-          this.router.navigate(['/super-admin-dashboard']);
-        } else {
-          this.router.navigate(['/dashboard']);
-        }
-
-
-
+        this.redirectToDashboard(actualRole);
       },
 
       error: () => {
         alert('Invalid credentials');
       },
     });
+  }
+
+  private redirectToDashboard(role: string): void {
+    if (role === 'admin') {
+      this.router.navigate(['/admin-dashboard']);
+    } else if (role === 'receptionist') {
+      this.router.navigate(['/receptionist-dashboard']);
+    } else if (role === 'doctor') {
+      this.router.navigate(['/doctor-dashboard']);
+    } else if (role === 'super-admin') {
+      this.router.navigate(['/super-admin-dashboard']);
+    } else if (role === 'patient') {
+    this.router.navigate(['/patient-dashboard']);
+    }else {
+      this.authService.logout();
+    }
   }
 }

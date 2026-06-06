@@ -1,156 +1,83 @@
 <div class="dashboard-container">
 
     <!-- HEADER -->
-
     <div class="header">
-
         <div>
-
-            <h1>
-                🏥 Clinexa Admin Dashboard
-            </h1>
-
-            <p>
-                Manage hospital operations efficiently
-            </p>
-
+            <h1>🏥 Clinexa Admin Dashboard</h1>
+            <p>Manage hospital operations efficiently</p>
         </div>
 
-        <button class="profile-btn">
-            Admin Panel
-        </button>
+        <div class="header-actions">
+            <button class="profile-btn" type="button" (click)="openProfile()">
+                Admin Panel
+            </button>
 
+            <button class="logout-btn" type="button" (click)="logout()">
+                Logout
+            </button>
+        </div>
     </div>
 
     <!-- STATS -->
-
     <div class="stats-grid">
 
-        <div class="stat-card doctor-card">
+        <div class="stat-card">
+            <div class="stat-icon">👨‍⚕️</div>
 
-            <div class="stat-icon">
-                👨‍⚕️
-            </div>
+            <h2>{{ doctorCount }}</h2>
+            <p>Doctors</p>
 
-            <div>
-
-                <h2>
-                    {{ doctorCount }}
-                </h2>
-
-                <p>
-                    Doctors
-                </p>
-                <div class="status-summary">
-                
-                    <span class="active-badge">
-                        🟢 {{ activeDoctorCount }} Active
-                    </span>
-                
-                    <span class="inactive-badge">
-                        🔴 {{ inactiveDoctorCount }} Inactive
-                    </span>
-                
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="stat-card receptionist-card">
-        
-            <div class="stat-icon">
-                👩‍💼
-            </div>
-        
-            <div>
-        
-                <h2>
-                    {{ receptionistCount }}
-                </h2>
-        
-                <p>
-                    Receptionists
-                </p>
             <div class="status-summary">
-        
                 <span class="active-badge">
-                  🟢 {{ activeReceptionistCount }} Active
+                    🟢 {{ activeDoctorCount }} Active
                 </span>
-        
+
                 <span class="inactive-badge">
-                  🔴 {{ inactiveReceptionistCount }} Inactive
+                    🔴 {{ inactiveDoctorCount }} Inactive
                 </span>
-        
             </div>
         </div>
-        
+
+        <div class="stat-card">
+            <div class="stat-icon">👩‍💼</div>
+
+            <h2>{{ receptionistCount }}</h2>
+            <p>Receptionists</p>
+
+            <div class="status-summary">
+                <span class="active-badge">
+                    🟢 {{ activeReceptionistCount }} Active
+                </span>
+
+                <span class="inactive-badge">
+                    🔴 {{ inactiveReceptionistCount }} Inactive
+                </span>
+            </div>
         </div>
 
-        <div class="stat-card department-card">
-
-            <div class="stat-icon">
-                🏥
-            </div>
-
-            <div>
-
-                <h2>
-                    {{ departmentCount }}
-                </h2>
-
-                <p>
-                    Departments
-                </p>
-
-            </div>
-
+        <div class="stat-card">
+            <div class="stat-icon">🏥</div>
+            <h2>{{ departmentCount }}</h2>
+            <p>Departments</p>
         </div>
 
-        <div class="stat-card category-card">
-
-            <div class="stat-icon">
-                🩺
-            </div>
-
-            <div>
-
-                <h2>
-                    {{ categoryCount }}
-                </h2>
-
-                <p>
-                    Categories
-                </p>
-
-            </div>
-
+        <div class="stat-card">
+            <div class="stat-icon">🩺</div>
+            <h2>{{ categoryCount }}</h2>
+            <p>Categories</p>
         </div>
 
-        <div class="stat-card appointment-card">
-
-            <div class="stat-icon">
-                📅
-            </div>
-
-            <div>
-
-                <h2>
-                    {{ appointmentCount }}
-                </h2>
-
-                <p>
-                    Appointments
-                </p>
-
-            </div>
-
+        <div class="stat-card">
+            <div class="stat-icon">📅</div>
+            <h2>{{ appointmentCount }}</h2>
+            <p>Appointments</p>
         </div>
 
     </div>
 
+    <!-- RECENT ACTIVITY -->
     <div class="activity-card">
-    
+
         <div class="activity-header">
             <h2>📋 Recent Activity</h2>
         </div>
@@ -158,126 +85,118 @@
         <div *ngIf="activities.length === 0" class="empty-state">
             No recent activity found
         </div>
-    
+
         <div class="activity-item" *ngFor="let activity of activities">
-    
+
             <div class="activity-icon">
                 {{ activity.message.startsWith('Doctor') ? '👨‍⚕️' : '👩‍💼' }}
             </div>
-    
+
             <div class="activity-content">
-    
                 <div class="activity-top">
                     <h4>{{ activity.message }}</h4>
-    
                     <small>{{ activity.createdAt | timeAgo }}</small>
                 </div>
-    
             </div>
-    
+
         </div>
-    
+
     </div>
 
-    <!-- FEATURE CARDS -->
-
+    <!-- FEATURES -->
     <div class="feature-grid">
 
         <div class="feature-card" routerLink="/manage-doctors">
-
-            <div class="icon">
-                👨‍⚕️
-            </div>
-
-            <h2>
-                Manage Doctors
-            </h2>
-
-            <p>
-                Add, update and manage doctors
-            </p>
-
+            <div class="icon">👨‍⚕️</div>
+            <h2>Manage Doctors</h2>
+            <p>Add, update and manage doctors</p>
         </div>
 
         <div class="feature-card" routerLink="/manage-departments">
-
-            <div class="icon">
-                🏥
-            </div>
-
-            <h2>
-                Departments
-            </h2>
-
-            <p>
-                Manage hospital departments
-            </p>
-
+            <div class="icon">🏥</div>
+            <h2>Departments</h2>
+            <p>Manage hospital departments</p>
         </div>
 
         <div class="feature-card">
-
-            <div class="icon">
-                📅
-            </div>
-
-            <h2>
-                Appointments
-            </h2>
-
-            <p>
-                Track and manage bookings
-            </p>
-
+            <div class="icon">📅</div>
+            <h2>Appointments</h2>
+            <p>Track and manage bookings</p>
         </div>
 
         <div class="feature-card" routerLink="/manage-receptionists">
-        
-            <div class="icon">
-                👩‍💼
-            </div>
-        
-            <h2>
-                Receptionists
-            </h2>
-        
-            <p>
-                Manage receptionist accounts
-            </p>
-        
-        </div>
-        <div class="feature-card">
-
-            <div class="icon">
-                🧾
-            </div>
-
-            <h2>
-                Reports
-            </h2>
-
-            <p>
-                Hospital analytics and reports
-            </p>
-
+            <div class="icon">👩‍💼</div>
+            <h2>Receptionists</h2>
+            <p>Manage receptionist accounts</p>
         </div>
 
         <div class="feature-card">
+            <div class="icon">🧾</div>
+            <h2>Reports</h2>
+            <p>Hospital analytics and reports</p>
+        </div>
 
-            <div class="icon">
-                ⚙️
-            </div>
-
-            <h2>
-                Settings
-            </h2>
-
-            <p>
-                Configure system settings
-            </p>
-
+        <div class="feature-card">
+            <div class="icon">⚙️</div>
+            <h2>Settings</h2>
+            <p>Configure system settings</p>
         </div>
 
     </div>
 
+</div>
+
+<!-- PROFILE POPUP -->
+<div class="profile-overlay" *ngIf="showProfilePopup" (click)="closeProfile()">
+    <div class="profile-popup" (click)="$event.stopPropagation()">
+        <button class="close-btn" type="button" (click)="closeProfile()">
+            ✕
+        </button>
+
+        <div class="profile-avatar">
+            👨‍💼
+        </div>
+
+        <h2>Admin Profile</h2>
+
+        <div *ngIf="isProfileLoading" class="profile-loading">
+            Loading profile details...
+        </div>
+
+        <div *ngIf="!isProfileLoading && loggedInUser" class="profile-details">
+
+            <div class="profile-row">
+                <span>Name</span>
+                <strong>
+                    {{ loggedInUser.name || loggedInUser.fullName || 'Not available' }}
+                </strong>
+            </div>
+
+            <div class="profile-row">
+                <span>Email</span>
+                <strong>
+                    {{ loggedInUser.email || 'Not available' }}
+                </strong>
+            </div>
+
+            <div class="profile-row">
+                <span>Role</span>
+                <strong>
+                    {{ loggedInUser.role || 'ADMIN' }}
+                </strong>
+            </div>
+
+            <div class="profile-row">
+                <span>Phone</span>
+                <strong>
+                    {{ loggedInUser.phone || loggedInUser.phoneNumber || 'Not available' }}
+                </strong>
+            </div>
+
+        </div>
+
+        <button class="popup-logout-btn" type="button" (click)="logout()">
+            Logout
+        </button>
+    </div>
 </div>

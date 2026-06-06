@@ -1,0 +1,355 @@
+<div class="dashboard-container">
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div>
+            <h1>🏥 Clinexa Patient Portal</h1>
+
+            <p>
+                Find the right doctor and manage your healthcare journey
+            </p>
+        </div>
+
+        <div class="header-actions">
+
+            <button class="profile-btn" type="button" (click)="openProfile()">
+                👤
+                {{
+                loggedInUser?.name ||
+                'My Profile'
+                }}
+            </button>
+
+            <button class="logout-btn" type="button" (click)="logout()">
+                Logout
+            </button>
+
+        </div>
+
+    </header>
+
+    <!-- WELCOME CARD -->
+    <section class="welcome-card">
+
+        <div>
+            <span class="welcome-badge">
+                Patient Dashboard
+            </span>
+
+            <h2>
+                Welcome,
+                {{
+                loggedInUser?.name ||
+                'Patient'
+                }}
+                👋
+            </h2>
+
+            <p>
+                Search available doctors by department or category
+                and choose the right specialist for your care.
+            </p>
+        </div>
+
+        <div class="welcome-icon">
+            🩺
+        </div>
+
+    </section>
+
+    <!-- FILTER SECTION -->
+    <section class="filter-card">
+
+        <div class="section-title">
+            <div>
+                <h2>Available Doctors</h2>
+
+                <p>
+                    Browse active doctors and view their profiles
+                </p>
+            </div>
+
+            <span class="doctor-count">
+                {{ filteredDoctors.length }} doctors found
+            </span>
+        </div>
+
+        <div class="filters">
+
+            <div class="input-group">
+                <label for="doctorSearch">
+                    Search Doctor
+                </label>
+
+                <input id="doctorSearch" type="text" [(ngModel)]="searchText" placeholder="Search by doctor name" />
+            </div>
+
+            <div class="input-group">
+                <label for="departmentFilter">
+                    Department
+                </label>
+
+                <select id="departmentFilter" [(ngModel)]="selectedDepartmentId">
+                    <option value="">
+                        All Departments
+                    </option>
+
+                    <option *ngFor="let department of departments" [value]="department.id">
+                        {{ department.name }}
+                    </option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="categoryFilter">
+                    Category
+                </label>
+
+                <select id="categoryFilter" [(ngModel)]="selectedCategoryId">
+                    <option value="">
+                        All Categories
+                    </option>
+
+                    <option *ngFor="let category of categories" [value]="category.id">
+                        {{ category.name }}
+                    </option>
+                </select>
+            </div>
+
+            <button class="clear-btn" type="button" (click)="clearFilters()">
+                Clear Filters
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- LOADING -->
+    <div class="empty-state" *ngIf="isLoading">
+        Loading available doctors...
+    </div>
+
+    <!-- DOCTOR CARDS -->
+    <section class="doctor-grid" *ngIf="!isLoading">
+
+        <article class="doctor-card" *ngFor="let doctor of filteredDoctors">
+
+            <div class="doctor-top">
+
+                <div class="doctor-avatar">
+                    👨‍⚕️
+                </div>
+
+                <span class="available-badge">
+                    ● Available
+                </span>
+
+            </div>
+
+            <h3>
+                {{ doctor.name }}
+            </h3>
+
+            <p class="doctor-category">
+                {{
+                doctor.category?.name ||
+                'General Specialist'
+                }}
+            </p>
+
+            <div class="doctor-details">
+
+                <p>
+                    <span>🏥</span>
+
+                    {{
+                    doctor.department?.name ||
+                    'Department not assigned'
+                    }}
+                </p>
+
+                <p>
+                    <span>📞</span>
+
+                    {{
+                    doctor.phone ||
+                    'Phone not available'
+                    }}
+                </p>
+
+            </div>
+
+            <div class="card-actions">
+
+                <button class="outline-btn" type="button" (click)="openDoctorProfile(doctor)">
+                    View Profile
+                </button>
+
+                <button class="book-btn" type="button" (click)="startBooking(doctor)">
+                    Book Appointment
+                </button>
+
+            </div>
+
+        </article>
+
+    </section>
+
+    <!-- NO DOCTOR FOUND -->
+    <div class="empty-state" *ngIf="
+      !isLoading &&
+      filteredDoctors.length === 0
+    ">
+        No available doctors found for the selected filters.
+    </div>
+
+</div>
+
+<!-- PATIENT PROFILE POPUP -->
+<div class="modal-overlay" *ngIf="showProfilePopup" (click)="closeProfile()">
+
+    <div class="modal-card profile-modal" (click)="$event.stopPropagation()">
+
+        <button class="modal-close" type="button" (click)="closeProfile()">
+            ✕
+        </button>
+
+        <div class="modal-avatar">
+            👤
+        </div>
+
+        <h2>Patient Profile</h2>
+
+        <div class="profile-details">
+
+            <div class="profile-row">
+                <span>Name</span>
+
+                <strong>
+                    {{
+                    loggedInUser?.name ||
+                    'Not available'
+                    }}
+                </strong>
+            </div>
+
+            <div class="profile-row">
+                <span>Email</span>
+
+                <strong>
+                    {{
+                    loggedInUser?.email ||
+                    'Not available'
+                    }}
+                </strong>
+            </div>
+
+            <div class="profile-row">
+                <span>Phone</span>
+
+                <strong>
+                    {{
+                    loggedInUser?.phone ||
+                    'Not available'
+                    }}
+                </strong>
+            </div>
+
+            <div class="profile-row">
+                <span>Role</span>
+
+                <strong>
+                    {{
+                    loggedInUser?.role ||
+                    'PATIENT'
+                    }}
+                </strong>
+            </div>
+
+        </div>
+
+        <button class="popup-logout-btn" type="button" (click)="logout()">
+            Logout
+        </button>
+
+    </div>
+
+</div>
+
+<!-- DOCTOR PROFILE POPUP -->
+<div class="modal-overlay" *ngIf="showDoctorPopup && selectedDoctor" (click)="closeDoctorProfile()">
+
+    <div class="modal-card doctor-modal" (click)="$event.stopPropagation()">
+
+        <button class="modal-close" type="button" (click)="closeDoctorProfile()">
+            ✕
+        </button>
+
+        <div class="modal-avatar doctor-modal-avatar">
+            👨‍⚕️
+        </div>
+
+        <h2>
+            {{ selectedDoctor.name }}
+        </h2>
+
+        <p class="modal-subtitle">
+            {{
+            selectedDoctor.category?.name ||
+            'General Specialist'
+            }}
+        </p>
+
+        <div class="profile-details">
+
+            <div class="profile-row">
+                <span>Department</span>
+
+                <strong>
+                    {{
+                    selectedDoctor.department?.name ||
+                    'Not assigned'
+                    }}
+                </strong>
+            </div>
+
+            <div class="profile-row">
+                <span>Email</span>
+
+                <strong>
+                    {{
+                    selectedDoctor.email ||
+                    'Not available'
+                    }}
+                </strong>
+            </div>
+
+            <div class="profile-row">
+                <span>Phone</span>
+
+                <strong>
+                    {{
+                    selectedDoctor.phone ||
+                    'Not available'
+                    }}
+                </strong>
+            </div>
+
+            <div class="profile-row">
+                <span>Status</span>
+
+                <strong class="available-text">
+                    Available
+                </strong>
+            </div>
+
+        </div>
+
+        <button class="modal-book-btn" type="button" (click)="startBooking(selectedDoctor)">
+            Book Appointment
+        </button>
+
+    </div>
+
+</div>

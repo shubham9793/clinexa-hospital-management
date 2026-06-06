@@ -24,7 +24,7 @@ public class SuperAdminController {
     @PreAuthorize("hasAuthority('SUPER_ADMIN')")
     public String createUser(@RequestBody CreateUserRequest request) {
 
-        if (userRepository.findByEmail(request.getEmail()).isPresent()) {
+        if (userRepository.findByEmailIgnoreCase(request.getEmail()).isPresent()) {
             return "User already exists";
         }
 

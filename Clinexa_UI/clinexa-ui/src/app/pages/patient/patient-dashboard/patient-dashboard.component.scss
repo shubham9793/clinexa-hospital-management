@@ -1,0 +1,459 @@
+.dashboard-container {
+    min-height: 100vh;
+    padding: 34px;
+    background:
+        radial-gradient(circle at top left,
+            rgba(56, 189, 248, 0.16),
+            transparent 34%),
+        linear-gradient(135deg, #f8fafc, #ecfeff);
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+}
+
+.header h1 {
+    margin: 0 0 7px;
+    color: #0f172a;
+    font-size: 34px;
+}
+
+.header p {
+    margin: 0;
+    color: #64748b;
+}
+
+.header-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.profile-btn,
+.logout-btn {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: 0.25s ease;
+}
+
+.profile-btn {
+    background: #ffffff;
+    color: #0f172a;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+.logout-btn {
+    background: linear-gradient(135deg, #d32f2f, #ef5350);
+    color: #ffffff;
+}
+
+.profile-btn:hover,
+.logout-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* =========================
+   WELCOME
+========================= */
+
+.welcome-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 28px;
+    margin-bottom: 26px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, #0891b2, #38bdf8);
+    color: #ffffff;
+    box-shadow: 0 16px 32px rgba(8, 145, 178, 0.2);
+}
+
+.welcome-badge {
+    display: inline-flex;
+    padding: 6px 11px;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.welcome-card h2 {
+    margin: 12px 0 7px;
+    font-size: 28px;
+}
+
+.welcome-card p {
+    max-width: 650px;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.welcome-icon {
+    font-size: 70px;
+}
+
+/* =========================
+   FILTER CARD
+========================= */
+
+.filter-card {
+    padding: 24px;
+    margin-bottom: 24px;
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.07);
+}
+
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+}
+
+.section-title h2 {
+    margin: 0 0 5px;
+    color: #0f172a;
+}
+
+.section-title p {
+    margin: 0;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.doctor-count {
+    padding: 7px 12px;
+    border-radius: 30px;
+    background: #cffafe;
+    color: #0e7490;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.filters {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr auto;
+    gap: 14px;
+    align-items: end;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.input-group label {
+    color: #475569;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 13px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    outline: none;
+    background: #ffffff;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: #0891b2;
+    box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.12);
+}
+
+.clear-btn {
+    padding: 12px 16px;
+    border: none;
+    border-radius: 10px;
+    background: #e2e8f0;
+    color: #334155;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+/* =========================
+   DOCTOR CARDS
+========================= */
+
+.doctor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,
+            minmax(270px, 1fr));
+    gap: 20px;
+}
+
+.doctor-card {
+    padding: 21px;
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.07);
+    transition: 0.25s ease;
+}
+
+.doctor-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 32px rgba(15, 23, 42, 0.11);
+}
+
+.doctor-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.doctor-avatar {
+    display: flex;
+    width: 62px;
+    height: 62px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    background: #e0f2fe;
+    font-size: 30px;
+}
+
+.available-badge {
+    padding: 6px 10px;
+    border-radius: 30px;
+    background: #dcfce7;
+    color: #15803d;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.doctor-card h3 {
+    margin: 18px 0 5px;
+    color: #0f172a;
+}
+
+.doctor-category {
+    margin: 0;
+    color: #0891b2;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.doctor-details {
+    padding: 13px 0;
+    margin: 15px 0;
+    border-top: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.doctor-details p {
+    display: flex;
+    gap: 8px;
+    margin: 7px 0;
+    color: #64748b;
+    font-size: 13px;
+}
+
+.card-actions {
+    display: flex;
+    gap: 9px;
+}
+
+.outline-btn,
+.book-btn {
+    flex: 1;
+    padding: 11px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.outline-btn {
+    border: 1px solid #0891b2;
+    background: #ffffff;
+    color: #0891b2;
+}
+
+.book-btn {
+    border: none;
+    background: linear-gradient(135deg, #0891b2, #38bdf8);
+    color: #ffffff;
+}
+
+.empty-state {
+    padding: 35px;
+    border-radius: 18px;
+    background: #ffffff;
+    color: #64748b;
+    text-align: center;
+}
+
+/* =========================
+   MODALS
+========================= */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(15, 23, 42, 0.55);
+}
+
+.modal-card {
+    position: relative;
+    width: 100%;
+    max-width: 430px;
+    padding: 30px;
+    border-radius: 22px;
+    background: #ffffff;
+    box-shadow: 0 24px 55px rgba(15, 23, 42, 0.28);
+}
+
+.modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 50%;
+    background: #f1f5f9;
+    color: #475569;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.modal-avatar {
+    display: flex;
+    width: 78px;
+    height: 78px;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 14px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0891b2, #38bdf8);
+    font-size: 36px;
+}
+
+.modal-card h2 {
+    margin: 0 0 20px;
+    color: #0f172a;
+    text-align: center;
+}
+
+.modal-subtitle {
+    margin: -12px 0 20px;
+    color: #0891b2;
+    text-align: center;
+    font-weight: 700;
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.profile-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.profile-row span {
+    color: #64748b;
+}
+
+.profile-row strong {
+    color: #0f172a;
+    text-align: right;
+    word-break: break-word;
+}
+
+.available-text {
+    color: #15803d !important;
+}
+
+.popup-logout-btn,
+.modal-book-btn {
+    width: 100%;
+    margin-top: 22px;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.popup-logout-btn {
+    background: linear-gradient(135deg, #d32f2f, #ef5350);
+}
+
+.modal-book-btn {
+    background: linear-gradient(135deg, #0891b2, #38bdf8);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+    .filters {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .dashboard-container {
+        padding: 20px;
+    }
+
+    .header h1 {
+        font-size: 27px;
+    }
+
+    .header-actions {
+        width: 100%;
+    }
+
+    .profile-btn,
+    .logout-btn {
+        flex: 1;
+    }
+
+    .welcome-icon {
+        display: none;
+    }
+
+    .filters {
+        grid-template-columns: 1fr;
+    }
+
+    .card-actions {
+        flex-direction: column;
+    }
+}
