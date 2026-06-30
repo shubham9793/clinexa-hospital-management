@@ -4,6 +4,7 @@ import com.clinexa.User.User;
 import com.clinexa.User.UserRepository;
 import com.clinexa.appointment.dto.AppointmentRequest;
 import com.clinexa.appointment.dto.AppointmentRescheduleRequest;
+import com.clinexa.appointment.dto.DoctorNotesRequest;
 import com.clinexa.appointment.dto.ReceptionistAppointmentRequest;
 import com.clinexa.doctor.Doctor;
 import com.clinexa.doctor.DoctorRepository;
@@ -11,6 +12,7 @@ import com.clinexa.patient.Patient;
 import com.clinexa.patient.PatientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -208,6 +210,10 @@ public class AppointmentService {
 
         appointment.setStatus(newStatus);
 
+        if (newStatus == AppointmentStatus.COMPLETED) {
+            appointment.setCompletedDate(LocalDate.now());
+        }
+
         return repo.save(appointment);
     }
 
@@ -246,16 +252,15 @@ public class AppointmentService {
             Long appointmentId,
             String loggedInPatientEmail
     ) {
+        Appointment appointment = findAppointmentById(appointmentId);
 
-        Appointment appointment =
-                findAppointmentById(appointmentId);
+        validatePatientOwnership(appointment, loggedInPatientEmail);
 
-        validatePatientOwnership(
-                appointment,
-                loggedInPatientEmail
-        );
+        validatePatientCanModifyAppointment(appointment);
 
-        return cancelAppointment(appointmentId);
+        appointment.setStatus(AppointmentStatus.CANCELLED);
+
+        return repo.save(appointment);
     }
 
     /*
@@ -314,18 +319,11 @@ public class AppointmentService {
             String loggedInPatientEmail,
             AppointmentRescheduleRequest req
     ) {
+        Appointment appointment = findAppointmentById(appointmentId);
 
-        Appointment appointment =
-                findAppointmentById(appointmentId);
+        validatePatientOwnership(appointment, loggedInPatientEmail);
 
-        validatePatientOwnership(
-                appointment,
-                loggedInPatientEmail
-        );
-
-        validateAppointmentCanBeRescheduled(
-                appointment
-        );
+        validatePatientCanModifyAppointment(appointment);
 
         validateBasicBookingRequest(
                 req.getDoctorId(),
@@ -333,8 +331,7 @@ public class AppointmentService {
                 req.getSlotTime()
         );
 
-        Doctor doctor =
-                findActiveDoctor(req.getDoctorId());
+        Doctor doctor = findActiveDoctor(req.getDoctorId());
 
         validateSlotAvailability(
                 doctor,
@@ -345,11 +342,7 @@ public class AppointmentService {
                 appointment.getId()
         );
 
-        updateRescheduledAppointment(
-                appointment,
-                doctor,
-                req
-        );
+        updateRescheduledAppointment(appointment, doctor, req);
 
         return repo.save(appointment);
     }
@@ -728,6 +721,70 @@ public class AppointmentService {
                             + currentStatus
                             + " to "
                             + newStatus
+            );
+        }
+    }
+
+    public List<Appointment> getOwnAppointments(
+            String loggedInPatientEmail
+    ) {
+        User patientUser = userRepo
+                .findByEmailIgnoreCase(loggedInPatientEmail)
+                .orElseThrow(() ->
+                        new RuntimeException("Patient account not found")
+                );
+
+        return repo.findByPatientOrderByAppointmentDateDescSlotTimeDesc(
+                patientUser
+        );
+    }
+
+//    public List<Appointment> getDoctorAppointments(
+//            String loggedInDoctorEmail
+//    ) {
+//        System.out.println("Logged in doctor: " + loggedInDoctorEmail);
+//        return repo.findByDoctorEmailIgnoreCaseOrderByAppointmentDateDescSlotTimeDesc(
+//                loggedInDoctorEmail
+//        );
+//    }
+
+    public List<Appointment> getDoctorAppointments(String loggedInDoctorEmail) {
+
+        System.out.println("Logged in doctor: " + loggedInDoctorEmail);
+
+        List<Appointment> list =
+                repo.findByDoctorEmailIgnoreCaseOrderByAppointmentDateDescSlotTimeDesc(
+                        loggedInDoctorEmail
+                );
+
+        System.out.println("Appointments found = " + list.size());
+
+        list.forEach(a -> System.out.println(
+                a.getId() + " | " +
+                        a.getPatientName() + " | " +
+                        a.getAppointmentDate()
+        ));
+
+        return list;
+    }
+
+    public Appointment getAppointment(Long appointmentId) {
+
+        Appointment appointment = repo.findById(appointmentId)
+                .orElseThrow(() ->
+                        new RuntimeException("Appointment not found"));
+
+        return appointment;
+    }
+
+    public List<Appointment> getAllAppointmentsForReceptionist() {
+        return repo.findAllByOrderByAppointmentDateDescSlotTimeDesc();
+    }
+
+    private void validatePatientCanModifyAppointment(Appointment appointment) {
+        if (appointment.getStatus() != AppointmentStatus.PENDING) {
+            throw new RuntimeException(
+                    "Patient can update or cancel appointment only while it is pending"
             );
         }
     }

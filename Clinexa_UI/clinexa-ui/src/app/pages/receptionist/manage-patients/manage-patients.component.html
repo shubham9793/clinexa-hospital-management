@@ -1,164 +1,170 @@
-
 <div class="page-container">
 
-    <div class="top-bar">
+    <div class="decor-circle circle-one"></div>
+    <div class="decor-circle circle-two"></div>
 
+    <!-- HEADER -->
+    <div class="top-bar">
         <div>
+            <span class="page-badge">
+                👤 Patient Records
+            </span>
 
             <h1 class="title">
-                👤 Manage Patients
+                Manage Patients
             </h1>
 
             <p class="subtitle">
-                Manage all registered patients
+                Manage all registered patients, status and profile details.
             </p>
-
         </div>
 
-        <button class="add-btn" routerLink="/add-patient">
-
+        <button class="add-btn" routerLink="/add-patient" type="button">
             + Add Patient
-
         </button>
-
     </div>
 
-    <div class="search-box">
+    <!-- SEARCH -->
+    <div class="search-panel">
+        <div class="search-box">
+            <span>🔍</span>
 
-        <span>🔍</span>
+            <input type="text" placeholder="Search by name, email, phone, gender or address..."
+                [(ngModel)]="searchText" />
+        </div>
 
-        <input type="text" placeholder="Search by name, email or phone..." [(ngModel)]="searchText">
-
+        <button class="clear-btn" type="button" *ngIf="searchText" (click)="clearSearch()">
+            Clear
+        </button>
     </div>
 
-    <div class="stats-row">
-
-        <div class="stat-card">
-
-            <h3>
-                {{ patients.length }}
-            </h3>
-
-            <p>
-                Total Patients
-            </p>
-
-        </div>
-
-        <div class="stat-card">
-
-            <h3>
-                {{ activePatientsCount }}
-            </h3>
-
-            <p>
-                Active
-            </p>
-
-        </div>
-
-        <div class="stat-card">
-
-        <h3>
-            {{ inactivePatientsCount }}
-        </h3>
-
-            <p>
-                Inactive
-            </p>
-
-        </div>
-
+    <!-- LOADING -->
+    <div class="loading-wrapper" *ngIf="isLoading">
+        <div class="spinner"></div>
+        <p>Loading patients...</p>
     </div>
 
-    <div class="patient-grid">
+    <ng-container *ngIf="!isLoading">
 
-        <div class="patient-card" *ngFor="let patient of filteredPatients">
+        <!-- STATS -->
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
 
-            <div class="patient-header">
+                <h3>
+                    {{ patients.length }}
+                </h3>
 
-                <div class="avatar">
-                    👤
-                </div>
-
-                <div>
-
-                    <h2>
-                        {{ patient.name }}
-                    </h2>
-
-                    <small>
-                        {{ patient.email }}
-                    </small>
-
-                </div>
-
+                <p>
+                    Total Patients
+                </p>
             </div>
 
-            <div class="patient-details">
+            <div class="stat-card">
+                <div class="stat-icon">✅</div>
+
+                <h3>
+                    {{ activePatientsCount }}
+                </h3>
 
                 <p>
-                    📞 {{ patient.phone }}
-                </p>
-
-                <p>
-                    🚻 {{ patient.gender }}
-                </p>
-
-                <p>
-                    🎂 {{ patient.dob }}
-                </p>
-
-                <p>
-                    📍 {{ patient.address }}
-                </p>
-
-            </div>
-
-            <div class="status">
-
-                <span class="active-badge" *ngIf="patient.active">
-
                     Active
+                </p>
+            </div>
 
-                </span>
+            <div class="stat-card">
+                <div class="stat-icon">⛔</div>
 
-                <span class="inactive-badge" *ngIf="!patient.active">
+                <h3>
+                    {{ inactivePatientsCount }}
+                </h3>
 
+                <p>
                     Inactive
-
-                </span>
-
+                </p>
             </div>
-
-            <div class="card-actions">
-
-                <button class="edit-btn" (click)="editPatient(patient.id)">
-
-                    ✏️ Edit
-
-                </button>
-
-                <button class="status-btn" (click)="toggleStatus(patient.id)">
-
-                    {{
-                    patient.active
-                    ? 'Deactivate'
-                    : 'Activate'
-                    }}
-
-                </button>
-
-                <button class="delete-btn" (click)="deletePatient(patient.id)">
-
-                    🗑 Delete
-
-                </button>
-
-            </div>
-
         </div>
 
-    </div>
+        <!-- GRID -->
+        <div class="patient-grid" *ngIf="filteredPatients.length > 0">
+            <div class="patient-card" *ngFor="let patient of filteredPatients">
+                <div class="patient-header">
+                    <div class="avatar">
+                        {{ patient.name?.charAt(0) || 'P' }}
+                    </div>
+
+                    <div class="patient-title">
+                        <h2>
+                            {{ patient.name || 'Unnamed Patient' }}
+                        </h2>
+
+                        <small>
+                            {{ patient.email || 'Email not available' }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="patient-details">
+                    <p>
+                        <span>📞</span>
+                        {{ patient.phone || 'Phone not available' }}
+                    </p>
+
+                    <p>
+                        <span>🚻</span>
+                        {{ patient.gender || 'Gender not available' }}
+                    </p>
+
+                    <p>
+                        <span>🎂</span>
+                        {{ patient.dob || 'DOB not available' }}
+                    </p>
+
+                    <p>
+                        <span>📍</span>
+                        {{ patient.address || 'Address not available' }}
+                    </p>
+                </div>
+
+                <div class="status">
+                    <span class="active-badge" *ngIf="patient.active">
+                        ● Active
+                    </span>
+
+                    <span class="inactive-badge" *ngIf="!patient.active">
+                        ● Inactive
+                    </span>
+                </div>
+
+                <div class="card-actions">
+                    <button class="edit-btn" type="button" (click)="editPatient(patient.id)">
+                        ✏️ Edit
+                    </button>
+
+                    <button class="status-btn" type="button" (click)="toggleStatus(patient)">
+                        {{ patient.active ? 'Deactivate' : 'Activate' }}
+                    </button>
+
+                    <button class="delete-btn" type="button" (click)="deletePatient(patient.id)">
+                        🗑 Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- EMPTY -->
+        <div class="empty-state" *ngIf="filteredPatients.length === 0">
+            <div class="empty-icon">
+                👤
+            </div>
+
+            <h2>No Patients Found</h2>
+
+            <p>
+                No patient records match your search.
+            </p>
+        </div>
+
+    </ng-container>
 
 </div>

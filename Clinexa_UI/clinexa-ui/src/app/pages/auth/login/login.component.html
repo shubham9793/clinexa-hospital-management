@@ -1,17 +1,57 @@
-<div class="login-container">
+<div class="login-page">
 
-    <h1>Login</h1>
+    <div class="login-card">
 
-    <form (ngSubmit)="login()">
+        <div class="brand">
+            <div class="brand-icon">
+                {{ portalIcon }}
+            </div>
 
-        <input type="email" placeholder="Enter email" [(ngModel)]="email" name="email" required>
+            <h1>
+                {{ portalTitle }}
+            </h1>
 
-        <input type="password" placeholder="Enter password" [(ngModel)]="password" name="password" required>
+            <p>
+                Welcome to Clinexa. Please sign in securely to continue.
+            </p>
+        </div>
 
-        <button type="submit">
-            Login
-        </button>
+        <form (ngSubmit)="login()">
 
-    </form>
+            <div class="input-group">
+                <label>Email Address</label>
+
+                <input type="email" placeholder="Enter your email" [(ngModel)]="email" name="email" required />
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+
+                <input type="password" placeholder="Enter your password" [(ngModel)]="password" name="password"
+                    required />
+            </div>
+
+            <button type="submit" class="login-btn" [disabled]="isLoading">
+                {{
+                isLoading
+                ? 'Signing in...'
+                : 'Login to Dashboard'
+                }}
+            </button>
+
+        </form>
+
+        <div class="footer-text">
+            <p>
+                You are logging in as
+                <strong>{{ selectedRole | titlecase }}</strong>
+            </p>
+
+            <a routerLink="/">
+                ← Back to Home
+            </a>
+        </div>
+
+    </div>
 
 </div>

@@ -1,15 +1,18 @@
 <div class="dashboard-container">
+    <div class="decor-circle circle-one"></div>
+    <div class="decor-circle circle-two"></div>
 
     <!-- HEADER -->
     <div class="header">
         <div>
-            <h1>👩‍💼 Receptionist Dashboard</h1>
-            <p>Manage patients and appointments</p>
+            <span class="page-badge">👩‍💼 Front Desk Portal</span>
+            <h1>Receptionist Dashboard</h1>
+            <p>Manage patients, daily appointments and hospital front-desk operations.</p>
         </div>
 
         <div class="header-actions">
             <button class="profile-btn" type="button" (click)="openProfile()">
-                Receptionist Panel
+                👤 My Profile
             </button>
 
             <button class="logout-btn" type="button" (click)="logout()">
@@ -20,124 +23,441 @@
 
     <!-- WELCOME CARD -->
     <div class="welcome-card">
-        <h2>👋 Welcome Receptionist</h2>
+        <div>
+            <span class="welcome-badge">Clinexa Operations</span>
 
-        <p>
-            Manage patients, appointments and daily hospital operations efficiently.
-        </p>
+            <h2>Welcome, {{ loggedInUser?.name || 'Receptionist' }} 👋</h2>
+
+            <p>
+                Quickly manage patient records, registrations and appointment workflows
+                from one professional dashboard.
+            </p>
+        </div>
+
+        <div class="welcome-icon">🏥</div>
+    </div>
+
+    <!-- LOADING -->
+    <div class="loading-card" *ngIf="isStatsLoading || isAppointmentsLoading">
+        <div class="spinner"></div>
+        <p>Loading dashboard data...</p>
     </div>
 
     <!-- STATS -->
-    <div class="stats-grid">
-
-        <div class="stat-card">
+    <div class="stats-grid" *ngIf="!isStatsLoading && !isAppointmentsLoading">
+        <div class="stat-card patient-stat">
             <div class="stat-icon">👤</div>
+            <span class="stat-label">Patients</span>
             <h2>{{ patientCount }}</h2>
-            <p>Patients</p>
+            <p>Total registered patients</p>
         </div>
 
-        <div class="stat-card">
+        <div class="stat-card appointment-stat">
             <div class="stat-icon">📅</div>
+            <span class="stat-label">Appointments</span>
             <h2>{{ appointmentCount }}</h2>
-            <p>Appointments</p>
+            <p>Total appointments</p>
         </div>
 
-        <div class="stat-card">
+        <div class="stat-card pending-stat">
             <div class="stat-icon">⏳</div>
+            <span class="stat-label">Pending</span>
             <h2>{{ pendingCount }}</h2>
-            <p>Pending</p>
+            <p>Waiting for confirmation</p>
         </div>
 
-        <div class="stat-card">
+        <div class="stat-card appointment-stat">
+            <div class="stat-icon">🩺</div>
+            <span class="stat-label">Confirmed</span>
+            <h2>{{ confirmedCount }}</h2>
+            <p>Confirmed appointments</p>
+        </div>
+
+        <div class="stat-card completed-stat">
             <div class="stat-icon">✅</div>
+            <span class="stat-label">Completed</span>
             <h2>{{ completedCount }}</h2>
-            <p>Completed</p>
+            <p>Completed visits</p>
         </div>
 
+        <div class="stat-card pending-stat">
+            <div class="stat-icon">🔥</div>
+            <span class="stat-label">Today</span>
+            <h2>{{ todayCount }}</h2>
+            <p>Today's appointments</p>
+        </div>
     </div>
 
     <!-- FEATURES -->
     <div class="feature-grid">
-
         <div class="feature-card" routerLink="/manage-patients">
             <div class="icon">👤</div>
             <h2>Manage Patients</h2>
-            <p>Add, edit and manage patients</p>
+            <p>Add, edit and manage patient records.</p>
+            <span>Open Module →</span>
         </div>
 
         <div class="feature-card" routerLink="/add-patient">
             <div class="icon">➕</div>
             <h2>Add Patient</h2>
-            <p>Register a new patient</p>
+            <p>Register a new patient in Clinexa.</p>
+            <span>Register Patient →</span>
         </div>
 
-        <div class="feature-card">
+        <div class="feature-card" (click)="scrollToAppointments()">
             <div class="icon">📅</div>
             <h2>Appointments</h2>
-            <p>Manage appointments</p>
+            <p>Search, filter, view, reschedule and cancel appointments.</p>
+            <span>Use below ↓</span>
         </div>
 
         <div class="feature-card">
             <div class="icon">📋</div>
             <h2>Reports</h2>
-            <p>View appointment reports</p>
+            <p>Daily reports and exports can be added next.</p>
+            <span>Coming Soon →</span>
         </div>
-
     </div>
 
+    <!-- APPOINTMENTS -->
+    <div id="receptionistAppointments" class="receptionist-appointments-panel">
+        <div class="appointment-panel-header premium-header">
+            <div>
+                <span class="mini-badge">📅 Front Desk Appointments</span>
+                <h2>Appointment Management</h2>
+                <p>Search, filter and manage all patient appointments.</p>
+            </div>
+
+            <div class="header-tools">
+                <span class="result-chip">{{ filteredAppointments.length }} found</span>
+
+                <button class="premium-refresh-btn" type="button" (click)="loadDashboard()">
+                    <span>🔄</span>
+                    Refresh
+                </button>
+            </div>
+        </div>
+
+        <div class="premium-filter-card">
+            <div class="premium-search-box">
+                <span class="search-icon">🔍</span>
+
+                <input type="text" [(ngModel)]="searchText"
+                    placeholder="Search patient, doctor, phone, department or date..." />
+
+                <button class="search-clear-icon" type="button" *ngIf="searchText" (click)="searchText = ''">
+                    ✕
+                </button>
+            </div>
+
+            <div class="status-filter-row">
+                <button class="status-chip" type="button" [class.active]="selectedStatus === ''"
+                    (click)="selectedStatus = ''">
+                    All
+                </button>
+
+                <button class="status-chip pending" type="button" [class.active]="selectedStatus === 'PENDING'"
+                    (click)="selectedStatus = 'PENDING'">
+                    Pending
+                </button>
+
+                <button class="status-chip confirmed" type="button" [class.active]="selectedStatus === 'CONFIRMED'"
+                    (click)="selectedStatus = 'CONFIRMED'">
+                    Confirmed
+                </button>
+
+                <button class="status-chip completed" type="button" [class.active]="selectedStatus === 'COMPLETED'"
+                    (click)="selectedStatus = 'COMPLETED'">
+                    Completed
+                </button>
+
+                <button class="status-chip cancelled" type="button" [class.active]="selectedStatus === 'CANCELLED'"
+                    (click)="selectedStatus = 'CANCELLED'">
+                    Cancelled
+                </button>
+
+                <button class="premium-clear-btn" type="button" (click)="clearFilters()">
+                    🧹 Clear
+                </button>
+            </div>
+        </div>
+
+        <div class="empty-state" *ngIf="!isAppointmentsLoading && filteredAppointments.length === 0">
+            <div class="empty-icon">📅</div>
+            <h3>No Appointments Found</h3>
+            <p>No appointment matches your search or selected status.</p>
+        </div>
+
+        <div class="appointment-grid-v2" *ngIf="!isAppointmentsLoading && filteredAppointments.length > 0">
+            <article class="receptionist-appointment-card" *ngFor="let appointment of filteredAppointments"
+                [ngClass]="getStatusClass(appointment.status)" (click)="openAppointmentDetails(appointment)">
+                <div class="card-top">
+                    <div class="patient-avatar">
+                        {{ appointment.patientName ? appointment.patientName.charAt(0) : 'P' }}
+                    </div>
+
+                    <div class="patient-info">
+                        <h3>{{ appointment.patientName || 'Patient Name' }}</h3>
+                        <p>{{ appointment.phone || 'Phone not available' }}</p>
+                    </div>
+
+                    <span class="status-badge" [ngClass]="getStatusClass(appointment.status)">
+                        {{ appointment.status }}
+                    </span>
+                </div>
+
+                <div class="appointment-meta-grid">
+                    <div class="meta-box">
+                        <span>👨‍⚕️</span>
+                        <div>
+                            <label>Doctor</label>
+                            <strong>{{ appointment.doctor?.name || 'Not available' }}</strong>
+                        </div>
+                    </div>
+
+                    <div class="meta-box">
+                        <span>🏥</span>
+                        <div>
+                            <label>Department</label>
+                            <strong>{{ appointment.doctor?.department?.name || 'Not assigned' }}</strong>
+                        </div>
+                    </div>
+
+                    <div class="meta-box">
+                        <span>📅</span>
+                        <div>
+                            <label>Date</label>
+                            <strong>{{ appointment.appointmentDate || 'Not available' }}</strong>
+                        </div>
+                    </div>
+
+                    <div class="meta-box">
+                        <span>⏰</span>
+                        <div>
+                            <label>Time</label>
+                            <strong>{{ appointment.slotTime || 'Not available' }}</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reason-preview">
+                    <label>Reason</label>
+                    <p>{{ appointment.description || 'No reason provided' }}</p>
+                </div>
+
+                <div class="card-footer" (click)="$event.stopPropagation()">
+                    <button class="view-details-btn" type="button" (click)="openAppointmentDetails(appointment)">
+                        View Details
+                    </button>
+
+                    <button class="reschedule-small-btn" type="button"
+                        *ngIf="appointment.status === 'PENDING' || appointment.status === 'CONFIRMED'"
+                        (click)="openReschedulePopup(appointment)">
+                        ✏️ Reschedule
+                    </button>
+
+                    <button class="cancel-small-btn" type="button"
+                        *ngIf="appointment.status === 'PENDING' || appointment.status === 'CONFIRMED'"
+                        (click)="cancelAppointment(appointment.id)">
+                        Cancel
+                    </button>
+                </div>
+            </article>
+        </div>
+    </div>
 </div>
 
 <!-- PROFILE POPUP -->
 <div class="profile-overlay" *ngIf="showProfilePopup" (click)="closeProfile()">
     <div class="profile-popup" (click)="$event.stopPropagation()">
-        <button class="close-btn" type="button" (click)="closeProfile()">
-            ✕
-        </button>
+        <button class="close-btn" type="button" (click)="closeProfile()">✕</button>
 
-        <div class="profile-avatar">
-            👩‍💼
-        </div>
+        <div class="profile-avatar">👩‍💼</div>
 
         <h2>Receptionist Profile</h2>
 
         <div *ngIf="isProfileLoading" class="profile-loading">
-            Loading profile details...
+            <div class="spinner small"></div>
+            <p>Loading profile details...</p>
         </div>
 
         <div *ngIf="!isProfileLoading && loggedInUser" class="profile-details">
-
-            <div class="profile-row">
+            <div class="appointment-row">
                 <span>Name</span>
-                <strong>
-                    {{ loggedInUser.name || loggedInUser.fullName || 'Not available' }}
-                </strong>
+                <strong>{{ loggedInUser.name || loggedInUser.fullName || 'Not available' }}</strong>
             </div>
 
-            <div class="profile-row">
+            <div class="appointment-row">
                 <span>Email</span>
-                <strong>
-                    {{ loggedInUser.email || 'Not available' }}
-                </strong>
+                <strong>{{ loggedInUser.email || 'Not available' }}</strong>
             </div>
 
-            <div class="profile-row">
+            <div class="appointment-row">
                 <span>Role</span>
-                <strong>
-                    {{ loggedInUser.role || 'RECEPTIONIST' }}
-                </strong>
+                <strong>{{ loggedInUser.role || 'RECEPTIONIST' }}</strong>
             </div>
 
-            <div class="profile-row">
+            <div class="appointment-row">
                 <span>Phone</span>
-                <strong>
-                    {{ loggedInUser.phone || loggedInUser.phoneNumber || 'Not available' }}
-                </strong>
+                <strong>{{ loggedInUser.phone || loggedInUser.phoneNumber || 'Not available' }}</strong>
             </div>
-
         </div>
 
         <button class="popup-logout-btn" type="button" (click)="logout()">
             Logout
         </button>
+    </div>
+</div>
+
+<!-- APPOINTMENT DETAILS POPUP -->
+<div class="profile-overlay appointment-details-overlay" *ngIf="showAppointmentPopup && selectedAppointment"
+    (click)="closeAppointmentDetails()">
+    <div class="appointment-popup premium-details-popup" (click)="$event.stopPropagation()">
+        <button class="close-btn" type="button" (click)="closeAppointmentDetails()">✕</button>
+
+        <div class="appointment-popup-header">
+            <div class="profile-avatar">📅</div>
+
+            <div>
+                <span class="page-badge">Appointment Details</span>
+                <h2>{{ selectedAppointment.patientName || 'Patient Name' }}</h2>
+                <p>{{ selectedAppointment.phone || 'Phone not available' }}</p>
+            </div>
+        </div>
+
+        <span class="status-badge details-status" [ngClass]="getStatusClass(selectedAppointment.status)">
+            {{ selectedAppointment.status }}
+        </span>
+
+        <div class="appointment-detail-grid">
+            <div class="appointment-row">
+                <span>Doctor</span>
+                <strong>{{ selectedAppointment.doctor?.name || 'Not available' }}</strong>
+            </div>
+
+            <div class="appointment-row">
+                <span>Department</span>
+                <strong>{{ selectedAppointment.doctor?.department?.name || 'Not assigned' }}</strong>
+            </div>
+
+            <div class="appointment-row">
+                <span>Date</span>
+                <strong>{{ selectedAppointment.appointmentDate || 'Not available' }}</strong>
+            </div>
+
+            <div class="appointment-row">
+                <span>Time</span>
+                <strong>{{ selectedAppointment.slotTime || 'Not available' }}</strong>
+            </div>
+
+            <div class="appointment-row full-width">
+                <span>Reason</span>
+                <strong>{{ selectedAppointment.description || 'Not provided' }}</strong>
+            </div>
+
+            <div class="appointment-row full-width" *ngIf="selectedAppointment.status === 'COMPLETED'">
+                <span>Follow Up Date</span>
+
+                <strong *ngIf="isFollowUpLoading">Loading...</strong>
+                <strong *ngIf="!isFollowUpLoading">{{ selectedFollowUpDate || 'Not provided' }}</strong>
+            </div>
+        </div>
+
+        <div class="privacy-note" *ngIf="selectedAppointment.status === 'COMPLETED'">
+            🔒 Receptionist can view follow-up date only. Diagnosis, prescription and doctor notes are private.
+        </div>
+
+        <div class="popup-actions details-actions"
+            *ngIf="selectedAppointment.status === 'PENDING' || selectedAppointment.status === 'CONFIRMED'">
+            <button class="secondary-action-btn" type="button" (click)="closeAppointmentDetails()">
+                Close
+            </button>
+
+            <button class="primary-action-btn" type="button" (click)="openReschedulePopup(selectedAppointment)">
+                ✏️ Reschedule
+            </button>
+
+            <button class="danger-action-btn" type="button" (click)="cancelAppointment(selectedAppointment.id)">
+                Cancel Appointment
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- RESCHEDULE APPOINTMENT POPUP -->
+<div class="profile-overlay reschedule-overlay" *ngIf="showReschedulePopup && rescheduleAppointmentData"
+    (click)="closeReschedulePopup()">
+    <div class="reschedule-popup clean-popup" (click)="$event.stopPropagation()">
+        <button class="reschedule-close-btn" type="button" (click)="closeReschedulePopup()" [disabled]="isRescheduling">
+            ✕
+        </button>
+
+        <div class="clean-popup-header">
+            <div class="clean-popup-icon">📅</div>
+
+            <div>
+                <span class="clean-popup-badge">Front Desk Reschedule</span>
+                <h2>{{ rescheduleAppointmentData.patientName || 'Patient Name' }}</h2>
+                <p>Change doctor, appointment date, or time slot for this booking.</p>
+            </div>
+        </div>
+
+        <div class="clean-current-card">
+            <div>
+                <span>Current Doctor</span>
+                <strong>{{ rescheduleAppointmentData.doctor?.name || 'Not available' }}</strong>
+            </div>
+
+            <div>
+                <span>Current Date</span>
+                <strong>{{ rescheduleAppointmentData.appointmentDate || 'Not available' }}</strong>
+            </div>
+
+            <div>
+                <span>Current Time</span>
+                <strong>{{ rescheduleAppointmentData.slotTime || 'Not available' }}</strong>
+            </div>
+        </div>
+
+        <div class="clean-reschedule-form">
+            <div class="clean-field full-width">
+                <label>New Doctor</label>
+
+                <select [(ngModel)]="rescheduleForm.doctorId">
+                    <option value="">Select Doctor</option>
+
+                    <option *ngFor="let doctor of doctors" [value]="doctor.id">
+                        {{ doctor.name }} - {{ doctor.department?.name || 'Department' }}
+                    </option>
+                </select>
+            </div>
+
+            <div class="clean-field">
+                <label>New Date</label>
+                <input type="date" [(ngModel)]="rescheduleForm.appointmentDate" [min]="today" />
+            </div>
+
+            <div class="clean-field">
+                <label>New Time</label>
+                <input type="time" [(ngModel)]="rescheduleForm.slotTime" />
+            </div>
+        </div>
+
+        <div class="clean-note">
+            ℹ️ Receptionist can reschedule pending or confirmed appointments only. Completed and cancelled appointments
+            are locked.
+        </div>
+
+        <div class="clean-popup-actions">
+            <button class="secondary-action-btn" type="button" (click)="closeReschedulePopup()"
+                [disabled]="isRescheduling">
+                Cancel
+            </button>
+
+            <button class="primary-action-btn" type="button" (click)="submitReschedule()" [disabled]="isRescheduling">
+                <span *ngIf="!isRescheduling">Update Appointment</span>
+                <span *ngIf="isRescheduling">Updating...</span>
+            </button>
+        </div>
     </div>
 </div>

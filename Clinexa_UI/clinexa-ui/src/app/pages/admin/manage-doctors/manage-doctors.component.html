@@ -1,35 +1,38 @@
 <div class="page-container">
 
+    <div class="decor-circle circle-one"></div>
+    <div class="decor-circle circle-two"></div>
+
     <!-- HEADER -->
-
     <div class="top-bar">
-
         <div>
+            <span class="page-badge">
+                👨‍⚕️ Doctor Management
+            </span>
 
             <h1 class="title">
-                👨‍⚕️ Manage Doctors
+                Manage Doctors
             </h1>
 
             <p class="subtitle">
-                Manage all doctors and their departments
+                Create, filter and control doctor dashboard access.
             </p>
-
         </div>
 
-        <button class="add-btn" routerLink="/add-doctor">
+        <button class="add-btn" routerLink="/add-doctor" type="button">
             + Add Doctor
         </button>
-
     </div>
 
     <!-- FILTER SECTION -->
-
     <div class="filter-section">
+        <div class="search-box">
+            <span>🔍</span>
 
-        <input type="text" placeholder="🔍 Search doctor..." [(ngModel)]="searchText">
+            <input type="text" placeholder="Search doctor by name or email..." [(ngModel)]="searchText" />
+        </div>
 
         <select [(ngModel)]="selectedDepartment">
-
             <option value="">
                 All Departments
             </option>
@@ -37,11 +40,9 @@
             <option *ngFor="let dept of departments" [value]="dept.name">
                 {{ dept.name }}
             </option>
-
         </select>
 
         <select [(ngModel)]="selectedCategory">
-
             <option value="">
                 All Categories
             </option>
@@ -49,85 +50,78 @@
             <option *ngFor="let cat of categories" [value]="cat.name">
                 {{ cat.name }}
             </option>
-
         </select>
 
+        <button class="clear-btn" type="button" (click)="clearFilters()">
+            Clear
+        </button>
+    </div>
+
+    <!-- LOADING -->
+    <div class="empty-state" *ngIf="isLoading">
+        Loading doctors...
+    </div>
+
+    <!-- EMPTY -->
+    <div class="empty-state" *ngIf="!isLoading && filteredDoctors().length === 0">
+        No doctors found for the selected filters.
     </div>
 
     <!-- DOCTOR GRID -->
-
-    <div class="doctor-grid">
-
+    <div class="doctor-grid" *ngIf="!isLoading && filteredDoctors().length > 0">
         <div class="doctor-card" *ngFor="let doctor of filteredDoctors()">
-
-            <!-- HEADER -->
-
             <div class="doctor-header">
-
                 <div class="avatar">
-                    {{ doctor.name.charAt(0) }}
+                    {{ doctor.name?.charAt(0) || 'D' }}
                 </div>
 
                 <div>
-
                     <h2>
                         {{ doctor.name }}
                     </h2>
 
                     <span class="category">
-                        {{ doctor.category?.name }}
+                        {{ doctor.category?.name || 'General' }}
                     </span>
-
                 </div>
-
             </div>
-
-            <!-- INFO -->
 
             <div class="doctor-info">
-
                 <p>
-                    📧 {{ doctor.email }}
+                    <span>📧</span>
+                    {{ doctor.email }}
                 </p>
 
                 <p>
-                    📱 {{ doctor.phone }}
+                    <span>📱</span>
+                    {{ doctor.phone }}
                 </p>
 
                 <p>
-                    🏥 {{ doctor.department?.name }}
+                    <span>🏥</span>
+                    {{ doctor.department?.name || 'No department' }}
                 </p>
-
             </div>
-
-            <!-- AVAILABILITY BUTTON -->
 
             <div class="availability-status" [class.available]="doctor.active" [class.unavailable]="!doctor.active"
                 (click)="toggleAvailability($event, doctor)">
-            
                 <div class="status-dot"></div>
-            
+
                 <span>
                     {{ doctor.active ? 'Active' : 'Inactive' }}
                 </span>
-            
             </div>
-            <!-- ACTION BUTTONS -->
 
             <div class="card-actions">
-
-                <button class="edit-btn" [routerLink]="['/edit-doctor', doctor.id]">
+                <button class="edit-btn" type="button" [routerLink]="['/edit-doctor', doctor.id]">
                     Edit
                 </button>
 
-                <button class="delete-btn" (click)="deleteDoctor(doctor.id)">
-                    Delete
+                <button class="delete-btn" type="button" (click)="deleteDoctor(doctor.id)">
+                    Deactivate
                 </button>
-
             </div>
-
         </div>
-
     </div>
 
 </div>

@@ -27,6 +27,7 @@ import { AddPatientComponent } from './pages/receptionist/add-patient/add-patien
 import { ReceptionistDashboardComponent } from './pages/receptionist/receptionist-dashboard/receptionist-dashboard.component';
 import { PatientDashboardComponent } from './pages/patient/patient-dashboard/patient-dashboard.component';
 import { ManagePatientComponent } from './pages/patient/manage-patient/manage-patient.component';
+import { DoctorDashboardComponent } from './pages/doctor/doctor-dashboard/doctor-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { ManagePatientComponent } from './pages/patient/manage-patient/manage-pa
     ReceptionistDashboardComponent,
     PatientDashboardComponent,
     ManagePatientComponent,
+    DoctorDashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,6 +57,7 @@ import { ManagePatientComponent } from './pages/patient/manage-patient/manage-pa
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
+    CommonModule,
   ],
   providers: [
     {

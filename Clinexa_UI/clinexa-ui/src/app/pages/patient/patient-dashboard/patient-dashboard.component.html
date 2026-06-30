@@ -1,99 +1,169 @@
-<div class="dashboard-container">
+<div class="patient-page">
+
+    <div class="bg-orb orb-one"></div>
+    <div class="bg-orb orb-two"></div>
 
     <!-- HEADER -->
-    <header class="header">
-
+    <header class="top-header dashboard-animate">
         <div>
-            <h1>🏥 Clinexa Patient Portal</h1>
+            <span class="page-badge">
+                🏥 Patient Portal
+            </span>
+
+            <h1>
+                Clinexa Patient Dashboard
+            </h1>
 
             <p>
-                Find the right doctor and manage your healthcare journey
+                Book appointments, track visits and manage your healthcare journey.
             </p>
         </div>
 
         <div class="header-actions">
-
             <button class="profile-btn" type="button" (click)="openProfile()">
-                👤
-                {{
-                loggedInUser?.name ||
-                'My Profile'
-                }}
+                👤 {{ loggedInUser?.name || 'My Profile' }}
             </button>
 
             <button class="logout-btn" type="button" (click)="logout()">
                 Logout
             </button>
-
         </div>
-
     </header>
 
-    <!-- WELCOME CARD -->
-    <section class="welcome-card">
-
-        <div>
-            <span class="welcome-badge">
-                Patient Dashboard
+    <!-- HERO -->
+    <section class="hero-card dashboard-animate delay-1">
+        <div class="hero-content">
+            <span class="hero-badge">
+                Welcome Back
             </span>
 
             <h2>
-                Welcome,
-                {{
-                loggedInUser?.name ||
-                'Patient'
-                }}
-                👋
+                Hello, {{ loggedInUser?.name || 'Patient' }} 👋
             </h2>
 
             <p>
-                Search available doctors by department or category
-                and choose the right specialist for your care.
+                Find available doctors, book appointments and check your appointment
+                status from one modern dashboard.
             </p>
+
+            <div class="hero-actions">
+                <button type="button" class="hero-btn primary" (click)="scrollToSection('findDoctorSection')">
+                    Find Doctor
+                </button>
+
+                <button type="button" class="hero-btn secondary" (click)="scrollToSection('appointmentsSection')">
+                    My Appointments
+                </button>
+            </div>
         </div>
 
-        <div class="welcome-icon">
-            🩺
+        <div class="hero-visual">
+            <div class="pulse-ring"></div>
+            <div class="hero-icon">🩺</div>
         </div>
-
     </section>
 
-    <!-- FILTER SECTION -->
-    <section class="filter-card">
+    <!-- STATS -->
+    <section class="stats-grid dashboard-animate delay-2">
+        <article class="stat-card">
+            <div class="stat-icon">👨‍⚕️</div>
 
-        <div class="section-title">
             <div>
-                <h2>Available Doctors</h2>
+                <h3>{{ doctors.length }}</h3>
+                <p>Available Doctors</p>
+            </div>
+        </article>
 
-                <p>
-                    Browse active doctors and view their profiles
-                </p>
+        <article class="stat-card">
+            <div class="stat-icon">🏥</div>
+
+            <div>
+                <h3>{{ departments.length }}</h3>
+                <p>Departments</p>
+            </div>
+        </article>
+
+        <article class="stat-card">
+            <div class="stat-icon">📅</div>
+
+            <div>
+                <h3>{{ appointments.length }}</h3>
+                <p>Total Bookings</p>
+            </div>
+        </article>
+
+        <article class="stat-card">
+            <div class="stat-icon">⏳</div>
+
+            <div>
+                <h3>{{ upcomingAppointments.length }}</h3>
+                <p>Upcoming</p>
+            </div>
+        </article>
+    </section>
+
+    <!-- QUICK ACTIONS -->
+    <section class="quick-actions dashboard-animate delay-3">
+        <div class="section-heading">
+            <div>
+                <h2>Quick Actions</h2>
+                <p>Access your most used patient services quickly.</p>
+            </div>
+        </div>
+
+        <div class="quick-grid">
+            <div class="quick-card" (click)="scrollToSection('findDoctorSection')">
+                <div class="quick-icon">🔎</div>
+                <h3>Find Doctor</h3>
+                <p>Search specialist doctors.</p>
             </div>
 
-            <span class="doctor-count">
+            <div class="quick-card" (click)="scrollToSection('appointmentsSection')">
+                <div class="quick-icon">📅</div>
+                <h3>Appointments</h3>
+                <p>Track booking history.</p>
+            </div>
+
+            <div class="quick-card" (click)="openProfile()">
+                <div class="quick-icon">👤</div>
+                <h3>My Profile</h3>
+                <p>View account details.</p>
+            </div>
+
+            <div class="quick-card disabled-card">
+                <div class="quick-icon">🧾</div>
+                <h3>Medical History</h3>
+                <p>Coming soon.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FIND DOCTOR -->
+    <section id="findDoctorSection" class="dashboard-panel dashboard-animate delay-4">
+        <div class="section-heading">
+            <div>
+                <h2>Find Your Doctor</h2>
+                <p>Search by doctor name, department or specialist category.</p>
+            </div>
+
+            <span class="count-badge">
                 {{ filteredDoctors.length }} doctors found
             </span>
         </div>
 
-        <div class="filters">
+        <div class="filter-panel">
+            <div class="input-group search-input">
+                <label for="doctorSearch">Search Doctor</label>
 
-            <div class="input-group">
-                <label for="doctorSearch">
-                    Search Doctor
-                </label>
-
-                <input id="doctorSearch" type="text" [(ngModel)]="searchText" placeholder="Search by doctor name" />
+                <input id="doctorSearch" type="text" [(ngModel)]="searchText"
+                    placeholder="Search doctor, department or category" />
             </div>
 
             <div class="input-group">
-                <label for="departmentFilter">
-                    Department
-                </label>
+                <label for="departmentFilter">Department</label>
 
                 <select id="departmentFilter" [(ngModel)]="selectedDepartmentId">
-                    <option value="">
-                        All Departments
-                    </option>
+                    <option value="">All Departments</option>
 
                     <option *ngFor="let department of departments" [value]="department.id">
                         {{ department.name }}
@@ -102,14 +172,10 @@
             </div>
 
             <div class="input-group">
-                <label for="categoryFilter">
-                    Category
-                </label>
+                <label for="categoryFilter">Category</label>
 
                 <select id="categoryFilter" [(ngModel)]="selectedCategoryId">
-                    <option value="">
-                        All Categories
-                    </option>
+                    <option value="">All Categories</option>
 
                     <option *ngFor="let category of categories" [value]="category.id">
                         {{ category.name }}
@@ -118,170 +184,285 @@
             </div>
 
             <button class="clear-btn" type="button" (click)="clearFilters()">
-                Clear Filters
+                Clear
             </button>
-
         </div>
 
-    </section>
+        <div class="loading-wrapper" *ngIf="isDoctorsLoading">
+            <div class="spinner"></div>
+            <p>Loading available doctors...</p>
+        </div>
 
-    <!-- LOADING -->
-    <div class="empty-state" *ngIf="isLoading">
-        Loading available doctors...
-    </div>
+        <div class="doctor-grid" *ngIf="!isDoctorsLoading && filteredDoctors.length > 0">
+            <article class="doctor-card" *ngFor="let doctor of filteredDoctors">
+                <div class="doctor-top">
+                    <div class="doctor-avatar">👨‍⚕️</div>
 
-    <!-- DOCTOR CARDS -->
-    <section class="doctor-grid" *ngIf="!isLoading">
-
-        <article class="doctor-card" *ngFor="let doctor of filteredDoctors">
-
-            <div class="doctor-top">
-
-                <div class="doctor-avatar">
-                    👨‍⚕️
+                    <span class="available-badge">
+                        ● Available
+                    </span>
                 </div>
 
-                <span class="available-badge">
-                    ● Available
-                </span>
+                <div class="doctor-body">
+                    <h3>{{ doctor.name || 'Doctor' }}</h3>
 
-            </div>
+                    <p class="doctor-speciality">
+                        {{ doctor.category?.name || 'General Specialist' }}
+                    </p>
 
-            <h3>
-                {{ doctor.name }}
-            </h3>
+                    <div class="rating-row">
+                        <span>★★★★★</span>
+                        <small>Trusted Specialist</small>
+                    </div>
 
-            <p class="doctor-category">
-                {{
-                doctor.category?.name ||
-                'General Specialist'
-                }}
-            </p>
+                    <div class="doctor-info">
+                        <p>
+                            <span>🏥</span>
+                            {{ doctor.department?.name || 'Department not assigned' }}
+                        </p>
 
-            <div class="doctor-details">
+                        <p>
+                            <span>📞</span>
+                            {{ doctor.phone || 'Phone not available' }}
+                        </p>
 
-                <p>
-                    <span>🏥</span>
+                        <p>
+                            <span>🕒</span>
+                            Available for appointment
+                        </p>
+                    </div>
 
-                    {{
-                    doctor.department?.name ||
-                    'Department not assigned'
-                    }}
-                </p>
+                    <div class="doctor-actions">
+                        <button class="outline-btn" type="button" (click)="openDoctorProfile(doctor)">
+                            View Profile
+                        </button>
 
-                <p>
-                    <span>📞</span>
+                        <button class="book-btn" type="button" (click)="startBooking(doctor)">
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+            </article>
+        </div>
 
-                    {{
-                    doctor.phone ||
-                    'Phone not available'
-                    }}
-                </p>
-
-            </div>
-
-            <div class="card-actions">
-
-                <button class="outline-btn" type="button" (click)="openDoctorProfile(doctor)">
-                    View Profile
-                </button>
-
-                <button class="book-btn" type="button" (click)="startBooking(doctor)">
-                    Book Appointment
-                </button>
-
-            </div>
-
-        </article>
-
+        <div class="empty-state" *ngIf="!isDoctorsLoading && filteredDoctors.length === 0">
+            <div class="empty-icon">🔍</div>
+            <h3>No Doctors Found</h3>
+            <p>No available doctors found for selected filters.</p>
+        </div>
     </section>
 
-    <!-- NO DOCTOR FOUND -->
-    <div class="empty-state" *ngIf="
-      !isLoading &&
-      filteredDoctors.length === 0
-    ">
-        No available doctors found for the selected filters.
-    </div>
+    <!-- APPOINTMENTS -->
+    <section id="appointmentsSection" class="dashboard-panel appointments-panel dashboard-animate delay-5">
+        <div class="section-heading">
+            <div>
+                <h2>My Appointments</h2>
+                <p>Track your appointment status and booking history.</p>
+            </div>
+
+            <span class="count-badge">
+                {{ appointments.length }} bookings
+            </span>
+        </div>
+
+        <div class="loading-wrapper" *ngIf="isAppointmentsLoading">
+            <div class="spinner"></div>
+            <p>Loading appointments...</p>
+        </div>
+
+        <div class="empty-state" *ngIf="!isAppointmentsLoading && appointments.length === 0">
+            <div class="empty-icon">📅</div>
+            <h3>No Appointments Yet</h3>
+            <p>You have not booked any appointment yet.</p>
+        </div>
+
+        <div class="appointment-grid" *ngIf="!isAppointmentsLoading && appointments.length > 0">
+            <article class="appointment-card-v2 clickable" *ngFor="let appointment of appointments"
+                [ngClass]="getStatusClass(appointment.status)" (click)="openAppointmentDetails(appointment)">
+                <div class="appointment-status-strip"></div>
+
+                <div class="appointment-header-v2">
+                    <div class="appointment-doctor-avatar">
+                        👨‍⚕️
+                    </div>
+
+                    <div class="appointment-title-block">
+                        <h3>
+                            {{ appointment.doctor?.name || 'Doctor' }}
+                        </h3>
+
+                        <p>
+                            {{ appointment.doctor?.department?.name || 'Department not assigned' }}
+                        </p>
+                    </div>
+
+                    <span class="status-badge" [ngClass]="getStatusClass(appointment.status)">
+                        {{ appointment.status }}
+                    </span>
+                </div>
+
+                <div class="appointment-meta-grid">
+                    <div class="meta-box">
+                        <span>📅</span>
+
+                        <div>
+                            <label>Date</label>
+                            <strong>
+                                {{ appointment.appointmentDate || 'Not available' }}
+                            </strong>
+                        </div>
+                    </div>
+
+                    <div class="meta-box">
+                        <span>⏰</span>
+
+                        <div>
+                            <label>Time</label>
+                            <strong>
+                                {{ appointment.slotTime || 'Not available' }}
+                            </strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reason-box">
+                    <label>Reason</label>
+
+                    <p>
+                        {{ appointment.description || 'Not provided' }}
+                    </p>
+                </div>
+
+                <div class="appointment-footer">
+                    <p class="appointment-help-text">
+                        {{
+                        appointment.status === 'PENDING'
+                        ? 'Waiting for doctor confirmation'
+                        : appointment.status === 'CONFIRMED'
+                        ? 'Appointment confirmed by doctor'
+                        : appointment.status === 'COMPLETED'
+                        ? 'Appointment completed'
+                        : 'Appointment cancelled'
+                        }}
+                    </p>
+
+                    <button class="outline-btn" type="button"
+                        (click)="$event.stopPropagation(); openAppointmentDetails(appointment)">
+                        View Details
+                    </button>
+
+                    <button class="cancel-btn" type="button" *ngIf="
+                appointment.status === 'PENDING' ||
+                appointment.status === 'CONFIRMED'
+              " (click)="$event.stopPropagation(); cancelAppointment(appointment.id)">
+                        Cancel
+                    </button>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section class="dashboard-panel medical-history-panel dashboard-animate delay-6">
+    
+        <div class="section-heading">
+            <div>
+                <h2>📋 Medical History</h2>
+                <p>Your completed visits and prescriptions.</p>
+            </div>
+    
+            <span class="count-badge">
+                {{ medicalHistory.length }} records
+            </span>
+        </div>
+    
+        <div class="loading-wrapper" *ngIf="isMedicalHistoryLoading">
+            <div class="spinner"></div>
+            <p>Loading medical history...</p>
+        </div>
+    
+        <div class="empty-state" *ngIf="!isMedicalHistoryLoading && medicalHistory.length === 0">
+            <div class="empty-icon">📋</div>
+            <h3>No Medical History Yet</h3>
+            <p>Your completed consultation records will appear here.</p>
+        </div>
+    
+        <div class="history-timeline" *ngIf="!isMedicalHistoryLoading && medicalHistory.length > 0">
+    
+            <article class="history-card" *ngFor="let record of medicalHistory">
+    
+                <div class="history-date">
+                    {{ record.followUpDate || 'Follow-up not set' }}
+                </div>
+    
+                <div class="history-content">
+                    <h3>
+                        {{ record.diagnosis || 'Diagnosis not provided' }}
+                    </h3>
+    
+                    <p>
+                        {{ record.prescription || 'Prescription not provided' }}
+                    </p>
+    
+                    <small>
+                        Doctor notes: {{ record.doctorNotes || 'Not provided' }}
+                    </small>
+                </div>
+    
+            </article>
+    
+        </div>
+    
+    </section>
 
 </div>
 
 <!-- PATIENT PROFILE POPUP -->
 <div class="modal-overlay" *ngIf="showProfilePopup" (click)="closeProfile()">
-
     <div class="modal-card profile-modal" (click)="$event.stopPropagation()">
-
         <button class="modal-close" type="button" (click)="closeProfile()">
             ✕
         </button>
 
-        <div class="modal-avatar">
-            👤
-        </div>
+        <div class="modal-avatar">👤</div>
 
         <h2>Patient Profile</h2>
 
-        <div class="profile-details">
+        <div class="profile-loading" *ngIf="isProfileLoading">
+            <div class="spinner small"></div>
+            <p>Loading profile...</p>
+        </div>
 
+        <div class="profile-details" *ngIf="!isProfileLoading">
             <div class="profile-row">
                 <span>Name</span>
-
-                <strong>
-                    {{
-                    loggedInUser?.name ||
-                    'Not available'
-                    }}
-                </strong>
+                <strong>{{ loggedInUser?.name || 'Not available' }}</strong>
             </div>
 
             <div class="profile-row">
                 <span>Email</span>
-
-                <strong>
-                    {{
-                    loggedInUser?.email ||
-                    'Not available'
-                    }}
-                </strong>
+                <strong>{{ loggedInUser?.email || 'Not available' }}</strong>
             </div>
 
             <div class="profile-row">
                 <span>Phone</span>
-
-                <strong>
-                    {{
-                    loggedInUser?.phone ||
-                    'Not available'
-                    }}
-                </strong>
+                <strong>{{ loggedInUser?.phone || 'Not available' }}</strong>
             </div>
 
             <div class="profile-row">
                 <span>Role</span>
-
-                <strong>
-                    {{
-                    loggedInUser?.role ||
-                    'PATIENT'
-                    }}
-                </strong>
+                <strong>{{ loggedInUser?.role || 'PATIENT' }}</strong>
             </div>
-
         </div>
 
         <button class="popup-logout-btn" type="button" (click)="logout()">
             Logout
         </button>
-
     </div>
-
 </div>
 
 <!-- DOCTOR PROFILE POPUP -->
 <div class="modal-overlay" *ngIf="showDoctorPopup && selectedDoctor" (click)="closeDoctorProfile()">
-
     <div class="modal-card doctor-modal" (click)="$event.stopPropagation()">
-
         <button class="modal-close" type="button" (click)="closeDoctorProfile()">
             ✕
         </button>
@@ -290,66 +471,347 @@
             👨‍⚕️
         </div>
 
-        <h2>
-            {{ selectedDoctor.name }}
-        </h2>
+        <h2>{{ selectedDoctor.name }}</h2>
 
         <p class="modal-subtitle">
-            {{
-            selectedDoctor.category?.name ||
-            'General Specialist'
-            }}
+            {{ selectedDoctor.category?.name || 'General Specialist' }}
         </p>
 
         <div class="profile-details">
-
             <div class="profile-row">
                 <span>Department</span>
 
                 <strong>
-                    {{
-                    selectedDoctor.department?.name ||
-                    'Not assigned'
-                    }}
+                    {{ selectedDoctor.department?.name || 'Not assigned' }}
                 </strong>
             </div>
 
             <div class="profile-row">
                 <span>Email</span>
-
-                <strong>
-                    {{
-                    selectedDoctor.email ||
-                    'Not available'
-                    }}
-                </strong>
+                <strong>{{ selectedDoctor.email || 'Not available' }}</strong>
             </div>
 
             <div class="profile-row">
                 <span>Phone</span>
-
-                <strong>
-                    {{
-                    selectedDoctor.phone ||
-                    'Not available'
-                    }}
-                </strong>
+                <strong>{{ selectedDoctor.phone || 'Not available' }}</strong>
             </div>
 
             <div class="profile-row">
                 <span>Status</span>
-
-                <strong class="available-text">
-                    Available
-                </strong>
+                <strong class="available-text">Available</strong>
             </div>
-
         </div>
 
         <button class="modal-book-btn" type="button" (click)="startBooking(selectedDoctor)">
             Book Appointment
         </button>
+    </div>
+</div>
+
+
+<!-- APPOINTMENT DETAILS POPUP -->
+<div class="modal-overlay" *ngIf="showAppointmentPopup && selectedAppointment" (click)="closeAppointmentDetails()">
+    <div class="medical-modal" (click)="$event.stopPropagation()">
+
+        <button class="modal-close" type="button" (click)="closeAppointmentDetails()">
+            ✕
+        </button>
+
+        <button class="reschedule-btn" type="button" *ngIf="selectedAppointment?.status === 'PENDING'"
+            (click)="$event.stopPropagation(); openReschedulePopup(selectedAppointment!)">
+            ✏️ Reschedule
+        </button>
+
+        <div class="medical-header">
+            <div class="medical-icon">
+                🩺
+            </div>
+
+            <div>
+                <span class="medical-label">
+                    Appointment Details
+                </span>
+
+                <h2>
+                    {{ selectedAppointment.doctor?.name || 'Doctor' }}
+                </h2>
+
+                <p>
+                    {{ selectedAppointment.doctor?.department?.name || 'Department not assigned' }}
+                </p>
+            </div>
+
+        </div>
+
+        <div class="status-pill" [ngClass]="getStatusClass(selectedAppointment.status)">
+            {{ selectedAppointment.status }}
+        </div>
+
+        <div class="appointment-summary-grid">
+
+            <div class="summary-card">
+                <span>📅</span>
+
+                <div>
+                    <label>Date</label>
+                    <strong>{{ selectedAppointment.appointmentDate || 'Not available' }}</strong>
+                </div>
+            </div>
+
+            <div class="summary-card">
+                <span>⏰</span>
+
+                <div>
+                    <label>Time</label>
+                    <strong>{{ selectedAppointment.slotTime || 'Not available' }}</strong>
+                </div>
+            </div>
+
+            <div class="summary-card">
+                <span>🏥</span>
+
+                <div>
+                    <label>Doctor</label>
+                    <strong>{{ selectedAppointment.doctor?.name || 'Not available' }}</strong>
+                </div>
+            </div>
+
+            <div class="summary-card">
+                <span>📋</span>
+
+                <div>
+                    <label>Reason</label>
+                    <strong>{{ selectedAppointment.description || 'Not provided' }}</strong>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="profile-loading" *ngIf="isMedicalRecordLoading">
+            <div class="spinner small"></div>
+            <p>Loading medical record...</p>
+        </div>
+
+        <div class="medical-record-card" *ngIf="!isMedicalRecordLoading && selectedAppointment.status === 'COMPLETED'">
+
+            <div class="record-heading">
+                <div>
+                    <h3>
+                        Medical Record
+                    </h3>
+
+                    <p>
+                        Diagnosis, prescription and follow-up information shared by your doctor.
+                    </p>
+                </div>
+
+                <span>
+                    ✅ Completed
+                </span>
+            </div>
+
+            <div class="record-section diagnosis-section">
+                <div class="record-icon">🧾</div>
+
+                <div>
+                    <label>Diagnosis</label>
+
+                    <p>
+                        {{ selectedMedicalRecord?.diagnosis || 'Not provided' }}
+                    </p>
+                </div>
+            </div>
+
+            <div class="record-section prescription-section">
+                <div class="record-icon">💊</div>
+
+                <div>
+                    <label>Prescription</label>
+
+                    <p>
+                        {{ selectedMedicalRecord?.prescription || 'Not provided' }}
+                    </p>
+                </div>
+            </div>
+
+            <div class="record-section notes-section">
+                <div class="record-icon">📝</div>
+
+                <div>
+                    <label>Doctor Notes</label>
+
+                    <p>
+                        {{ selectedMedicalRecord?.doctorNotes || 'Not provided' }}
+                    </p>
+                </div>
+            </div>
+
+            <div class="followup-card">
+                <span>📌</span>
+
+                <div>
+                    <label>Follow Up Date</label>
+
+                    <strong>
+                        {{ selectedMedicalRecord?.followUpDate || 'Not provided' }}
+                    </strong>
+                </div>
+            </div>
+
+            <button class="download-btn" type="button" [disabled]="!selectedMedicalRecord"
+                (click)="downloadPrescriptionPdf($event)">
+                ⬇ Download Prescription PDF
+            </button>
+        </div>
+
+        <div class="medical-empty" *ngIf="!isMedicalRecordLoading && selectedAppointment.status !== 'COMPLETED'">
+            <div class="empty-icon">⏳</div>
+
+            <h3>
+                Medical record not available yet
+            </h3>
+
+            <p>
+                Diagnosis and prescription will be visible after the doctor completes this appointment.
+            </p>
+        </div>
 
     </div>
+</div>
 
+<div class="modal-overlay" *ngIf="showReschedulePopup && rescheduleAppointmentData" (click)="closeReschedulePopup()">
+    <div class="modal-card booking-modal" (click)="$event.stopPropagation()">
+
+        <button class="modal-close" type="button" (click)="closeReschedulePopup()" [disabled]="isRescheduling">
+            ✕
+        </button>
+
+        <div class="modal-avatar doctor-modal-avatar">
+            📅
+        </div>
+
+        <h2>Reschedule Appointment</h2>
+
+        <p class="modal-subtitle">
+            Update doctor, date or time slot.
+        </p>
+
+        <div class="booking-form">
+
+            <div class="input-group full-width">
+                <label>Doctor</label>
+
+                <select [(ngModel)]="rescheduleForm.doctorId">
+                    <option value="">Select Doctor</option>
+
+                    <option *ngFor="let doctor of doctors" [value]="doctor.id">
+                        {{ doctor.name }} - {{ doctor.department?.name || 'Department' }}
+                    </option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Appointment Date</label>
+
+                <input type="date" [(ngModel)]="rescheduleForm.appointmentDate" [min]="today" />
+            </div>
+
+            <div class="input-group">
+                <label>Time Slot</label>
+
+                <input type="time" [(ngModel)]="rescheduleForm.slotTime" />
+            </div>
+
+        </div>
+
+        <button class="modal-book-btn" type="button" (click)="submitReschedule()" [disabled]="isRescheduling">
+            <span *ngIf="!isRescheduling">
+                Update Appointment
+            </span>
+
+            <span class="btn-loading" *ngIf="isRescheduling">
+                Updating...
+            </span>
+        </button>
+
+    </div>
+</div>
+
+<!-- BOOK APPOINTMENT POPUP -->
+<div class="modal-overlay" *ngIf="showBookingPopup && selectedDoctor" (click)="closeBooking()">
+    <div class="modal-card booking-modal" (click)="$event.stopPropagation()">
+        <button class="modal-close" type="button" (click)="closeBooking()" [disabled]="isBookingSubmitting">
+            ✕
+        </button>
+
+        <div class="modal-avatar doctor-modal-avatar">
+            📅
+        </div>
+
+        <h2>Book Appointment</h2>
+
+        <p class="modal-subtitle">
+            {{ selectedDoctor.name }}
+        </p>
+
+        <div class="booking-form">
+            <div class="input-group">
+                <label>Patient Name</label>
+
+                <input type="text" [(ngModel)]="bookingForm.patientName" placeholder="Patient name" />
+            </div>
+
+            <div class="input-group">
+                <label>Phone</label>
+
+                <input type="text" [(ngModel)]="bookingForm.phone" placeholder="10 digit phone number" maxlength="10" />
+            </div>
+
+            <div class="input-group">
+                <label>Age</label>
+
+                <input type="number" [(ngModel)]="bookingForm.age" placeholder="Age" min="1" max="120" />
+            </div>
+
+            <div class="input-group">
+                <label>Gender</label>
+
+                <select [(ngModel)]="bookingForm.gender">
+                    <option value="">Select gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Appointment Date</label>
+
+                <input type="date" [(ngModel)]="bookingForm.appointmentDate" [min]="today" />
+            </div>
+
+            <div class="input-group">
+                <label>Time Slot</label>
+
+                <input type="time" [(ngModel)]="bookingForm.slotTime" />
+            </div>
+
+            <div class="input-group full-width">
+                <label>Reason / Description</label>
+
+                <textarea rows="3" [(ngModel)]="bookingForm.description" placeholder="Describe your issue"></textarea>
+            </div>
+        </div>
+
+        <button class="modal-book-btn" type="button" (click)="submitBooking()" [disabled]="isBookingSubmitting">
+            <span *ngIf="!isBookingSubmitting">
+                Confirm Booking
+            </span>
+
+            <span class="btn-loading" *ngIf="isBookingSubmitting">
+                <span class="btn-spinner"></span>
+                Booking...
+            </span>
+        </button>
+    </div>
 </div>

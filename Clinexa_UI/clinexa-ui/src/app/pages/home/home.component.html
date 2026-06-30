@@ -1,38 +1,130 @@
-<div class="main-container">
+<div class="home-page">
 
-    <h1 class="title">Clinexa</h1>
+    <div class="background-circle circle-one"></div>
+    <div class="background-circle circle-two"></div>
 
-    <p class="subtitle">
-        Smart Care System
-    </p>
+    <header class="hero-section">
 
-    <div class="card-container">
+        <div class="brand-badge">
+            🏥 Smart Hospital Management
+        </div>
 
-        <div class="role-card" routerLink="/manage-patient">
+        <h1 class="title">
+            Clinexa
+        </h1>
+
+        <p class="subtitle">
+            A modern care system for patients, doctors and hospital teams.
+        </p>
+
+        <p class="hero-description">
+            Choose your portal to continue securely and manage healthcare operations
+            with speed, clarity and confidence.
+        </p>
+
+    </header>
+
+    <section class="card-container">
+
+        <div class="role-card patient-card" routerLink="/manage-patient">
+            <div class="icon-box">
+                👤
+            </div>
+
             <h2>Patient</h2>
-            <p>Register, login and manage appointments</p>
+
+            <p>
+                Register, login, find doctors and manage appointments.
+            </p>
+
+            <span class="card-link">
+                Continue →
+            </span>
         </div>
 
-        <div class="role-card" routerLink="/login/receptionist">
+        <div class="role-card receptionist-card" routerLink="/login/receptionist">
+            <div class="icon-box">
+                👩‍💼
+            </div>
+
             <h2>Receptionist</h2>
-            <p>Manage patient appointments</p>
+
+            <p>
+                Manage patients, daily bookings and front-desk operations.
+            </p>
+
+            <span class="card-link">
+                Continue →
+            </span>
         </div>
 
-        <div class="role-card" routerLink="/login/doctor">
+        <div class="role-card doctor-card" routerLink="/login/doctor">
+            <div class="icon-box">
+                👨‍⚕️
+            </div>
+
             <h2>Doctor</h2>
-            <p>View schedules and appointments</p>
+
+            <p>
+                View schedules, confirm appointments and complete visits.
+            </p>
+
+            <span class="card-link">
+                Continue →
+            </span>
         </div>
 
-        <div class="role-card" routerLink="/login/admin">
+        <div class="role-card admin-card" routerLink="/login/admin">
+            <div class="icon-box">
+                🛡️
+            </div>
+
             <h2>Admin</h2>
-            <p>Manage hospital operations</p>
+
+            <p>
+                Manage doctors, departments, staff and hospital activity.
+            </p>
+
+            <span class="card-link">
+                Continue →
+            </span>
         </div>
 
-        <div class="role-card" routerLink="/login/super-admin">
+        <div class="role-card super-card" routerLink="/login/super-admin">
+            <div class="icon-box">
+                ⚙️
+            </div>
+
             <h2>Super Admin</h2>
-            <p>Full system control</p>
+
+            <p>
+                Full system control, configuration and advanced access.
+            </p>
+
+            <span class="card-link">
+                Continue →
+            </span>
         </div>
 
-    </div>
+    </section>
+
+    <section class="info-strip">
+
+        <div class="info-item">
+            <strong>24/7</strong>
+            <span>Digital Access</span>
+        </div>
+
+        <div class="info-item">
+            <strong>Secure</strong>
+            <span>Role Based Login</span>
+        </div>
+
+        <div class="info-item">
+            <strong>Fast</strong>
+            <span>Appointment Flow</span>
+        </div>
+
+    </section>
 
 </div>

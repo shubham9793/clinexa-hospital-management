@@ -1,93 +1,135 @@
 <div class="page">
 
+    <div class="decor-circle circle-one"></div>
+    <div class="decor-circle circle-two"></div>
+
     <div class="doctor-card">
 
+        <button class="back-btn" type="button" (click)="goBack()">
+            ← Back
+        </button>
+
         <div class="header">
+            <div class="icon-box">
+                👨‍⚕️
+            </div>
+
             <h1>
                 {{ isEditMode ? 'Edit Doctor' : 'Add Doctor' }}
             </h1>
 
             <p>
-                Create and manage 🩺 doctor profiles for Clinexa
+                {{
+                isEditMode
+                ? 'Update doctor profile, department and login access.'
+                : 'Create a doctor profile with secure dashboard access.'
+                }}
             </p>
-
         </div>
 
         <form (ngSubmit)="createDoctor()">
 
-            <div class="input-group">
+            <div class="form-grid">
 
-                <label>Doctor Name</label>
+                <div class="input-group full-width">
+                    <label>Doctor Name</label>
 
-                <input type="text" placeholder="Enter doctor name" [(ngModel)]="doctor.name" name="name">
+                    <input type="text" placeholder="Enter doctor name" [(ngModel)]="doctor.name" name="name" required />
+                </div>
+
+                <div class="input-group">
+                    <label>Email Address</label>
+
+                    <input type="email" placeholder="doctor@clinexa.com" [(ngModel)]="doctor.email" name="email"
+                        required />
+                </div>
+
+                <div class="input-group">
+                    <label>Phone Number</label>
+
+                    <input type="text" placeholder="Enter phone number" [(ngModel)]="doctor.phone" name="phone"
+                        required />
+                </div>
+
+                <div class="input-group">
+                    <label>
+                        Password
+                        <small *ngIf="isEditMode">
+                            Leave blank to keep current
+                        </small>
+                    </label>
+
+                    <input type="password" [placeholder]="
+              isEditMode
+                ? 'Enter new password only if changing'
+                : 'Create login password'
+            " [(ngModel)]="doctor.password" name="password" [required]="!isEditMode" />
+                </div>
+
+                <div class="input-group">
+                    <label>Status</label>
+
+                    <select [(ngModel)]="doctor.active" name="active">
+                        <option [ngValue]="true">
+                            Active
+                        </option>
+
+                        <option [ngValue]="false">
+                            Inactive
+                        </option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Department</label>
+
+                    <select [(ngModel)]="doctor.departmentId" name="departmentId" required>
+                        <option value="">
+                            Select Department
+                        </option>
+
+                        <option *ngFor="let dept of departments" [value]="dept.id">
+                            {{ dept.name }}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Category</label>
+
+                    <select [(ngModel)]="doctor.categoryId" name="categoryId" required>
+                        <option value="">
+                            Select Category
+                        </option>
+
+                        <option *ngFor="let cat of categories" [value]="cat.id">
+                            {{ cat.name }}
+                        </option>
+                    </select>
+                </div>
 
             </div>
 
-            <div class="input-group">
+            <button type="submit" class="submit-btn" [disabled]="isSubmitting">
+                <span *ngIf="!isSubmitting">
+                    {{ isEditMode ? 'Update Doctor' : 'Create Doctor Account' }}
+                </span>
 
-                <label>Email Address</label>
-
-                <input type="email" placeholder="Enter email" [(ngModel)]="doctor.email" name="email">
-
-            </div>
-
-            <div class="input-group">
-
-                <label>Phone Number</label>
-
-                <input type="text" placeholder="Enter phone number" [(ngModel)]="doctor.phone" name="phone">
-
-            </div>
-
-            <div class="input-group">
-
-                <label>Password</label>
-
-                <input type="password" placeholder="Create password" [(ngModel)]="doctor.password" name="password">
-
-            </div>
-
-            <div class="input-group">
-
-                <label>Department</label>
-
-                <select [(ngModel)]="doctor.departmentId" name="departmentId">
-
-                    <option value="">
-                        Select Department
-                    </option>
-
-                    <option *ngFor="let dept of departments" [value]="dept.id">
-                        {{ dept.name }}
-                    </option>
-
-                </select>
-
-            </div>
-
-            <div class="input-group">
-
-                <label>Category</label>
-
-                <select [(ngModel)]="doctor.categoryId" name="categoryId">
-
-                    <option value="">
-                        Select Category
-                    </option>
-
-                    <option *ngFor="let cat of categories" [value]="cat.id">
-                        {{ cat.name }}
-                    </option>
-
-                </select>
-
-            </div>
-
-            <button type="submit" class="submit-btn">
-                + {{ isEditMode ? 'Update Doctor' : 'Create Doctor' }}
+                <span *ngIf="isSubmitting">
+                    Processing...
+                </span>
             </button>
 
         </form>
 
+        <div class="note-box">
+            <span>🔐</span>
+            <p>
+                The doctor can use this email and password to securely access the
+                Doctor Dashboard.
+            </p>
+        </div>
+
     </div>
+
 </div>

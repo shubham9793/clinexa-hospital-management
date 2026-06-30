@@ -20,7 +20,7 @@ import { AddPatientComponent } from './pages/receptionist/add-patient/add-patien
 import { RoleGuard } from './gaurds/role.guard';
 import { ManagePatientComponent } from './pages/patient/manage-patient/manage-patient.component';
 import { PatientDashboardComponent } from './pages/patient/patient-dashboard/patient-dashboard.component';
-
+import { DoctorDashboardComponent } from './pages/doctor/doctor-dashboard/doctor-dashboard.component';
 
 const routes: Routes = [
   {
@@ -158,6 +158,13 @@ const routes: Routes = [
     component: PatientDashboardComponent,
     canActivate: [RoleGuard],
     data: { roles: ['patient'] },
+  },
+
+  {
+    path: 'doctor-dashboard',
+    component: DoctorDashboardComponent,
+    canActivate: [RoleGuard],
+    data: { roles: ['doctor'] },
   },
 
   // Invalid URL

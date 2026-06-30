@@ -1,33 +1,79 @@
 <div class="page">
 
+    <div class="bg-circle circle-one"></div>
+    <div class="bg-circle circle-two"></div>
+
     <div class="card">
 
-        <h1>
-            {{ isEditMode ? '✏️ Edit Department' : '🏥 Add Department' }}
-        </h1>
+        <div class="header">
 
-        <p>
-            {{ isEditMode
-            ? 'Update hospital department'
-            : 'Create hospital department'
-            }}
-        </p>
+            <div class="icon">
+                🏥
+            </div>
+
+            <h1>
+                {{
+                isEditMode
+                ? 'Edit Department'
+                : 'Add Department'
+                }}
+            </h1>
+
+            <p>
+                {{
+                isEditMode
+                ? 'Update department information'
+                : 'Create a new hospital department'
+                }}
+            </p>
+
+        </div>
 
         <form (ngSubmit)="createDepartment()">
 
-            <input type="text" placeholder="Department Name" [(ngModel)]="department.name" name="name">
+            <div class="input-group">
 
-            <textarea placeholder="Description" [(ngModel)]="department.description" name="description">
-            </textarea>
+                <label>
+                    Department Name
+                </label>
 
-            <button type="submit">
+                <input type="text" placeholder="e.g. Cardiology" [(ngModel)]="department.name" name="name">
 
-                {{ isEditMode
-                ? 'Update Department'
-                : 'Create Department'
-                }}
+            </div>
 
-            </button>
+            <div class="input-group">
+
+                <label>
+                    Description
+                </label>
+
+                <textarea placeholder="Describe department responsibilities..." [(ngModel)]="department.description"
+                    name="description">
+        </textarea>
+
+            </div>
+
+            <div class="button-group">
+
+                <button type="button" class="cancel-btn" (click)="cancel()">
+
+                    Cancel
+
+                </button>
+
+                <button type="submit" class="submit-btn" [disabled]="isSubmitting">
+
+                    {{
+                    isSubmitting
+                    ? 'Please wait...'
+                    : isEditMode
+                    ? 'Update Department'
+                    : 'Create Department'
+                    }}
+
+                </button>
+
+            </div>
 
         </form>
 

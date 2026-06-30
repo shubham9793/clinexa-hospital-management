@@ -1,59 +1,70 @@
 <div class="page-container">
 
+    <div class="decor-circle circle-one"></div>
+    <div class="decor-circle circle-two"></div>
+
     <!-- HEADER -->
-
     <div class="top-bar">
-
         <div>
+            <span class="page-badge">
+                👩‍💼 Front Desk Team
+            </span>
 
             <h1 class="title">
-                👩‍💼 Manage Receptionists
+                Manage Receptionists
             </h1>
 
             <p class="subtitle">
-                Manage hospital front desk staff
+                Manage hospital front desk staff and dashboard access.
             </p>
-
         </div>
 
-        <button class="add-btn" routerLink="/add-receptionist">
+        <button class="add-btn" routerLink="/add-receptionist" type="button">
             + Add Receptionist
         </button>
-
     </div>
 
     <!-- SEARCH -->
+    <div class="search-panel">
+        <div class="search-box">
+            <span>🔍</span>
 
-    <div class="search-bar">
+            <input type="text" placeholder="Search by name, email or phone..." [(ngModel)]="searchText" />
+        </div>
 
-        <input type="text" placeholder="🔍 Search receptionist..." [(ngModel)]="searchText">
+        <button class="clear-btn" type="button" (click)="clearSearch()" *ngIf="searchText">
+            Clear
+        </button>
+    </div>
 
+    <!-- LOADING -->
+    <div class="empty-state" *ngIf="isLoading">
+        Loading receptionists...
+    </div>
+
+    <!-- EMPTY -->
+    <div class="empty-state" *ngIf="!isLoading && filteredReceptionists().length === 0">
+        No receptionists found.
     </div>
 
     <!-- GRID -->
-
-    <div class="receptionist-grid">
-
+    <div class="receptionist-grid" *ngIf="!isLoading && filteredReceptionists().length > 0">
         <div class="receptionist-card" *ngFor="let receptionist of filteredReceptionists()">
-
             <div class="card-top">
-
                 <div class="avatar">
-                    {{ receptionist.name.charAt(0) }}
+                    {{ receptionist.name?.charAt(0) || 'R' }}
                 </div>
 
-                <button class="status-btn" [class.active]="receptionist.active" [class.inactive]="!receptionist.active"
-                    (click)="toggleStatus(receptionist.id)">
-
+                <button class="status-btn" type="button" [class.active]="receptionist.active"
+                    [class.inactive]="!receptionist.active" (click)="toggleStatus(receptionist)">
                     {{ receptionist.active ? 'Active' : 'Inactive' }}
-
                 </button>
-
             </div>
 
             <div class="card-body">
-
-                <h2>{{ receptionist.name }}</h2>
+                <h2>
+                    {{ receptionist.name || 'Unnamed Receptionist' }}
+                </h2>
 
                 <p class="role">
                     Front Desk Receptionist
@@ -61,34 +72,25 @@
 
                 <div class="info-item">
                     <span>📧</span>
-                    <p>{{ receptionist.email }}</p>
+                    <p>{{ receptionist.email || 'Email not available' }}</p>
                 </div>
 
                 <div class="info-item">
                     <span>📱</span>
-                    <p>{{ receptionist.phone }}</p>
+                    <p>{{ receptionist.phone || 'Phone not available' }}</p>
                 </div>
-
             </div>
 
             <div class="card-actions">
-
-                <button class="edit-btn" [routerLink]="['/edit-receptionist', receptionist.id]">
-
+                <button class="edit-btn" type="button" [routerLink]="['/edit-receptionist', receptionist.id]">
                     Edit
-
                 </button>
 
-                <button class="delete-btn" (click)="deleteReceptionist(receptionist.id)">
-
-                    Delete
-
+                <button class="delete-btn" type="button" (click)="deleteReceptionist(receptionist.id)">
+                    Deactivate
                 </button>
-
             </div>
-
         </div>
-
     </div>
 
 </div>

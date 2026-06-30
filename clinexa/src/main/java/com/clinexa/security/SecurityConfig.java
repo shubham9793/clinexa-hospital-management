@@ -116,34 +116,13 @@ public class SecurityConfig {
                 )
 
                 .authorizeHttpRequests(auth -> auth
-
-                        /*
-                         * =========================
-                         * CORS PREFLIGHT
-                         * =========================
-                         */
-
                         .requestMatchers(
                                 HttpMethod.OPTIONS,
                                 "/**"
                         )
                         .permitAll()
-
-                        /*
-                         * =========================
-                         * PUBLIC AUTH APIs
-                         * =========================
-                         */
-
                         .requestMatchers("/auth/**")
                         .permitAll()
-
-                        /*
-                         * =========================
-                         * PROFILE
-                         * =========================
-                         */
-
                         .requestMatchers(
                                 HttpMethod.GET,
                                 "/user/profile"
@@ -154,13 +133,6 @@ public class SecurityConfig {
                                 "PATIENT",
                                 "DOCTOR"
                         )
-
-                        /*
-                         * =========================
-                         * DOCTORS
-                         * =========================
-                         */
-
                         // Logged-in users can view doctors
                         .requestMatchers(
                                 HttpMethod.GET,
@@ -172,19 +144,11 @@ public class SecurityConfig {
                                 "PATIENT",
                                 "DOCTOR"
                         )
-
                         // Only Admin manages doctors
                         .requestMatchers(
                                 "/doctors/**"
                         )
                         .hasAuthority("ADMIN")
-
-                        /*
-                         * =========================
-                         * DEPARTMENTS
-                         * =========================
-                         */
-
                         .requestMatchers(
                                 HttpMethod.GET,
                                 "/departments/**"
@@ -200,13 +164,6 @@ public class SecurityConfig {
                                 "/departments/**"
                         )
                         .hasAuthority("ADMIN")
-
-                        /*
-                         * =========================
-                         * CATEGORIES
-                         * =========================
-                         */
-
                         .requestMatchers(
                                 HttpMethod.GET,
                                 "/doctor-categories/**"
@@ -222,46 +179,19 @@ public class SecurityConfig {
                                 "/doctor-categories/**"
                         )
                         .hasAuthority("ADMIN")
-
-                        /*
-                         * =========================
-                         * RECEPTIONIST ACCOUNTS
-                         * =========================
-                         */
 
                         .requestMatchers(
                                 "/receptionists/**"
                         )
                         .hasAuthority("ADMIN")
-
-                        /*
-                         * =========================
-                         * PATIENT MANAGEMENT
-                         * =========================
-                         */
-
                         .requestMatchers(
                                 "/patients/**"
                         )
                         .hasAuthority("RECEPTIONIST")
-
-                        /*
-                         * =========================
-                         * ACTIVITIES
-                         * =========================
-                         */
-
                         .requestMatchers(
                                 "/activities/**"
                         )
                         .hasAuthority("ADMIN")
-
-                        /*
-                         * =========================
-                         * APPOINTMENTS
-                         * =========================
-                         */
-
                         .requestMatchers(
                                 "/appointments/**"
                         )
@@ -271,15 +201,17 @@ public class SecurityConfig {
                                 "PATIENT",
                                 "DOCTOR"
                         )
-
-                        /*
-                         * =========================
-                         * BLOCK UNKNOWN APIs
-                         * =========================
-                         */
-
+                        .requestMatchers(
+                                "/medical-records/**"
+                        )
+                        .hasAnyAuthority(
+                                "DOCTOR",
+                                "PATIENT",
+                                "RECEPTIONIST"
+                        )
                         .anyRequest()
                         .denyAll()
+
                 )
 
                 .addFilterBefore(

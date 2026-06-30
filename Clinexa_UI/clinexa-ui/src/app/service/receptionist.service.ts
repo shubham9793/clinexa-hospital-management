@@ -5,42 +5,71 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ReceptionistService {
-  baseUrl = 'http://localhost:8081/receptionists';
+  private readonly receptionistUrl = 'http://localhost:8081/receptionists';
+  private readonly appointmentUrl = 'http://localhost:8081/appointments';
+  private readonly medicalRecordUrl = 'http://localhost:8081/medical-records';
 
   constructor(private http: HttpClient) {}
 
   createReceptionist(data: any) {
-    return this.http.post(this.baseUrl, data);
+    return this.http.post(this.receptionistUrl, data);
   }
 
   getAllReceptionists() {
-    return this.http.get(this.baseUrl);
+    return this.http.get(this.receptionistUrl);
   }
 
   deleteReceptionist(id: number) {
-    return this.http.delete(`${this.baseUrl}/${id}`);
+    return this.http.delete(`${this.receptionistUrl}/${id}`);
   }
 
   updateReceptionist(id: number, data: any) {
-    return this.http.put(`${this.baseUrl}/${id}`, data);
+    return this.http.put(`${this.receptionistUrl}/${id}`, data);
   }
 
   getReceptionistById(id: number) {
-    return this.http.get(`${this.baseUrl}/${id}`);
+    return this.http.get(`${this.receptionistUrl}/${id}`);
   }
 
   toggleStatus(id: number) {
-    return this.http.put(`${this.baseUrl}/${id}/toggle-status`, {});
+    return this.http.put(`${this.receptionistUrl}/${id}/toggle-status`, {});
   }
+
   getReceptionistCount() {
-    return this.http.get(`${this.baseUrl}/count`);
+    return this.http.get(`${this.receptionistUrl}/count`);
   }
 
   getActiveReceptionistCount() {
-    return this.http.get(`${this.baseUrl}/count/active`);
+    return this.http.get(`${this.receptionistUrl}/count/active`);
   }
 
   getInactiveReceptionistCount() {
-    return this.http.get(`${this.baseUrl}/count/inactive`);
+    return this.http.get(`${this.receptionistUrl}/count/inactive`);
+  }
+
+  getAllAppointments() {
+    return this.http.get<any[]>(`${this.appointmentUrl}/receptionist/all`);
+  }
+
+  cancelAppointment(appointmentId: number) {
+    return this.http.put(`${this.appointmentUrl}/${appointmentId}/cancel`, {});
+  }
+
+  getMedicalRecord(appointmentId: number) {
+    return this.http.get<any>(`${this.medicalRecordUrl}/${appointmentId}`);
+  }
+
+  rescheduleAppointment(
+    appointmentId: number,
+    request: {
+      doctorId: number;
+      appointmentDate: string;
+      slotTime: string;
+    },
+  ) {
+    return this.http.put(
+      `${this.appointmentUrl}/${appointmentId}/reschedule`,
+      request,
+    );
   }
 }

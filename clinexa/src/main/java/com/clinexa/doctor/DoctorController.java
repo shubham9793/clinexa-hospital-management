@@ -1,3 +1,84 @@
+//package com.clinexa.doctor;
+//
+//import com.clinexa.doctor.dto.DoctorRequest;
+//import lombok.RequiredArgsConstructor;
+//import org.springframework.security.access.prepost.PreAuthorize;
+//import org.springframework.web.bind.annotation.*;
+//
+//import java.util.List;
+//
+//@RestController
+//@RequestMapping("/doctors")
+//@RequiredArgsConstructor
+//public class DoctorController {
+//
+//    private final DoctorService service;
+//
+//    @PostMapping
+//    @PreAuthorize("hasAuthority('ADMIN')")
+//    public Doctor create(@RequestBody DoctorRequest req) {
+//        return service.create(req);
+//    }
+//
+//    @GetMapping
+//    public List<Doctor> getAll() {
+//        return service.getAll();
+//    }
+//
+//
+//    @DeleteMapping("/{id}")
+//    public void delete(
+//            @PathVariable Long id
+//    ) {
+//
+//        service.delete(id);
+//    }
+//
+//    @GetMapping("/{id}")
+//    public Doctor getDoctorById(
+//            @PathVariable Long id
+//    ) {
+//
+//        return service.getDoctorById(id);
+//    }
+//
+//    @PutMapping("/{id}")
+//    public Doctor updateDoctor(
+//            @PathVariable Long id,
+//            @RequestBody DoctorRequest request
+//    ) {
+//
+//        return service
+//                .updateDoctor(id, request);
+//    }
+//
+//    @PutMapping("/{id}/toggle-availability")
+//    public Doctor toggleAvailability(
+//            @PathVariable Long id
+//    ) {
+//
+//        return service
+//                .toggleAvailability(id);
+//    }
+//
+//    @GetMapping("/count")
+//    public long getDoctorCount() {
+//
+//        return service.getDoctorCount();
+//    }
+//
+//    @GetMapping("/count/active")
+//    public long getActiveDoctorCount() {
+//        return service.getActiveDoctorCount();
+//    }
+//
+//    @GetMapping("/count/inactive")
+//    public long getInactiveDoctorCount() {
+//        return service.getInactiveDoctorCount();
+//    }
+//}
+
+
 package com.clinexa.doctor;
 
 import com.clinexa.doctor.dto.DoctorRequest;
@@ -25,54 +106,52 @@ public class DoctorController {
         return service.getAll();
     }
 
-
-    @DeleteMapping("/{id}")
-    public void delete(
-            @PathVariable Long id
-    ) {
-
-        service.delete(id);
-    }
-
     @GetMapping("/{id}")
     public Doctor getDoctorById(
             @PathVariable Long id
     ) {
-
         return service.getDoctorById(id);
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public Doctor updateDoctor(
             @PathVariable Long id,
             @RequestBody DoctorRequest request
     ) {
-
-        return service
-                .updateDoctor(id, request);
+        return service.updateDoctor(id, request);
     }
 
     @PutMapping("/{id}/toggle-availability")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public Doctor toggleAvailability(
             @PathVariable Long id
     ) {
+        return service.toggleAvailability(id);
+    }
 
-        return service
-                .toggleAvailability(id);
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public void delete(
+            @PathVariable Long id
+    ) {
+        service.delete(id);
     }
 
     @GetMapping("/count")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public long getDoctorCount() {
-
         return service.getDoctorCount();
     }
 
     @GetMapping("/count/active")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public long getActiveDoctorCount() {
         return service.getActiveDoctorCount();
     }
 
     @GetMapping("/count/inactive")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public long getInactiveDoctorCount() {
         return service.getInactiveDoctorCount();
     }

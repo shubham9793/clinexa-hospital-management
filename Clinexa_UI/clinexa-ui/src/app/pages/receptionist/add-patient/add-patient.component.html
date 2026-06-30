@@ -1,63 +1,120 @@
 <div class="page">
 
+    <div class="decor-circle circle-one"></div>
+    <div class="decor-circle circle-two"></div>
+
     <div class="card">
 
-        <h1>
-            {{ isEditMode ? '✏️ Edit Patient' : '👤 Add Patient' }}
-        </h1>
+        <button class="back-btn" type="button" (click)="goBack()">
+            ← Back
+        </button>
 
-        <p>
-            {{
-            isEditMode
-            ? 'Update patient information'
-            : 'Register a new patient'
-            }}
-        </p>
+        <div class="header">
+            <div class="icon-box">
+                👤
+            </div>
 
-        <form (ngSubmit)="savePatient()">
+            <h1>
+                {{ isEditMode ? 'Edit Patient' : 'Add Patient' }}
+            </h1>
 
-            <input type="text" placeholder="Patient Name" [(ngModel)]="patient.name" name="name" required>
-
-            <input type="email" placeholder="Email" [(ngModel)]="patient.email" name="email" required>
-
-            <input type="text" placeholder="Phone Number" [(ngModel)]="patient.phone" name="phone" required>
-
-            <select [(ngModel)]="patient.gender" name="gender" required>
-
-                <option value="">
-                    Select Gender
-                </option>
-
-                <option value="Male">
-                    Male
-                </option>
-
-                <option value="Female">
-                    Female
-                </option>
-
-                <option value="Other">
-                    Other
-                </option>
-
-            </select>
-
-            <input type="date" [(ngModel)]="patient.dob" name="dob" required>
-
-            <textarea placeholder="Address" [(ngModel)]="patient.address" name="address">
-      </textarea>
-
-            <button type="submit">
-
+            <p>
                 {{
                 isEditMode
-                ? 'Update Patient'
-                : 'Create Patient'
+                ? 'Update patient information and profile details.'
+                : 'Register a new patient with accurate contact information.'
                 }}
+            </p>
+        </div>
 
+        <div class="loading-card" *ngIf="isLoading">
+            <div class="spinner"></div>
+            <p>Loading patient details...</p>
+        </div>
+
+        <form *ngIf="!isLoading" (ngSubmit)="savePatient()">
+
+            <div class="form-grid">
+
+                <div class="input-group full-width">
+                    <label>Patient Name</label>
+
+                    <input type="text" placeholder="Enter patient full name" [(ngModel)]="patient.name" name="name"
+                        required />
+                </div>
+
+                <div class="input-group">
+                    <label>Email Address</label>
+
+                    <input type="email" placeholder="patient@example.com" [(ngModel)]="patient.email" name="email"
+                        required />
+                </div>
+
+                <div class="input-group">
+                    <label>Phone Number</label>
+
+                    <input type="text" placeholder="10 digit phone number" [(ngModel)]="patient.phone" name="phone"
+                        maxlength="10" required />
+                </div>
+
+                <div class="input-group">
+                    <label>Gender</label>
+
+                    <select [(ngModel)]="patient.gender" name="gender" required>
+                        <option value="">
+                            Select Gender
+                        </option>
+
+                        <option value="Male">
+                            Male
+                        </option>
+
+                        <option value="Female">
+                            Female
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Date of Birth</label>
+
+                    <input type="date" [(ngModel)]="patient.dob" name="dob" [max]="maxDate" required />
+                </div>
+
+                <div class="input-group full-width">
+                    <label>Address</label>
+
+                    <textarea placeholder="Enter complete address" [(ngModel)]="patient.address" name="address"
+                        required></textarea>
+                </div>
+
+            </div>
+
+            <button type="submit" class="submit-btn" [disabled]="isSubmitting">
+                <span *ngIf="!isSubmitting">
+                    {{ isEditMode ? 'Update Patient' : 'Create Patient' }}
+                </span>
+
+                <span class="btn-loading" *ngIf="isSubmitting">
+                    <span class="btn-spinner"></span>
+                    Saving...
+                </span>
             </button>
 
         </form>
+
+        <div class="note-box">
+            <span>🔐</span>
+
+            <p>
+                Patient information is used for hospital records and appointment
+                management. Please ensure details are accurate.
+            </p>
+        </div>
 
     </div>
 

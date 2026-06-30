@@ -1,40 +1,90 @@
-<div class="container">
+<div class="page">
+
+    <div class="decor-circle circle-one"></div>
+    <div class="decor-circle circle-two"></div>
 
     <div class="form-card">
 
-        <h1>
-            {{
-            isEdit
-            ? '✏️ Edit Receptionist'
-            : '👩‍💼 Add Receptionist'
-            }}
-        </h1>
+        <button class="back-btn" type="button" (click)="goBack()">
+            ← Back
+        </button>
 
-        <p>
-            Create new receptionist account
-        </p>
+        <div class="header">
+            <div class="icon-box">
+                👩‍💼
+            </div>
+
+            <h1>
+                {{ isEdit ? 'Edit Receptionist' : 'Add Receptionist' }}
+            </h1>
+
+            <p>
+                {{
+                isEdit
+                ? 'Update receptionist profile and login details.'
+                : 'Create a receptionist account with secure dashboard access.'
+                }}
+            </p>
+        </div>
 
         <form (ngSubmit)="saveReceptionist()">
 
-            <input type="text" placeholder="Receptionist Name" [(ngModel)]="receptionist.name" name="name">
+            <div class="input-group">
+                <label>Receptionist Name</label>
 
-            <input type="email" placeholder="Email" [(ngModel)]="receptionist.email" name="email">
+                <input type="text" placeholder="Enter receptionist name" [(ngModel)]="receptionist.name" name="name"
+                    required />
+            </div>
 
-            <input type="text" placeholder="Phone" [(ngModel)]="receptionist.phone" name="phone">
+            <div class="input-group">
+                <label>Email Address</label>
 
-            <input type="password" placeholder="Password" [(ngModel)]="receptionist.password" name="password">
+                <input type="email" placeholder="receptionist@clinexa.com" [(ngModel)]="receptionist.email" name="email"
+                    required />
+            </div>
 
-            <button type="submit">
-            
+            <div class="input-group">
+                <label>Phone Number</label>
+
+                <input type="text" placeholder="10 digit phone number" [(ngModel)]="receptionist.phone" name="phone"
+                    maxlength="10" required />
+            </div>
+
+            <div class="input-group">
+                <label>
+                    Password
+                    <small *ngIf="isEdit">
+                        Leave blank to keep current
+                    </small>
+                </label>
+
+                <input type="password" [placeholder]="
+            isEdit
+              ? 'Enter new password only if changing'
+              : 'Create login password'
+          " [(ngModel)]="receptionist.password" name="password" [required]="!isEdit" />
+            </div>
+
+            <button type="submit" class="submit-btn" [disabled]="isSubmitting">
                 {{
-                isEdit
+                isSubmitting
+                ? 'Processing...'
+                : isEdit
                 ? 'Update Receptionist'
-                : 'Create Receptionist'
+                : 'Create Receptionist Account'
                 }}
-            
             </button>
 
         </form>
+
+        <div class="note-box">
+            <span>🔐</span>
+
+            <p>
+                The receptionist can use this email and password to access the
+                Receptionist Dashboard.
+            </p>
+        </div>
 
     </div>
 

@@ -2,10 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 
-/* =========================
-   PATIENT MODELS
-========================= */
-
 export interface Patient {
   id?: number;
   name: string;
@@ -16,10 +12,6 @@ export interface Patient {
   address?: string;
   active?: boolean;
 }
-
-/* =========================
-   DASHBOARD MODELS
-========================= */
 
 export interface Department {
   id: number;
@@ -51,6 +43,40 @@ export interface UserProfile {
   role: string;
 }
 
+export interface AppointmentRequest {
+  doctorId: number;
+  patientName?: string;
+  age?: number;
+  gender?: string;
+  phone?: string;
+  description: string;
+  appointmentDate: string;
+  slotTime: string;
+}
+
+export interface Appointment {
+  id: number;
+  patientName: string;
+  age?: number;
+  gender?: string;
+  phone?: string;
+  description: string;
+  appointmentDate: string;
+  slotTime: string;
+  status: 'PENDING' | 'CONFIRMED' | 'CANCELLED' | 'COMPLETED';
+  doctor: Doctor;
+}
+
+export interface MedicalRecord {
+  id?: number;
+  diagnosis?: string;
+  doctorNotes?: string;
+  prescription?: string;
+  followUpDate?: string;
+  createdDate?: string;
+  updatedDate?: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -58,21 +84,14 @@ export class PatientService {
   private readonly baseUrl = 'http://localhost:8081';
 
   private readonly patientApi = `${this.baseUrl}/patients`;
-
   private readonly doctorApi = `${this.baseUrl}/doctors`;
-
   private readonly departmentApi = `${this.baseUrl}/departments`;
-
   private readonly categoryApi = `${this.baseUrl}/doctor-categories`;
-
   private readonly profileApi = `${this.baseUrl}/user/profile`;
+  private readonly appointmentApi = `${this.baseUrl}/appointments`;
+  private readonly medicalRecordApi = `${this.baseUrl}/medical-records`;
 
   constructor(private http: HttpClient) {}
-
-  /* =========================
-     RECEPTIONIST:
-     PATIENT MANAGEMENT
-  ========================= */
 
   create(patient: Patient): Observable<Patient> {
     return this.http.post<Patient>(this.patientApi, patient);
@@ -110,19 +129,9 @@ export class PatientService {
     return this.http.get<number>(`${this.patientApi}/count/inactive`);
   }
 
-  /* =========================
-     PATIENT DASHBOARD:
-     LOGGED-IN USER PROFILE
-  ========================= */
-
   getLoggedInProfile(): Observable<UserProfile> {
     return this.http.get<UserProfile>(this.profileApi);
   }
-
-  /* =========================
-     PATIENT DASHBOARD:
-     DOCTORS
-  ========================= */
 
   getDoctors(): Observable<Doctor[]> {
     return this.http.get<Doctor[]>(this.doctorApi);
@@ -138,21 +147,50 @@ export class PatientService {
     return this.http.get<Doctor>(`${this.doctorApi}/${id}`);
   }
 
-  /* =========================
-     PATIENT DASHBOARD:
-     DEPARTMENTS
-  ========================= */
-
   getDepartments(): Observable<Department[]> {
     return this.http.get<Department[]>(this.departmentApi);
   }
 
-  /* =========================
-     PATIENT DASHBOARD:
-     DOCTOR CATEGORIES
-  ========================= */
-
   getCategories(): Observable<DoctorCategory[]> {
     return this.http.get<DoctorCategory[]>(`${this.categoryApi}/all`);
+  }
+
+  bookMyAppointment(request: AppointmentRequest): Observable<Appointment> {
+    return this.http.post<Appointment>(`${this.appointmentApi}/my`, request);
+  }
+
+  getMyAppointments(): Observable<Appointment[]> {
+    return this.http.get<Appointment[]>(`${this.appointmentApi}/my`);
+  }
+
+  cancelMyAppointment(appointmentId: number): Observable<Appointment> {
+    return this.http.put<Appointment>(
+      `${this.appointmentApi}/my/${appointmentId}/cancel`,
+      {},
+    );
+  }
+
+  rescheduleMyAppointment(
+    appointmentId: number,
+    request: {
+      doctorId: number;
+      appointmentDate: string;
+      slotTime: string;
+    },
+  ): Observable<Appointment> {
+    return this.http.put<Appointment>(
+      `${this.appointmentApi}/my/${appointmentId}/reschedule`,
+      request,
+    );
+  }
+
+  getMedicalRecord(appointmentId: number): Observable<MedicalRecord> {
+    return this.http.get<MedicalRecord>(
+      `${this.medicalRecordApi}/${appointmentId}`,
+    );
+  }
+
+  getMyMedicalHistory(): Observable<MedicalRecord[]> {
+    return this.http.get<MedicalRecord[]>(`${this.medicalRecordApi}/my`);
   }
 }

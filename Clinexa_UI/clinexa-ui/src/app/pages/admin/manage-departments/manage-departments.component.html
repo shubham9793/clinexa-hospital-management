@@ -1,56 +1,84 @@
 <div class="page-container">
 
-    <div class="top-bar">
-        
+    <div class="decor-circle circle-one"></div>
+    <div class="decor-circle circle-two"></div>
 
+    <!-- HEADER -->
+    <div class="top-bar">
         <div>
+            <span class="page-badge">
+                🏥 Hospital Structure
+            </span>
 
             <h1 class="title">
-                🏥 Manage Departments
+                Manage Departments
             </h1>
 
             <p class="subtitle">
-                Manage all hospital departments
+                Create, update and manage hospital departments.
             </p>
-
         </div>
 
-        <button class="add-btn" routerLink="/add-department">
+        <button class="add-btn" routerLink="/add-department" type="button">
             + Add Department
         </button>
-
     </div>
 
-    <div class="department-grid">
+    <!-- SEARCH -->
+    <div class="search-panel">
+        <div class="search-box">
+            <span>🔍</span>
 
-        <div class="department-card" *ngFor="let dept of departments">
+            <input type="text" placeholder="Search by department name or description..." [(ngModel)]="searchText" />
+        </div>
 
+        <button class="clear-btn" type="button" *ngIf="searchText" (click)="clearSearch()">
+            Clear
+        </button>
+
+        <div class="count-badge">
+            {{ filteredDepartments().length }} Departments
+        </div>
+    </div>
+
+    <!-- LOADING -->
+    <div class="empty-state" *ngIf="isLoading">
+        Loading departments...
+    </div>
+
+    <!-- EMPTY -->
+    <div class="empty-state" *ngIf="!isLoading && filteredDepartments().length === 0">
+        No departments found.
+    </div>
+
+    <!-- GRID -->
+    <div class="department-grid" *ngIf="!isLoading && filteredDepartments().length > 0">
+        <div class="department-card" *ngFor="let dept of filteredDepartments()">
             <div class="icon">
                 🏥
             </div>
 
             <h2>
-                {{ dept.name }}
+                {{ dept?.name || 'Unnamed Department' }}
             </h2>
 
             <p>
-                {{ dept.description }}
+                {{
+                dept?.description ||
+                'No description available for this department.'
+                }}
             </p>
 
             <div class="card-actions">
-
-            <button class="edit-btn" (click)="editDepartment(dept.id)">
-                Edit
-            </button>
-
-                <button class="delete-btn" (click)="deleteDepartment(dept.id)">
-                    Delete
+                <button class="edit-btn" type="button" (click)="editDepartment(dept.id)">
+                    Edit
                 </button>
 
+                <button class="delete-btn" type="button" (click)="deleteDepartment(dept.id)">
+                    Delete
+                </button>
             </div>
-
         </div>
-
     </div>
 
 </div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
+
 import { CategoryService } from 'src/app/service/category.service';
 import { DepartmentService } from 'src/app/service/department.service';
 import { DoctorService } from 'src/app/service/doctor.service';
@@ -12,6 +14,27 @@ import { AuthService } from 'src/app/service/auth.service';
   styleUrls: ['./admin-dashboard.component.scss'],
 })
 export class AdminDashboardComponent implements OnInit {
+  doctorCount = 0;
+  activeDoctorCount = 0;
+  inactiveDoctorCount = 0;
+
+  receptionistCount = 0;
+  activeReceptionistCount = 0;
+  inactiveReceptionistCount = 0;
+
+  departmentCount = 0;
+  categoryCount = 0;
+
+  appointmentCount = 0;
+
+  activities: any[] = [];
+
+  showProfilePopup = false;
+  isProfileLoading = false;
+  loggedInUser: any = null;
+
+  isStatsLoading = false;
+
   constructor(
     private doctorService: DoctorService,
     private departmentService: DepartmentService,
@@ -21,103 +44,113 @@ export class AdminDashboardComponent implements OnInit {
     private authService: AuthService,
   ) {}
 
-  // Doctor Stats
-  doctorCount = 0;
-  activeDoctorCount = 0;
-  inactiveDoctorCount = 0;
-
-  // Receptionist Stats
-  receptionistCount = 0;
-  activeReceptionistCount = 0;
-  inactiveReceptionistCount = 0;
-
-  // Department Stats
-  departmentCount = 0;
-  activeDepartmentCount = 0;
-  inactiveDepartmentCount = 0;
-
-  // Category Stats
-  categoryCount = 0;
-  activeCategoryCount = 0;
-  inactiveCategoryCount = 0;
-
-  // Appointment Stats
-  appointmentCount = 0;
-  todayAppointmentCount = 0;
-
-  // Activities
-  activities: any[] = [];
-
-  //show popup
-  showProfilePopup = false;
-  isProfileLoading = false;
-  loggedInUser: any = null;
-
   ngOnInit(): void {
     this.loadStats();
   }
 
-  logout(): void {
-    this.authService.logout();
+  loadStats(): void {
+    this.isStatsLoading = true;
+
+    this.loadActivities();
+    this.loadDoctorCounts();
+    this.loadReceptionistCounts();
+    this.loadDepartmentCount();
+    this.loadCategoryCount();
+
+    setTimeout(() => {
+      this.isStatsLoading = false;
+    }, 600);
   }
 
-  loadStats(): void {
-    // Recent Activities
+  loadActivities(): void {
     this.activityService.getActivities().subscribe({
       next: (res: any) => {
-        this.activities = res;
+        this.activities = res || [];
       },
       error: (err) => {
         console.error('Activities Error:', err);
+        this.activities = [];
+      },
+    });
+  }
+
+  loadDoctorCounts(): void {
+    this.doctorService.getDoctorCount().subscribe({
+      next: (res: any) => {
+        this.doctorCount = res || 0;
+      },
+      error: () => {
+        this.doctorCount = 0;
       },
     });
 
-    // Doctor Counts
-    this.doctorService.getDoctorCount().subscribe((res: any) => {
-      this.doctorCount = res;
+    this.doctorService.getActiveDoctorCount().subscribe({
+      next: (res: any) => {
+        this.activeDoctorCount = res || 0;
+      },
+      error: () => {
+        this.activeDoctorCount = 0;
+      },
     });
 
-    this.doctorService.getActiveDoctorCount().subscribe((res: any) => {
-      this.activeDoctorCount = res;
+    this.doctorService.getInactiveDoctorCount().subscribe({
+      next: (res: any) => {
+        this.inactiveDoctorCount = res || 0;
+      },
+      error: () => {
+        this.inactiveDoctorCount = 0;
+      },
+    });
+  }
+
+  loadReceptionistCounts(): void {
+    this.receptionistService.getReceptionistCount().subscribe({
+      next: (res: any) => {
+        this.receptionistCount = res || 0;
+      },
+      error: () => {
+        this.receptionistCount = 0;
+      },
     });
 
-    this.doctorService.getInactiveDoctorCount().subscribe((res: any) => {
-      this.inactiveDoctorCount = res;
+    this.receptionistService.getActiveReceptionistCount().subscribe({
+      next: (res: any) => {
+        this.activeReceptionistCount = res || 0;
+      },
+      error: () => {
+        this.activeReceptionistCount = 0;
+      },
     });
 
-    // Receptionist Counts
-    this.receptionistService.getReceptionistCount().subscribe((res: any) => {
-      this.receptionistCount = res;
+    this.receptionistService.getInactiveReceptionistCount().subscribe({
+      next: (res: any) => {
+        this.inactiveReceptionistCount = res || 0;
+      },
+      error: () => {
+        this.inactiveReceptionistCount = 0;
+      },
     });
+  }
 
-    this.receptionistService
-      .getActiveReceptionistCount()
-      .subscribe((res: any) => {
-        this.activeReceptionistCount = res;
-      });
-
-    this.receptionistService
-      .getInactiveReceptionistCount()
-      .subscribe((res: any) => {
-        this.inactiveReceptionistCount = res;
-      });
-
-    // Department Count
-    this.departmentService.getDepartmentCount().subscribe((res: any) => {
-      this.departmentCount = res;
-
-      // Until Active/Inactive APIs are added
-      this.activeDepartmentCount = res;
-      this.inactiveDepartmentCount = 0;
+  loadDepartmentCount(): void {
+    this.departmentService.getDepartmentCount().subscribe({
+      next: (res: any) => {
+        this.departmentCount = res || 0;
+      },
+      error: () => {
+        this.departmentCount = 0;
+      },
     });
+  }
 
-    // Category Count
-    this.categoryService.getCategoryCount().subscribe((res: any) => {
-      this.categoryCount = res;
-
-      // Until Active/Inactive APIs are added
-      this.activeCategoryCount = res;
-      this.inactiveCategoryCount = 0;
+  loadCategoryCount(): void {
+    this.categoryService.getCategoryCount().subscribe({
+      next: (res: any) => {
+        this.categoryCount = res || 0;
+      },
+      error: () => {
+        this.categoryCount = 0;
+      },
     });
   }
 
@@ -136,14 +169,38 @@ export class AdminDashboardComponent implements OnInit {
         this.isProfileLoading = false;
       },
       error: (err) => {
-        console.error('Failed to load logged-in user profile', err);
+        console.error('Failed to load profile', err);
         this.isProfileLoading = false;
-        alert('Unable to load profile details');
+
+        Swal.fire({
+          icon: 'error',
+          title: 'Profile unavailable',
+          text: 'Unable to load admin profile details.',
+          confirmButtonColor: '#0891b2',
+        });
       },
     });
   }
 
   closeProfile(): void {
     this.showProfilePopup = false;
+  }
+
+  logout(): void {
+    Swal.fire({
+      icon: 'question',
+      title: 'Logout?',
+      text: 'Your current session will be closed.',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, logout',
+      cancelButtonText: 'Stay here',
+      confirmButtonColor: '#dc2626',
+      cancelButtonColor: '#64748b',
+      reverseButtons: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.authService.logout();
+      }
+    });
   }
 }

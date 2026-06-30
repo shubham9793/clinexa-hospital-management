@@ -13,4 +13,5 @@ public class DoctorRequest {
 
     private Long departmentId;
     private Long categoryId;
+    private String password;
 }

@@ -1,8 +1,10 @@
 package com.clinexa.appointment;
 
+import com.clinexa.MedicalRecord.MedicalRecord;
 import com.clinexa.User.User;
 import com.clinexa.doctor.Doctor;
 import com.clinexa.patient.Patient;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -41,11 +43,6 @@ public class Appointment {
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 
-    /*
-     * Snapshot details stored with the appointment.
-     * This keeps appointment history stable even if
-     * the Patient profile changes later.
-     */
     private String patientName;
 
     private Integer age;
@@ -60,6 +57,13 @@ public class Appointment {
 
     private LocalTime slotTime;
 
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private AppointmentStatus status;
+
+    private LocalDate completedDate;
+
+    @OneToOne(mappedBy = "appointment")
+    @JsonIgnore
+    private MedicalRecord medicalRecord;
 }
