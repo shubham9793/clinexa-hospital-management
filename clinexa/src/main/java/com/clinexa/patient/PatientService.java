@@ -1,5 +1,7 @@
 package com.clinexa.patient;
 
+import com.clinexa.exception.DuplicateResourceException;
+import com.clinexa.exception.ResourceNotFoundException;
 import com.clinexa.patient.dto.PatientRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,7 +17,7 @@ public class PatientService {
     public Patient create(PatientRequest req) {
 
         if (repo.existsByEmail(req.getEmail())) {
-            throw new RuntimeException(
+            throw new DuplicateResourceException(
                     "Patient already exists with this email"
             );
         }
@@ -41,7 +43,7 @@ public class PatientService {
 
         return repo.findById(id)
                 .orElseThrow(() ->
-                        new RuntimeException(
+                        new ResourceNotFoundException(
                                 "Patient not found"
                         )
                 );
@@ -54,7 +56,7 @@ public class PatientService {
 
         Patient patient = repo.findById(id)
                 .orElseThrow(() ->
-                        new RuntimeException(
+                        new ResourceNotFoundException(
                                 "Patient not found"
                         )
                 );
@@ -74,7 +76,7 @@ public class PatientService {
 
         Patient patient = repo.findById(id)
                 .orElseThrow(() ->
-                        new RuntimeException(
+                        new ResourceNotFoundException(
                                 "Patient not found"
                         )
                 );
@@ -86,7 +88,7 @@ public class PatientService {
 
         Patient patient = repo.findById(id)
                 .orElseThrow(() ->
-                        new RuntimeException(
+                        new ResourceNotFoundException(
                                 "Patient not found"
                         )
                 );

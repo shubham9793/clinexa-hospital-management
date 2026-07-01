@@ -8,11 +8,11 @@ import com.clinexa.appointment.dto.DoctorNotesRequest;
 import com.clinexa.appointment.dto.ReceptionistAppointmentRequest;
 import com.clinexa.doctor.Doctor;
 import com.clinexa.doctor.DoctorRepository;
+import com.clinexa.exception.*;
 import com.clinexa.patient.Patient;
 import com.clinexa.patient.PatientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -60,7 +60,7 @@ public class AppointmentService {
         User patientUser = userRepo
                 .findByEmailIgnoreCase(loggedInPatientEmail)
                 .orElseThrow(() ->
-                        new RuntimeException("Patient account not found")
+                        new ResourceNotFoundException("Patient account not found")
                 );
 
         Doctor doctor =
@@ -114,13 +114,13 @@ public class AppointmentService {
     ) {
 
         if (req == null) {
-            throw new RuntimeException(
+            throw new BadRequestException(
                     "Appointment request is required"
             );
         }
 
         if (req.getPatientId() == null) {
-            throw new RuntimeException(
+            throw new BadRequestException(
                     "Patient ID is required"
             );
         }
@@ -134,11 +134,11 @@ public class AppointmentService {
         Patient patientRecord = patientRepo
                 .findById(req.getPatientId())
                 .orElseThrow(() ->
-                        new RuntimeException("Patient record not found")
+                        new BadRequestException("Patient record not found")
                 );
 
         if (!patientRecord.isActive()) {
-            throw new RuntimeException(
+            throw new BadRequestException(
                     "Inactive patient cannot book an appointment"
             );
         }
@@ -198,7 +198,7 @@ public class AppointmentService {
                 )
         ) {
 
-            throw new RuntimeException(
+            throw new UnauthorizedException(
                     "You can update only your own appointments"
             );
         }
@@ -360,7 +360,7 @@ public class AppointmentService {
         return repo
                 .findById(appointmentId)
                 .orElseThrow(() ->
-                        new RuntimeException("Appointment not found")
+                        new ResourceNotFoundException("Appointment not found")
                 );
     }
 
@@ -371,11 +371,11 @@ public class AppointmentService {
         Doctor doctor = doctorRepo
                 .findById(doctorId)
                 .orElseThrow(() ->
-                        new RuntimeException("Doctor not found")
+                        new ResourceNotFoundException("Doctor not found")
                 );
 
         if (!doctor.isActive()) {
-            throw new RuntimeException(
+            throw new ResourceNotFoundException(
                     "Doctor is currently unavailable"
             );
         }
@@ -390,19 +390,19 @@ public class AppointmentService {
     ) {
 
         if (doctorId == null) {
-            throw new RuntimeException(
+            throw new BadRequestException(
                     "Doctor ID is required"
             );
         }
 
         if (appointmentDate == null) {
-            throw new RuntimeException(
+            throw new BadRequestException(
                     "Appointment date is required"
             );
         }
 
         if (slotTime == null) {
-            throw new RuntimeException(
+            throw new BadRequestException(
                     "Appointment time is required"
             );
         }
@@ -411,7 +411,7 @@ public class AppointmentService {
         LocalTime currentTime = LocalTime.now();
 
         if (appointmentDate.isBefore(today)) {
-            throw new RuntimeException(
+            throw new BadRequestException(
                     "Past appointment date is not allowed"
             );
         }
@@ -421,7 +421,7 @@ public class AppointmentService {
                         && slotTime.isBefore(currentTime)
         ) {
 
-            throw new RuntimeException(
+            throw new BadRequestException(
                     "Past appointment time is not allowed"
             );
         }
@@ -469,7 +469,7 @@ public class AppointmentService {
         }
 
         if (doctorAlreadyBooked) {
-            throw new RuntimeException(
+            throw new AppointmentException(
                     "Doctor already has an appointment near this time slot"
             );
         }
@@ -503,7 +503,7 @@ public class AppointmentService {
             }
 
             if (patientAlreadyBooked) {
-                throw new RuntimeException(
+                throw new AppointmentException(
                         "Patient already has another appointment near this time slot"
                 );
             }
@@ -538,7 +538,7 @@ public class AppointmentService {
             }
 
             if (patientAlreadyBooked) {
-                throw new RuntimeException(
+                throw new AppointmentException(
                         "Patient already has another appointment near this time slot"
                 );
             }
@@ -554,7 +554,7 @@ public class AppointmentService {
                         == AppointmentStatus.CANCELLED
         ) {
 
-            throw new RuntimeException(
+            throw new AppointmentException(
                     "Cancelled appointment cannot be rescheduled"
             );
         }
@@ -564,7 +564,7 @@ public class AppointmentService {
                         == AppointmentStatus.COMPLETED
         ) {
 
-            throw new RuntimeException(
+            throw new AppointmentException(
                     "Completed appointment cannot be rescheduled"
             );
         }
@@ -625,7 +625,7 @@ public class AppointmentService {
                         && !ownsThroughPatientRecord
         ) {
 
-            throw new RuntimeException(
+            throw new UnauthorizedException(
                     "You can update only your own appointment"
             );
         }
@@ -669,26 +669,26 @@ public class AppointmentService {
     ) {
 
         if (newStatus == null) {
-            throw new RuntimeException(
+            throw new AppointmentException(
                     "New appointment status is required"
             );
         }
 
         if (currentStatus == newStatus) {
-            throw new RuntimeException(
+            throw new AppointmentException(
                     "Appointment already has status: "
                             + currentStatus
             );
         }
 
         if (currentStatus == AppointmentStatus.CANCELLED) {
-            throw new RuntimeException(
+            throw new AppointmentException(
                     "Cancelled appointment cannot be updated"
             );
         }
 
         if (currentStatus == AppointmentStatus.COMPLETED) {
-            throw new RuntimeException(
+            throw new AppointmentException(
                     "Completed appointment cannot be updated"
             );
         }
@@ -716,7 +716,7 @@ public class AppointmentService {
                         );
 
         if (!validTransition) {
-            throw new RuntimeException(
+            throw new AppointmentException(
                     "Invalid appointment status change: "
                             + currentStatus
                             + " to "
@@ -731,7 +731,7 @@ public class AppointmentService {
         User patientUser = userRepo
                 .findByEmailIgnoreCase(loggedInPatientEmail)
                 .orElseThrow(() ->
-                        new RuntimeException("Patient account not found")
+                        new ResourceNotFoundException("Patient account not found")
                 );
 
         return repo.findByPatientOrderByAppointmentDateDescSlotTimeDesc(
@@ -772,7 +772,7 @@ public class AppointmentService {
 
         Appointment appointment = repo.findById(appointmentId)
                 .orElseThrow(() ->
-                        new RuntimeException("Appointment not found"));
+                        new AppointmentException("Appointment not found"));
 
         return appointment;
     }
@@ -783,7 +783,7 @@ public class AppointmentService {
 
     private void validatePatientCanModifyAppointment(Appointment appointment) {
         if (appointment.getStatus() != AppointmentStatus.PENDING) {
-            throw new RuntimeException(
+            throw new AppointmentException(
                     "Patient can update or cancel appointment only while it is pending"
             );
         }

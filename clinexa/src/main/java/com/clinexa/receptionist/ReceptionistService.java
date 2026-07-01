@@ -1,5 +1,6 @@
 package com.clinexa.receptionist;
 
+import com.clinexa.exception.ResourceNotFoundException;
 import com.clinexa.role.Role;
 import com.clinexa.role.RoleRepository;
 
@@ -28,7 +29,7 @@ public class ReceptionistService {
                 roleRepository
                         .findByName("RECEPTIONIST")
                         .orElseThrow(() ->
-                                new RuntimeException(
+                                new ResourceNotFoundException(
                                         "Role not found"
                                 )
                         );
@@ -58,7 +59,7 @@ public class ReceptionistService {
         Receptionist receptionist =
                 repo.findById(id)
                         .orElseThrow(
-                                () -> new RuntimeException(
+                                () -> new ResourceNotFoundException(
                                         "Receptionist not found"
                                 )
                         );
@@ -110,7 +111,7 @@ public class ReceptionistService {
         return repo
                 .findById(id)
                 .orElseThrow(
-                        () -> new RuntimeException(
+                        () -> new ResourceNotFoundException(
                                 "Receptionist not found"
                         )
                 );
@@ -125,7 +126,7 @@ public class ReceptionistService {
                 repo.findById(id)
 
                         .orElseThrow(
-                                () -> new RuntimeException(
+                                () -> new ResourceNotFoundException(
                                         "Receptionist not found"
                                 )
                         );

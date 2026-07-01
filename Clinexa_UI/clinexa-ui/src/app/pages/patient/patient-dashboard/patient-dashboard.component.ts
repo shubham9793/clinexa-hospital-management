@@ -13,6 +13,7 @@ import {
   PatientService,
   UserProfile,
 } from 'src/app/service/patient-service.service';
+import { getErrorMessage } from 'src/app/shared/utils/error-message.util';
 
 @Component({
   selector: 'app-patient-dashboard',
@@ -98,13 +99,12 @@ export class PatientDashboardComponent implements OnInit {
         this.isProfileLoading = false;
       },
       error: (err) => {
-        console.error('Failed to load profile', err);
         this.isProfileLoading = false;
 
         Swal.fire({
           icon: 'error',
           title: 'Profile Load Failed',
-          text: 'Unable to load your profile details.',
+          text: getErrorMessage(err),
           confirmButtonColor: '#2563eb',
         });
       },
@@ -192,10 +192,7 @@ export class PatientDashboardComponent implements OnInit {
           Swal.fire({
             icon: 'error',
             title: 'Reschedule Failed',
-            text:
-              err?.error?.message ||
-              err?.error ||
-              'Unable to reschedule appointment.',
+            text: getErrorMessage(err),
             confirmButtonColor: '#dc2626',
           });
         },
@@ -211,14 +208,13 @@ export class PatientDashboardComponent implements OnInit {
         this.isDoctorsLoading = false;
       },
       error: (err) => {
-        console.error('Failed to load doctors', err);
         this.doctors = [];
         this.isDoctorsLoading = false;
 
         Swal.fire({
           icon: 'error',
           title: 'Unable to Load Doctors',
-          text: 'Please try again after some time.',
+          text: getErrorMessage(err),
           confirmButtonColor: '#2563eb',
         });
       },
@@ -231,7 +227,7 @@ export class PatientDashboardComponent implements OnInit {
         this.departments = res || [];
       },
       error: (err) => {
-        console.error('Failed to load departments', err);
+        getErrorMessage(err);
         this.departments = [];
       },
     });
@@ -243,7 +239,7 @@ export class PatientDashboardComponent implements OnInit {
         this.categories = res || [];
       },
       error: (err) => {
-        console.error('Failed to load categories', err);
+        getErrorMessage(err);
         this.categories = [];
       },
     });
@@ -258,7 +254,7 @@ export class PatientDashboardComponent implements OnInit {
         this.isAppointmentsLoading = false;
       },
       error: (err) => {
-        console.error('Failed to load appointments', err);
+        getErrorMessage(err);
         this.appointments = [];
         this.isAppointmentsLoading = false;
       },
@@ -448,8 +444,7 @@ export class PatientDashboardComponent implements OnInit {
         Swal.fire({
           icon: 'error',
           title: 'Booking Failed',
-          text:
-            err?.error?.message || err?.error || 'Appointment booking failed.',
+          text: getErrorMessage(err),
           confirmButtonColor: '#dc2626',
         });
       },
@@ -496,10 +491,7 @@ export class PatientDashboardComponent implements OnInit {
           Swal.fire({
             icon: 'error',
             title: 'Cancellation Failed',
-            text:
-              err?.error?.message ||
-              err?.error ||
-              'Failed to cancel appointment.',
+            text: getErrorMessage(err),
             confirmButtonColor: '#dc2626',
           });
         },
@@ -837,7 +829,7 @@ export class PatientDashboardComponent implements OnInit {
     Swal.fire({
       icon: 'error',
       title,
-      text: message,
+      text: getErrorMessage(message),
       confirmButtonColor: '#2563eb',
     });
   }

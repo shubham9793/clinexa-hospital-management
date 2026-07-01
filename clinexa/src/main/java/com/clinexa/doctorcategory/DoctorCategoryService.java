@@ -1,6 +1,7 @@
 package com.clinexa.doctorcategory;
 
 import com.clinexa.doctorcategory.dto.DoctorCategoryRequest;
+import com.clinexa.exception.DuplicateResourceException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ public class DoctorCategoryService {
 
     public DoctorCategory create(DoctorCategoryRequest req) {
         if(repo.existsByName(req.getName())) {
-            throw new RuntimeException("Category already exists with this name");
+            throw new DuplicateResourceException("Category already exists with this name");
         }
 
         DoctorCategory category = DoctorCategory.builder()

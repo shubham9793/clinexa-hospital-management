@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { AuthService } from 'src/app/service/auth.service';
 import { DoctorService } from 'src/app/service/doctor.service';
+import { getErrorMessage } from 'src/app/shared/utils/error-message.util';
 
 @Component({
   selector: 'app-doctor-dashboard',
@@ -52,7 +53,7 @@ export class DoctorDashboardComponent implements OnInit {
       },
 
       error: (err) => {
-        console.error('Failed to load appointments', err);
+        console.error('Failed to load appointments', getErrorMessage(err));
 
         this.appointments = [];
         this.isLoading = false;
@@ -124,10 +125,7 @@ export class DoctorDashboardComponent implements OnInit {
             Swal.fire({
               icon: 'error',
               title: 'Status Update Failed',
-              text:
-                err?.error?.message ||
-                err?.error ||
-                'Unable to update appointment status.',
+              text: getErrorMessage(err),
               confirmButtonColor: '#dc2626',
             });
           },
@@ -178,10 +176,7 @@ export class DoctorDashboardComponent implements OnInit {
           Swal.fire({
             icon: 'error',
             title: 'Save Failed',
-            text:
-              err?.error?.message ||
-              err?.error ||
-              'Unable to save medical record.',
+            text: getErrorMessage(err),
             confirmButtonColor: '#dc2626',
           });
         },

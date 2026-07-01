@@ -3,6 +3,8 @@ package com.clinexa.MedicalRecord;
 import com.clinexa.MedicalRecord.dto.MedicalRecordRequest;
 import com.clinexa.appointment.Appointment;
 import com.clinexa.appointment.AppointmentRepository;
+import com.clinexa.exception.ResourceNotFoundException;
+import com.clinexa.exception.UnauthorizedException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +27,7 @@ public class MedicalRecordService {
         Appointment appointment =
                 appointmentRepository.findById(appointmentId)
                         .orElseThrow(() ->
-                                new RuntimeException("Appointment not found")
+                                new ResourceNotFoundException("Appointment not found")
                         );
 
         if (
@@ -34,7 +36,7 @@ public class MedicalRecordService {
                         !appointment.getDoctor().getEmail()
                                 .equalsIgnoreCase(loggedInDoctorEmail)
         ) {
-            throw new RuntimeException(
+            throw new UnauthorizedException(
                     "You can update only your own appointment"
             );
         }
@@ -64,7 +66,7 @@ public class MedicalRecordService {
         return medicalRecordRepository
                 .findByAppointmentId(appointmentId)
                 .orElseThrow(() ->
-                        new RuntimeException("Medical record not found")
+                        new ResourceNotFoundException("Medical record not found")
                 );
     }
 

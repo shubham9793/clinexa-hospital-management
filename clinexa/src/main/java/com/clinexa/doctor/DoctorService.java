@@ -7,6 +7,9 @@ import com.clinexa.department.DepartmentRepository;
 import com.clinexa.doctor.dto.DoctorRequest;
 import com.clinexa.doctorcategory.DoctorCategory;
 import com.clinexa.doctorcategory.DoctorCategoryRepository;
+import com.clinexa.exception.BadRequestException;
+import com.clinexa.exception.DuplicateResourceException;
+import com.clinexa.exception.ResourceNotFoundException;
 import com.clinexa.role.Role;
 import com.clinexa.role.RoleRepository;
 import lombok.RequiredArgsConstructor;
@@ -35,29 +38,29 @@ public class DoctorService {
         String email = normalizeEmail(req.getEmail());
 
         if (doctorRepository.existsByEmailIgnoreCase(email)) {
-            throw new RuntimeException("Doctor already exists with this email");
+            throw new DuplicateResourceException("Doctor already exists with this email");
         }
 
         if (userRepository.existsByEmailIgnoreCase(email)) {
-            throw new RuntimeException("Login account already exists with this email");
+            throw new DuplicateResourceException("Login account already exists with this email");
         }
 
         Department department = departmentRepository
                 .findById(req.getDepartmentId())
                 .orElseThrow(() ->
-                        new RuntimeException("Department not found")
+                        new ResourceNotFoundException("Department not found")
                 );
 
         DoctorCategory category = categoryRepository
                 .findById(req.getCategoryId())
                 .orElseThrow(() ->
-                        new RuntimeException("Category not found")
+                        new ResourceNotFoundException("Category not found")
                 );
 
         Role doctorRole = roleRepository
                 .findByName("DOCTOR")
                 .orElseThrow(() ->
-                        new RuntimeException("DOCTOR role not found")
+                        new ResourceNotFoundException("DOCTOR role not found")
                 );
 
         Doctor doctor = Doctor.builder()
@@ -94,7 +97,7 @@ public class DoctorService {
         return doctorRepository
                 .findById(id)
                 .orElseThrow(() ->
-                        new RuntimeException("Doctor not found")
+                        new ResourceNotFoundException("Doctor not found")
                 );
     }
 
@@ -109,7 +112,7 @@ public class DoctorService {
         Doctor doctor = doctorRepository
                 .findById(id)
                 .orElseThrow(() ->
-                        new RuntimeException("Doctor not found")
+                        new ResourceNotFoundException("Doctor not found")
                 );
 
         String oldEmail = doctor.getEmail();
@@ -118,24 +121,24 @@ public class DoctorService {
         if (!oldEmail.equalsIgnoreCase(newEmail)) {
 
             if (doctorRepository.existsByEmailIgnoreCase(newEmail)) {
-                throw new RuntimeException("Doctor already exists with this email");
+                throw new DuplicateResourceException("Doctor already exists with this email");
             }
 
             if (userRepository.existsByEmailIgnoreCase(newEmail)) {
-                throw new RuntimeException("Login account already exists with this email");
+                throw new DuplicateResourceException("Login account already exists with this email");
             }
         }
 
         Department department = departmentRepository
                 .findById(req.getDepartmentId())
                 .orElseThrow(() ->
-                        new RuntimeException("Department not found")
+                        new ResourceNotFoundException("Department not found")
                 );
 
         DoctorCategory category = categoryRepository
                 .findById(req.getCategoryId())
                 .orElseThrow(() ->
-                        new RuntimeException("Category not found")
+                        new ResourceNotFoundException("Category not found")
                 );
 
         doctor.setName(req.getName().trim());
@@ -150,7 +153,7 @@ public class DoctorService {
         User user = userRepository
                 .findByEmailIgnoreCase(oldEmail)
                 .orElseThrow(() ->
-                        new RuntimeException("Doctor login account not found")
+                        new ResourceNotFoundException("Doctor login account not found")
                 );
 
         user.setName(req.getName().trim());
@@ -164,7 +167,7 @@ public class DoctorService {
         ) {
 
             if (req.getPassword().length() < 6) {
-                throw new RuntimeException(
+                throw new BadRequestException(
                         "Password must contain at least 6 characters"
                 );
             }
@@ -185,7 +188,7 @@ public class DoctorService {
         Doctor doctor = doctorRepository
                 .findById(id)
                 .orElseThrow(() ->
-                        new RuntimeException("Doctor not found")
+                        new ResourceNotFoundException("Doctor not found")
                 );
 
         User user = userRepository
@@ -205,7 +208,7 @@ public class DoctorService {
         Doctor doctor = doctorRepository
                 .findById(id)
                 .orElseThrow(() ->
-                        new RuntimeException("Doctor not found")
+                        new ResourceNotFoundException("Doctor not found")
                 );
 
         doctor.setActive(!doctor.isActive());
@@ -242,37 +245,37 @@ public class DoctorService {
     ) {
 
         if (req == null) {
-            throw new RuntimeException("Doctor details are required");
+            throw new BadRequestException("Doctor details are required");
         }
 
         if (req.getName() == null || req.getName().isBlank()) {
-            throw new RuntimeException("Doctor name is required");
+            throw new BadRequestException("Doctor name is required");
         }
 
         if (req.getEmail() == null || req.getEmail().isBlank()) {
-            throw new RuntimeException("Doctor email is required");
+            throw new BadRequestException("Doctor email is required");
         }
 
         if (req.getPhone() == null || req.getPhone().isBlank()) {
-            throw new RuntimeException("Doctor phone is required");
+            throw new BadRequestException("Doctor phone is required");
         }
 
         if (req.getDepartmentId() == null) {
-            throw new RuntimeException("Department is required");
+            throw new BadRequestException("Department is required");
         }
 
         if (req.getCategoryId() == null) {
-            throw new RuntimeException("Category is required");
+            throw new BadRequestException("Category is required");
         }
 
         if (passwordRequired) {
 
             if (req.getPassword() == null || req.getPassword().isBlank()) {
-                throw new RuntimeException("Doctor password is required");
+                throw new BadRequestException("Doctor password is required");
             }
 
             if (req.getPassword().length() < 6) {
-                throw new RuntimeException(
+                throw new BadRequestException(
                         "Password must contain at least 6 characters"
                 );
             }

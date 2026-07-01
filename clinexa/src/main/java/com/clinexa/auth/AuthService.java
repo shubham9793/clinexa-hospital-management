@@ -15,6 +15,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.clinexa.exception.AuthException;
+import com.clinexa.exception.BadRequestException;
+import com.clinexa.exception.DuplicateResourceException;
+import com.clinexa.exception.ResourceNotFoundException;
+
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -48,13 +53,13 @@ public class AuthService {
                         .toLowerCase();
 
         if (userRepository.existsByEmailIgnoreCase(normalizedEmail)) {
-            throw new RuntimeException(
+            throw new DuplicateResourceException(
                     "An account already exists with this email"
             );
         }
 
         if (patientRepository.existsByEmail(normalizedEmail)) {
-            throw new RuntimeException(
+            throw new DuplicateResourceException(
                     "A patient profile already exists with this email"
             );
         }
@@ -62,7 +67,7 @@ public class AuthService {
         Role patientRole = roleRepository
                 .findByName("PATIENT")
                 .orElseThrow(() ->
-                        new RuntimeException(
+                        new ResourceNotFoundException(
                                 "PATIENT role is not configured"
                         )
                 );
@@ -123,7 +128,7 @@ public class AuthService {
                         || request.getPassword() == null
         ) {
 
-            throw new RuntimeException(
+            throw new BadRequestException(
                     "Email and password are required"
             );
         }
@@ -136,7 +141,7 @@ public class AuthService {
         User user = userRepository
                 .findByEmailIgnoreCase(normalizedEmail)
                 .orElseThrow(() ->
-                        new RuntimeException(
+                        new AuthException(
                                 "Invalid email or password"
                         )
                 );

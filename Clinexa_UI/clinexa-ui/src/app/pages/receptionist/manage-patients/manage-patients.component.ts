@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { PatientService } from 'src/app/service/patient-service.service';
+import { getErrorMessage } from 'src/app/shared/utils/error-message.util';
 
 @Component({
   selector: 'app-manage-patients',
@@ -38,7 +39,7 @@ export class ManagePatientsComponent implements OnInit {
         Swal.fire({
           icon: 'error',
           title: 'Unable to Load Patients',
-          text: 'Something went wrong while fetching patients.',
+          text:  getErrorMessage(err),
           confirmButtonColor: '#2563eb',
         });
       },
@@ -105,15 +106,12 @@ export class ManagePatientsComponent implements OnInit {
           this.loadPatients();
         },
         error: (err) => {
-          console.error('Delete patient failed', err);
-
-          Swal.fire({
-            icon: 'error',
-            title: 'Delete Failed',
-            text:
-              err?.error?.message || err?.error || 'Unable to delete patient.',
-            confirmButtonColor: '#dc2626',
-          });
+            Swal.fire({
+              icon: 'error',
+              title: 'Delete Failed',
+              text: getErrorMessage(err),
+              confirmButtonColor: '#dc2626',
+            });
         },
       });
     });
@@ -160,15 +158,10 @@ export class ManagePatientsComponent implements OnInit {
           this.loadPatients();
         },
         error: (err) => {
-          console.error('Update status failed', err);
-
           Swal.fire({
             icon: 'error',
             title: 'Update Failed',
-            text:
-              err?.error?.message ||
-              err?.error ||
-              'Unable to change patient status.',
+            text: getErrorMessage(err),
             confirmButtonColor: '#dc2626',
           });
         },

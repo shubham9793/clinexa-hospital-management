@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { PatientService } from 'src/app/service/patient-service.service';
+import { getErrorMessage } from 'src/app/shared/utils/error-message.util';
 
 @Component({
   selector: 'app-add-patient',
@@ -65,13 +66,12 @@ export class AddPatientComponent implements OnInit {
         this.isLoading = false;
       },
       error: (err) => {
-        console.error('Failed to load patient', err);
         this.isLoading = false;
 
         Swal.fire({
           icon: 'error',
           title: 'Unable to Load Patient',
-          text: 'Patient details could not be loaded.',
+          text:  getErrorMessage(err),
           confirmButtonColor: '#2563eb',
         }).then(() => {
           this.router.navigate(['/manage-patients']);
@@ -119,16 +119,12 @@ export class AddPatientComponent implements OnInit {
         });
       },
       error: (err) => {
-        console.error('Save patient failed', err);
         this.isSubmitting = false;
 
         Swal.fire({
           icon: 'error',
           title: this.isEditMode ? 'Update Failed' : 'Creation Failed',
-          text:
-            err?.error?.message ||
-            err?.error ||
-            'Something went wrong while saving patient.',
+          text: getErrorMessage(err),
           confirmButtonColor: '#dc2626',
         });
       },

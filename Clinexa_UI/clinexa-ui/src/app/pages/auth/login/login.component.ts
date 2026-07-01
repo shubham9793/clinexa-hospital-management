@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AuthService } from 'src/app/service/auth.service';
+import { getErrorMessage } from 'src/app/shared/utils/error-message.util';
 
 @Component({
   selector: 'app-login',
@@ -80,13 +81,13 @@ export class LoginComponent {
         });
       },
 
-      error: () => {
+      error: (err) => {
         this.isLoading = false;
 
         Swal.fire({
           icon: 'error',
           title: 'Invalid credentials',
-          text: 'Please check your email and password.',
+          text: getErrorMessage(err),
           confirmButtonColor: '#0891b2',
         });
       },

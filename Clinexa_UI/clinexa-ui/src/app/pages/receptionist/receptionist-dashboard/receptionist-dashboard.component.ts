@@ -6,6 +6,7 @@ import {
   PatientService,
 } from 'src/app/service/patient-service.service';
 import { ReceptionistService } from 'src/app/service/receptionist.service';
+import { getErrorMessage } from 'src/app/shared/utils/error-message.util';
 
 @Component({
   selector: 'app-receptionist-dashboard',
@@ -73,7 +74,7 @@ export class ReceptionistDashboardComponent implements OnInit {
         this.doctors = res || [];
       },
       error: (err) => {
-        console.error('Failed to load doctors', err);
+        getErrorMessage(err)
         this.doctors = [];
       },
     });
@@ -91,11 +92,10 @@ export class ReceptionistDashboardComponent implements OnInit {
         console.error('Failed to load patient count', err);
         this.patientCount = 0;
         this.isStatsLoading = false;
-
         Swal.fire({
           icon: 'error',
           title: 'Unable to load dashboard',
-          text: 'Please try again after some time.',
+          text:  getErrorMessage(err),
           confirmButtonColor: '#0891b2',
         });
       },
@@ -112,8 +112,6 @@ export class ReceptionistDashboardComponent implements OnInit {
         this.isAppointmentsLoading = false;
       },
       error: (err) => {
-        console.error('Failed to load appointments', err);
-
         this.appointments = [];
         this.calculateAppointmentStats();
         this.isAppointmentsLoading = false;
@@ -121,10 +119,7 @@ export class ReceptionistDashboardComponent implements OnInit {
         Swal.fire({
           icon: 'error',
           title: 'Unable to load appointments',
-          text:
-            err?.error?.message ||
-            err?.error ||
-            'Please check receptionist appointment API.',
+          text:  getErrorMessage(err),
           confirmButtonColor: '#0891b2',
         });
       },
@@ -324,10 +319,7 @@ export class ReceptionistDashboardComponent implements OnInit {
           Swal.fire({
             icon: 'error',
             title: 'Reschedule Failed',
-            text:
-              err?.error?.message ||
-              err?.error ||
-              'Unable to reschedule appointment.',
+            text:  getErrorMessage(err),
             confirmButtonColor: '#dc2626',
           });
         },
@@ -371,10 +363,7 @@ export class ReceptionistDashboardComponent implements OnInit {
           Swal.fire({
             icon: 'error',
             title: 'Cancellation Failed',
-            text:
-              err?.error?.message ||
-              err?.error ||
-              'Unable to cancel appointment.',
+            text:  getErrorMessage(err),
             confirmButtonColor: '#dc2626',
           });
         },
@@ -412,13 +401,11 @@ export class ReceptionistDashboardComponent implements OnInit {
         this.isProfileLoading = false;
       },
       error: (err) => {
-        console.error('Failed to load receptionist profile', err);
         this.isProfileLoading = false;
-
         Swal.fire({
           icon: 'error',
           title: 'Profile unavailable',
-          text: 'Unable to load receptionist profile details.',
+          text: getErrorMessage(err),
           confirmButtonColor: '#0891b2',
         });
       },

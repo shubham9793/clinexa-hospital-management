@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
+import { getErrorMessage } from 'src/app/shared/utils/error-message.util';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -25,26 +27,7 @@ export class RegisterComponent {
   ) {}
 
   register(): void {
-    if (
-      !this.name.trim() ||
-      !this.email.trim() ||
-      !this.phone.trim() ||
-      !this.password ||
-      !this.confirmPassword ||
-      !this.gender ||
-      !this.dob
-    ) {
-      alert('Please complete all required fields');
-      return;
-    }
-
-    if (this.password !== this.confirmPassword) {
-      alert('Passwords do not match');
-      return;
-    }
-
-    if (this.password.length < 6) {
-      alert('Password must contain at least 6 characters');
+    if (!this.isFormValid()) {
       return;
     }
 
@@ -64,19 +47,84 @@ export class RegisterComponent {
       next: () => {
         this.isSubmitting = false;
 
-        alert('Registration successful. Please log in.');
+        Swal.fire({
+          icon: 'success',
+          title: 'Registration Successful',
+          text: 'Please login to continue.',
+          timer: 1600,
+          showConfirmButton: false,
+        });
 
         this.router.navigate(['/login/patient']);
       },
-
       error: (err) => {
         this.isSubmitting = false;
 
-        const message =
-          err.error?.message || err.error || 'Registration failed';
-
-        alert(message);
+        Swal.fire({
+          icon: 'error',
+          title: 'Registration Failed',
+          text: getErrorMessage(err),
+          confirmButtonColor: '#0891b2',
+        });
       },
+    });
+  }
+
+  private isFormValid(): boolean {
+    if (!this.name.trim()) {
+      this.showValidationError('Full name is required.');
+      return false;
+    }
+
+    if (!this.email.trim()) {
+      this.showValidationError('Email is required.');
+      return false;
+    }
+
+    if (!this.phone.trim()) {
+      this.showValidationError('Phone number is required.');
+      return false;
+    }
+
+    if (!this.gender) {
+      this.showValidationError('Please select gender.');
+      return false;
+    }
+
+    if (!this.dob) {
+      this.showValidationError('Date of birth is required.');
+      return false;
+    }
+
+    if (!this.password) {
+      this.showValidationError('Password is required.');
+      return false;
+    }
+
+    if (!this.confirmPassword) {
+      this.showValidationError('Confirm password is required.');
+      return false;
+    }
+
+    if (this.password !== this.confirmPassword) {
+      this.showValidationError('Passwords do not match.');
+      return false;
+    }
+
+    if (this.password.length < 6) {
+      this.showValidationError('Password must contain at least 6 characters.');
+      return false;
+    }
+
+    return true;
+  }
+
+  private showValidationError(message: string): void {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Empty Field',
+      text: message,
+      confirmButtonColor: '#0891b2',
     });
   }
 }

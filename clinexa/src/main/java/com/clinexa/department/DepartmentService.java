@@ -1,6 +1,7 @@
 package com.clinexa.department;
 
 import com.clinexa.department.dto.DepartmentRequest;
+import com.clinexa.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ public class DepartmentService {
     public Department create(DepartmentRequest req) {
 
         if (repo.existsByName(req.getName())) {
-            throw new RuntimeException("Department already exists with this name");
+            throw new ResourceNotFoundException("Department already exists with this name");
         }
 
         Department d = Department.builder()
@@ -41,7 +42,7 @@ public class DepartmentService {
 
         return repo.findById(id)
                 .orElseThrow(() ->
-                        new RuntimeException(
+                        new ResourceNotFoundException(
                                 "Department not found"
                         )
                 );
@@ -60,7 +61,7 @@ public class DepartmentService {
         Department department =
                 repo.findById(id)
                         .orElseThrow(() ->
-                                new RuntimeException(
+                                new ResourceNotFoundException(
                                         "Department not found"
                                 ));
 
