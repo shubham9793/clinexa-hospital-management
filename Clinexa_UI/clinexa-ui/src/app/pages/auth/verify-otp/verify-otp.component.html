@@ -1,0 +1,46 @@
+<p>verify-otp works!</p>
+<div class="otp-page">
+    <div class="otp-card">
+
+        <div class="otp-icon">🏥</div>
+
+        <span class="otp-badge">Email Verification</span>
+
+        <h1>Verify Your Email</h1>
+
+        <p class="subtitle">
+            We sent a 6-digit OTP to
+        </p>
+
+        <p class="email-text">
+            {{ email }}
+        </p>
+
+        <div class="otp-input-wrapper">
+            <input type="text" maxlength="6" [(ngModel)]="otp" placeholder="Enter OTP" />
+        </div>
+
+        <button class="verify-btn" type="button" (click)="verifyOtp()" [disabled]="isVerifying">
+            {{ isVerifying ? 'Verifying...' : 'Verify OTP' }}
+        </button>
+
+        <button class="resend-btn" type="button" (click)="resendOtp()" [disabled]="resendSeconds > 0 || isResending">
+            {{
+            isResending
+            ? 'Sending...'
+            : resendSeconds > 0
+            ? 'Resend OTP in ' + resendSeconds + 's'
+            : 'Resend OTP'
+            }}
+        </button>
+
+        <p class="helper-text">
+            Didn’t receive the email? Please check your spam folder.
+        </p>
+
+        <a routerLink="/register/patient" class="back-link">
+            ← Back to Registration
+        </a>
+
+    </div>
+</div>

@@ -2,8 +2,16 @@ package com.clinexa.auth;
 
 import com.clinexa.User.User;
 import com.clinexa.User.UserRepository;
-import com.clinexa.auth.dto.AuthResponse;
-import com.clinexa.auth.dto.LoginRequest;
+import com.clinexa.auth.dto.*;
+import com.clinexa.exception.AuthException;
+import com.clinexa.exception.BadRequestException;
+import com.clinexa.exception.DuplicateResourceException;
+import com.clinexa.exception.ResourceNotFoundException;
+import com.clinexa.otp.OtpService;
+import com.clinexa.otp.PasswordResetVerificationService;
+import com.clinexa.otp.dto.OtpPurpose;
+import com.clinexa.otp.dto.ResendOtpRequest;
+import com.clinexa.otp.dto.VerifyOtpRequest;
 import com.clinexa.patient.Patient;
 import com.clinexa.patient.PatientRepository;
 import com.clinexa.patient.dto.PatientRegisterRequest;
@@ -15,84 +23,56 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.clinexa.exception.AuthException;
-import com.clinexa.exception.BadRequestException;
-import com.clinexa.exception.DuplicateResourceException;
-import com.clinexa.exception.ResourceNotFoundException;
+import java.time.LocalDate;
 
 @Service
 @RequiredArgsConstructor
 public class AuthService {
 
     private final UserRepository userRepository;
-
     private final PatientRepository patientRepository;
-
     private final RoleRepository roleRepository;
-
     private final PasswordEncoder passwordEncoder;
-
     private final JwtService jwtService;
-
-    /*
-     * ========================================
-     * PATIENT SELF-REGISTRATION
-     * ========================================
-     */
+    private final OtpService otpService;
+    private final PasswordResetVerificationService passwordResetVerificationService;
 
     @Transactional
-    public String registerPatient(
-            PatientRegisterRequest request
-    ) {
-
+    public String registerPatient(PatientRegisterRequest request) {
         validatePatientRegistration(request);
 
-        String normalizedEmail =
-                request.getEmail()
-                        .trim()
-                        .toLowerCase();
+        String normalizedEmail = request.getEmail().trim().toLowerCase();
 
         if (userRepository.existsByEmailIgnoreCase(normalizedEmail)) {
             throw new DuplicateResourceException(
-                    "An account already exists with this email"
+                    "An account already exists with this email."
             );
         }
 
         if (patientRepository.existsByEmail(normalizedEmail)) {
             throw new DuplicateResourceException(
-                    "A patient profile already exists with this email"
+                    "A patient profile already exists with this email."
             );
         }
 
-        Role patientRole = roleRepository
-                .findByName("PATIENT")
+        Role patientRole = roleRepository.findByName("PATIENT")
                 .orElseThrow(() ->
                         new ResourceNotFoundException(
-                                "PATIENT role is not configured"
+                                "PATIENT role is not configured."
                         )
                 );
 
-        /*
-         * Create login account.
-         */
         User user = User.builder()
                 .name(request.getName().trim())
                 .email(normalizedEmail)
                 .phone(request.getPhone().trim())
-                .password(
-                        passwordEncoder.encode(
-                                request.getPassword()
-                        )
-                )
+                .password(passwordEncoder.encode(request.getPassword()))
                 .role(patientRole)
-                .enabled(true)
+                .enabled(false)
                 .build();
 
         userRepository.save(user);
 
-        /*
-         * Create Patient profile.
-         */
         Patient patient = Patient.builder()
                 .name(request.getName().trim())
                 .email(normalizedEmail)
@@ -109,65 +89,41 @@ public class AuthService {
 
         patientRepository.save(patient);
 
-        return "Patient Registered Successfully";
+        otpService.generateAndSendOtp(
+                normalizedEmail,
+                OtpPurpose.EMAIL_VERIFICATION
+        );
+
+        return "Registration successful. OTP sent to your email.";
     }
 
-    /*
-     * ========================================
-     * LOGIN
-     * ========================================
-     */
-
-    public AuthResponse login(
-            LoginRequest request
-    ) {
-
+    public AuthResponse login(LoginRequest request) {
         if (
-                request == null
-                        || request.getEmail() == null
-                        || request.getPassword() == null
+                request == null ||
+                        request.getEmail() == null ||
+                        request.getEmail().isBlank() ||
+                        request.getPassword() == null ||
+                        request.getPassword().isBlank()
         ) {
-
-            throw new BadRequestException(
-                    "Email and password are required"
-            );
+            throw new BadRequestException("Email and password are required.");
         }
 
-        String normalizedEmail =
-                request.getEmail()
-                        .trim()
-                        .toLowerCase();
+        String normalizedEmail = request.getEmail().trim().toLowerCase();
 
-        User user = userRepository
-                .findByEmailIgnoreCase(normalizedEmail)
+        User user = userRepository.findByEmailIgnoreCase(normalizedEmail)
                 .orElseThrow(() ->
-                        new AuthException(
-                                "Invalid email or password"
-                        )
+                        new AuthException("Invalid email or password.")
                 );
 
-        if (
-                !passwordEncoder.matches(
-                        request.getPassword(),
-                        user.getPassword()
-                )
-        ) {
-
-            throw new RuntimeException(
-                    "Invalid email or password"
-            );
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            throw new AuthException("Invalid email or password.");
         }
 
         if (!user.isEnabled()) {
-            throw new RuntimeException(
-                    "Your account is inactive"
-            );
+            throw new AuthException("Please verify your email before logging in.");
         }
 
-        String token =
-                jwtService.generateToken(
-                        user.getEmail()
-                );
+        String token = jwtService.generateToken(user.getEmail());
 
         return AuthResponse.builder()
                 .token(token)
@@ -176,82 +132,182 @@ public class AuthService {
                 .build();
     }
 
-    /*
-     * ========================================
-     * VALIDATION
-     * ========================================
-     */
+    @Transactional
+    public String verifyEmailOtp(VerifyOtpRequest request) {
+        if (
+                request == null ||
+                        request.getEmail() == null ||
+                        request.getEmail().isBlank() ||
+                        request.getOtp() == null ||
+                        request.getOtp().isBlank()
+        ) {
+            throw new BadRequestException("Email and OTP are required.");
+        }
 
-    private void validatePatientRegistration(
-            PatientRegisterRequest request
+        String email = request.getEmail().trim().toLowerCase();
+
+        otpService.verifyOtp(
+                email,
+                request.getOtp().trim(),
+                OtpPurpose.EMAIL_VERIFICATION
+        );
+
+        User user = userRepository.findByEmailIgnoreCase(email)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("User not found.")
+                );
+
+        user.setEnabled(true);
+        userRepository.save(user);
+
+        return "Email verified successfully. You can now login.";
+    }
+
+    public String resendEmailOtp(ResendOtpRequest request) {
+        if (
+                request == null ||
+                        request.getEmail() == null ||
+                        request.getEmail().isBlank()
+        ) {
+            throw new BadRequestException("Email is required.");
+        }
+
+        String email = request.getEmail().trim().toLowerCase();
+
+        User user = userRepository.findByEmailIgnoreCase(email)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("User not found.")
+                );
+
+        if (user.isEnabled()) {
+            throw new BadRequestException("Email is already verified.");
+        }
+
+        otpService.generateAndSendOtp(
+                email,
+                OtpPurpose.EMAIL_VERIFICATION
+        );
+
+        return "OTP sent successfully.";
+    }
+
+    public String forgotPassword(ForgotPasswordRequest request) {
+        if (
+                request == null ||
+                        request.getEmail() == null ||
+                        request.getEmail().isBlank()
+        ) {
+            throw new BadRequestException("Email is required.");
+        }
+
+        String email = request.getEmail().trim().toLowerCase();
+
+        userRepository.findByEmailIgnoreCase(email)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "No account found with this email."
+                        )
+                );
+
+        otpService.generateAndSendOtp(
+                email,
+                OtpPurpose.FORGOT_PASSWORD
+        );
+
+        return "Password reset OTP sent successfully.";
+    }
+
+    @Transactional
+    public String verifyForgotPasswordOtp(
+            VerifyForgotPasswordOtpRequest request
     ) {
+        if (
+                request == null ||
+                        request.getEmail() == null ||
+                        request.getEmail().isBlank() ||
+                        request.getOtp() == null ||
+                        request.getOtp().isBlank()
+        ) {
+            throw new BadRequestException("Email and OTP are required.");
+        }
 
-        if (request == null) {
-            throw new RuntimeException(
-                    "Registration details are required"
+        String email = request.getEmail().trim().toLowerCase();
+
+        otpService.verifyOtp(
+                email,
+                request.getOtp().trim(),
+                OtpPurpose.FORGOT_PASSWORD
+        );
+
+        passwordResetVerificationService.createVerification(email);
+
+        return "OTP verified successfully. You can now reset your password.";
+    }
+
+    @Transactional
+    public String resetPassword(ResetPasswordRequest request) {
+        if (
+                request == null ||
+                        request.getEmail() == null ||
+                        request.getEmail().isBlank() ||
+                        request.getNewPassword() == null ||
+                        request.getNewPassword().isBlank()
+        ) {
+            throw new BadRequestException("Email and new password are required.");
+        }
+
+        if (request.getNewPassword().length() < 6) {
+            throw new BadRequestException(
+                    "Password must contain at least 6 characters."
             );
         }
 
-        requireText(
-                request.getName(),
-                "Name is required"
-        );
+        String email = request.getEmail().trim().toLowerCase();
 
-        requireText(
-                request.getEmail(),
-                "Email is required"
-        );
+        passwordResetVerificationService.validateAndDelete(email);
 
-        requireText(
-                request.getPhone(),
-                "Phone number is required"
-        );
+        User user = userRepository.findByEmailIgnoreCase(email)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("User not found.")
+                );
 
-        requireText(
-                request.getPassword(),
-                "Password is required"
-        );
+        user.setPassword(passwordEncoder.encode(request.getNewPassword()));
+        userRepository.save(user);
 
-        requireText(
-                request.getGender(),
-                "Gender is required"
-        );
+        return "Password updated successfully.";
+    }
+
+    private void validatePatientRegistration(PatientRegisterRequest request) {
+        if (request == null) {
+            throw new BadRequestException("Registration details are required.");
+        }
+
+        requireText(request.getName(), "Name is required.");
+        requireText(request.getEmail(), "Email is required.");
+        requireText(request.getPhone(), "Phone number is required.");
+        requireText(request.getPassword(), "Password is required.");
+        requireText(request.getGender(), "Gender is required.");
 
         if (request.getDob() == null) {
-            throw new RuntimeException(
-                    "Date of birth is required"
-            );
+            throw new BadRequestException("Date of birth is required.");
         }
 
-        if (request.getDob().isAfter(
-                java.time.LocalDate.now()
-        )) {
-
-            throw new RuntimeException(
-                    "Date of birth cannot be in the future"
+        if (request.getDob().isAfter(LocalDate.now())) {
+            throw new BadRequestException(
+                    "Date of birth cannot be in the future."
             );
         }
 
         if (request.getPassword().length() < 6) {
-            throw new RuntimeException(
-                    "Password must contain at least 6 characters"
+            throw new BadRequestException(
+                    "Password must contain at least 6 characters."
             );
         }
     }
 
-    private void requireText(
-            String value,
-            String errorMessage
-    ) {
-
-        if (
-                value == null
-                        || value.isBlank()
-        ) {
-
-            throw new RuntimeException(
-                    errorMessage
-            );
+    private void requireText(String value, String errorMessage) {
+        if (value == null || value.isBlank()) {
+            throw new BadRequestException(errorMessage);
         }
     }
 }

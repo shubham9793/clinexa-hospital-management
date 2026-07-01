@@ -21,6 +21,10 @@ import { RoleGuard } from './gaurds/role.guard';
 import { ManagePatientComponent } from './pages/patient/manage-patient/manage-patient.component';
 import { PatientDashboardComponent } from './pages/patient/patient-dashboard/patient-dashboard.component';
 import { DoctorDashboardComponent } from './pages/doctor/doctor-dashboard/doctor-dashboard.component';
+import { VerifyOtpComponent } from './pages/auth/verify-otp/verify-otp.component';
+import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-password.component';
+import { VerifyForgotPasswordComponent } from './pages/auth/verify-forgot-password/verify-forgot-password.component';
+import { ResetPasswordComponent } from './pages/auth/reset-password/reset-password.component';
 
 const routes: Routes = [
   {
@@ -165,6 +169,24 @@ const routes: Routes = [
     component: DoctorDashboardComponent,
     canActivate: [RoleGuard],
     data: { roles: ['doctor'] },
+  },
+
+  {
+    path: 'verify-otp',
+    component: VerifyOtpComponent,
+  },
+
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent,
+  },
+  {
+    path: 'verify-forgot-password',
+    component: VerifyForgotPasswordComponent,
+  },
+  {
+    path: 'reset-password',
+    component: ResetPasswordComponent,
   },
 
   // Invalid URL

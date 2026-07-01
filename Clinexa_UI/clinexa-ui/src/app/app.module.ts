@@ -28,6 +28,10 @@ import { ReceptionistDashboardComponent } from './pages/receptionist/receptionis
 import { PatientDashboardComponent } from './pages/patient/patient-dashboard/patient-dashboard.component';
 import { ManagePatientComponent } from './pages/patient/manage-patient/manage-patient.component';
 import { DoctorDashboardComponent } from './pages/doctor/doctor-dashboard/doctor-dashboard.component';
+import { VerifyOtpComponent } from './pages/auth/verify-otp/verify-otp.component';
+import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-password.component';
+import { VerifyForgotPasswordComponent } from './pages/auth/verify-forgot-password/verify-forgot-password.component';
+import { ResetPasswordComponent } from './pages/auth/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +54,10 @@ import { DoctorDashboardComponent } from './pages/doctor/doctor-dashboard/doctor
     PatientDashboardComponent,
     ManagePatientComponent,
     DoctorDashboardComponent,
+    VerifyOtpComponent,
+    ForgotPasswordComponent,
+    VerifyForgotPasswordComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,

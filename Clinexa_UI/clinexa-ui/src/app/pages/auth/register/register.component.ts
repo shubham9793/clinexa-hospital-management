@@ -49,13 +49,17 @@ export class RegisterComponent {
 
         Swal.fire({
           icon: 'success',
-          title: 'Registration Successful',
-          text: 'Please login to continue.',
+          title: 'OTP Sent',
+          text: 'We have sent a verification OTP to your email.',
           timer: 1600,
           showConfirmButton: false,
+        }).then(() => {
+          this.router.navigate(['/verify-otp'], {
+            queryParams: {
+              email: data.email,
+            },
+          });
         });
-
-        this.router.navigate(['/login/patient']);
       },
       error: (err) => {
         this.isSubmitting = false;

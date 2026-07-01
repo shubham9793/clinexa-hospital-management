@@ -3,11 +3,14 @@ package com.clinexa.exception;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.MailException;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.security.authentication.BadCredentialsException;
 import java.time.LocalDateTime;
+import org.springframework.mail.MailException;
+
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -127,6 +130,20 @@ public class GlobalExceptionHandler {
         return buildResponse(
                 HttpStatus.UNAUTHORIZED,
                 "Invalid email or password.",
+                request
+        );
+    }
+
+
+
+    @ExceptionHandler(MailException.class)
+    public ResponseEntity<ErrorResponse> handleMailException(
+            MailException ex,
+            HttpServletRequest request
+    ) {
+        return buildResponse(
+                HttpStatus.BAD_REQUEST,
+                "Unable to send OTP email. Please check the email address or mail configuration.",
                 request
         );
     }

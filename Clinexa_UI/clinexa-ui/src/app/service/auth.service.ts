@@ -60,4 +60,38 @@ export class AuthService {
       responseType: 'text',
     });
   }
+
+  verifyEmailOtp(data: { email: string; otp: string }) {
+    return this.http.post(`${this.baseUrl}/verify-email-otp`, data, {
+      responseType: 'text',
+    });
+  }
+
+  resendEmailOtp(data: { email: string }) {
+    return this.http.post(`${this.baseUrl}/resend-email-otp`, data, {
+      responseType: 'text',
+    });
+  }
+
+  forgotPassword(data: { email: string }) {
+    return this.http.post(`${this.baseUrl}/forgot-password`, data, {
+      responseType: 'text',
+    });
+  }
+
+  verifyForgotPasswordOtp(data: { email: string; otp: string }) {
+    return this.http.post(
+      `${this.baseUrl}/verify-forgot-password-otp`,
+      data,
+      {
+        responseType: 'text',
+      },
+    );
+  }
+
+  resetPassword(data: { email: string; newPassword: string }) {
+    return this.http.put(`${this.baseUrl}/reset-password`, data, {
+      responseType: 'text',
+    });
+  }
 }
