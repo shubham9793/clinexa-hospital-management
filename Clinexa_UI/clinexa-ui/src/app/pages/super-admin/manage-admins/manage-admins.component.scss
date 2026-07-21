@@ -1,0 +1,176 @@
+.page-container {
+    width: min(1180px, 92%);
+    margin: 36px auto;
+    color: #163047;
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 28px;
+
+    h2 {
+        margin: 6px 0 8px;
+        font-size: 30px;
+    }
+
+    p {
+        margin: 0;
+        color: #64748b;
+    }
+}
+
+.eyebrow {
+    font-size: 12px;
+    letter-spacing: 1.4px;
+    font-weight: 700;
+    color: #0891b2 !important;
+}
+
+.add-btn {
+    text-decoration: none;
+    background: #0891b2;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: 0.2s ease;
+
+    &:hover {
+        background: #0e7490;
+    }
+}
+
+.loading,
+.empty-state {
+    background: white;
+    padding: 50px 30px;
+    text-align: center;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(16, 59, 77, 0.07);
+}
+
+.empty-state {
+    h3 {
+        margin-top: 0;
+    }
+
+    p {
+        color: #64748b;
+        margin-bottom: 24px;
+    }
+}
+
+.table-card {
+    background: white;
+    border-radius: 18px;
+    overflow-x: auto;
+    box-shadow: 0 8px 28px rgba(16, 59, 77, 0.08);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 850px;
+}
+
+thead {
+    background: #f4f9fb;
+}
+
+th,
+td {
+    padding: 18px 20px;
+    text-align: left;
+    border-bottom: 1px solid #e7eef2;
+}
+
+th {
+    font-size: 13px;
+    color: #475569;
+    font-weight: 700;
+}
+
+td {
+    color: #334155;
+    font-size: 14px;
+}
+
+.admin-name {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #ecfeff;
+    color: #0e7490;
+    font-weight: 700;
+}
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 11px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+
+    &.active {
+        background: #dcfce7;
+        color: #166534;
+    }
+
+    &.inactive {
+        background: #fee2e2;
+        color: #991b1b;
+    }
+}
+
+.status-btn {
+    border: none;
+    padding: 9px 15px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s ease;
+
+    &.activate {
+        background: #dcfce7;
+        color: #166534;
+
+        &:hover {
+            background: #bbf7d0;
+        }
+    }
+
+    &.deactivate {
+        background: #fee2e2;
+        color: #991b1b;
+
+        &:hover {
+            background: #fecaca;
+        }
+    }
+}
+
+@media (max-width: 700px) {
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .add-btn {
+        width: 100%;
+        text-align: center;
+    }
+}

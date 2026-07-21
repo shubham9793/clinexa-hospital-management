@@ -362,23 +362,30 @@
   text-align: center;
 }
 
-.hospital-mini span {
-  display: block;
-  font-size: 42px;
+.hospital-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.hospital-icon {
+  font-size: 36px;
+  line-height: 1;
 }
 
 .hospital-mini strong {
-  display: block;
-  margin-top: 6px;
   color: #075985;
   font-size: 22px;
+  line-height: 1;
 }
 
 .hospital-mini small {
   display: block;
-  margin-top: 4px;
   color: #64748b;
   font-weight: 800;
+  font-size: 12px;
 }
 
 .floating-card {

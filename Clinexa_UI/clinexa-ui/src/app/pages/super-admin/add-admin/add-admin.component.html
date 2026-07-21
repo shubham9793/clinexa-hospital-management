@@ -1,0 +1,174 @@
+<div class="page-container">
+
+    <div class="page-header">
+
+        <div>
+
+            <p class="eyebrow">
+                SUPER ADMIN
+            </p>
+
+            <h2>
+                Create Admin
+            </h2>
+
+            <p>
+                Create a new administrator account for Clinexa.
+            </p>
+
+        </div>
+
+        <button type="button" class="back-btn" (click)="cancel()">
+            ← Back to Admins
+        </button>
+
+    </div>
+
+
+    <div class="form-card">
+
+        <div class="form-header">
+
+            <div class="form-icon">
+                🛡️
+            </div>
+
+            <div>
+
+                <h3>
+                    Administrator Details
+                </h3>
+
+                <p>
+                    The administrator will be able to login
+                    immediately after the account is created.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <form (ngSubmit)="createAdmin()">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        Full Name
+                    </label>
+
+                    <input type="text" name="name" [(ngModel)]="name" placeholder="Enter admin name"
+                        autocomplete="name" />
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Email Address
+                    </label>
+
+                    <input type="email" name="email" [(ngModel)]="email" placeholder="admin@clinexa.com"
+                        autocomplete="email" />
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Phone Number
+                    </label>
+
+                    <input type="text" name="phone" [(ngModel)]="phone" placeholder="10-digit phone number"
+                        maxlength="10" autocomplete="tel" />
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Password
+                    </label>
+
+                    <div class="password-field">
+
+                        <input [type]="showPassword ? 'text' : 'password'" name="password" [(ngModel)]="password"
+                            placeholder="Enter password" autocomplete="new-password" />
+
+                        <button type="button" class="password-toggle" (click)="showPassword = !showPassword">
+                            {{ showPassword ? 'Hide' : 'Show' }}
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group full-width">
+
+                    <label>
+                        Confirm Password
+                    </label>
+
+                    <div class="password-field">
+
+                        <input [type]="showConfirmPassword ? 'text' : 'password'" name="confirmPassword"
+                            [(ngModel)]="confirmPassword" placeholder="Confirm password" autocomplete="new-password" />
+
+                        <button type="button" class="password-toggle"
+                            (click)="showConfirmPassword = !showConfirmPassword">
+                            {{ showConfirmPassword ? 'Hide' : 'Show' }}
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <div>
+                    ℹ️
+                </div>
+
+                <p>
+                    This account will automatically receive the
+                    <strong>ADMIN</strong> role and will be active
+                    immediately after creation.
+                </p>
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button type="button" class="cancel-btn" (click)="cancel()" [disabled]="isLoading">
+                    Cancel
+                </button>
+
+                <button type="submit" class="create-btn" [disabled]="isLoading">
+
+                    <span *ngIf="!isLoading">
+                        + Create Admin
+                    </span>
+
+                    <span *ngIf="isLoading">
+                        Creating...
+                    </span>
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

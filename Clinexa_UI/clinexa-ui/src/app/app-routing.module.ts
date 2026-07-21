@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-
 import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
 import { ManageDoctorsComponent } from './pages/admin/manage-doctors/manage-doctors.component';
 import { AddDoctorComponent } from './pages/admin/add-doctor/add-doctor.component';
@@ -13,7 +11,6 @@ import { ManageDepartmentsComponent } from './pages/admin/manage-departments/man
 import { AddDepartmentComponent } from './pages/admin/add-department/add-department.component';
 import { ManageReceptionistsComponent } from './pages/admin/manage-receptionists/manage-receptionists.component';
 import { AddReceptionistComponent } from './pages/admin/add-receptionist/add-receptionist.component';
-
 import { ReceptionistDashboardComponent } from './pages/receptionist/receptionist-dashboard/receptionist-dashboard.component';
 import { ManagePatientsComponent } from './pages/receptionist/manage-patients/manage-patients.component';
 import { AddPatientComponent } from './pages/receptionist/add-patient/add-patient.component';
@@ -25,6 +22,9 @@ import { VerifyOtpComponent } from './pages/auth/verify-otp/verify-otp.component
 import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-password.component';
 import { VerifyForgotPasswordComponent } from './pages/auth/verify-forgot-password/verify-forgot-password.component';
 import { ResetPasswordComponent } from './pages/auth/reset-password/reset-password.component';
+import { SuperAdminDashboardComponent } from './pages/super-admin/super-admin-dashboard/super-admin-dashboard.component';
+import { ManageAdminsComponent } from './pages/super-admin/manage-admins/manage-admins.component';
+import { AddAdminComponent } from './pages/super-admin/add-admin/add-admin.component';
 
 const routes: Routes = [
   {
@@ -120,6 +120,28 @@ const routes: Routes = [
     canActivate: [RoleGuard],
     data: { roles: ['admin'] },
   },
+  // =========================
+  // Super admin ROUTES
+  // =========================
+
+  {
+    path: 'super-admin-dashboard',
+    component: SuperAdminDashboardComponent,
+    canActivate: [RoleGuard],
+    data: { roles: ['super_admin'] },
+  },
+  {
+    path: 'manage-admins',
+    component: ManageAdminsComponent,
+    canActivate: [RoleGuard],
+    data: { roles: ['super_admin'] },
+  },
+  {
+    path: 'add-admin',
+    component: AddAdminComponent,
+    canActivate: [RoleGuard],
+    data: { roles: ['super_admin'] },
+  },
 
   // =========================
   // RECEPTIONIST ROUTES
@@ -170,7 +192,6 @@ const routes: Routes = [
     canActivate: [RoleGuard],
     data: { roles: ['doctor'] },
   },
-
   {
     path: 'verify-otp',
     component: VerifyOtpComponent,

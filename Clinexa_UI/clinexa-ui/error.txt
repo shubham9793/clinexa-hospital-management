@@ -1,0 +1,1797 @@
+- Generating browser application bundles (phase: setup)...
+✔ Browser application bundle generation complete.
+✔ Browser application bundle generation complete.
+
+Warning: C:\Users\SHUBHAM\Desktop\clinexa\Clinexa_UI\clinexa-ui\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.index-of.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\SHUBHAM\Desktop\clinexa\Clinexa_UI\clinexa-ui\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.iterator.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\SHUBHAM\Desktop\clinexa\Clinexa_UI\clinexa-ui\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.reduce.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\SHUBHAM\Desktop\clinexa\Clinexa_UI\clinexa-ui\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.reverse.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\SHUBHAM\Desktop\clinexa\Clinexa_UI\clinexa-ui\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.promise.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\SHUBHAM\Desktop\clinexa\Clinexa_UI\clinexa-ui\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.regexp.to-string.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\SHUBHAM\Desktop\clinexa\Clinexa_UI\clinexa-ui\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.ends-with.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\SHUBHAM\Desktop\clinexa\Clinexa_UI\clinexa-ui\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.includes.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\SHUBHAM\Desktop\clinexa\Clinexa_UI\clinexa-ui\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.match.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\SHUBHAM\Desktop\clinexa\Clinexa_UI\clinexa-ui\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.replace.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\SHUBHAM\Desktop\clinexa\Clinexa_UI\clinexa-ui\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.split.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\SHUBHAM\Desktop\clinexa\Clinexa_UI\clinexa-ui\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.starts-with.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\SHUBHAM\Desktop\clinexa\Clinexa_UI\clinexa-ui\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.trim.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\SHUBHAM\Desktop\clinexa\Clinexa_UI\clinexa-ui\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/web.dom-collections.iterator.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\SHUBHAM\Desktop\clinexa\Clinexa_UI\clinexa-ui\node_modules\canvg\lib\index.es.js depends on 'raf'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+
+
+./src/app/app.module.ts:33:0-121 - Error: Module not found: Error: Can't resolve './pages/super_admin/super-admin-dashboard/super-admin-dashboard.component' in 'C:\Users\SHUBHAM\Desktop\clinexa\Clinexa_UI\clinexa-ui\src\app'
+
+Error: src/app/app.component.html:1:1 - error NG8001: 'router-outlet' is not a known element:
+1. If 'router-outlet' is an Angular component, then verify that it is part of this module.
+2. If 'router-outlet' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@NgModule.schemas' of this component to suppress this message.
+
+1 <router-outlet></router-outlet>
+  ~~~~~~~~~~~~~~~
+
+  src/app/app.component.ts:5:16
+    5   templateUrl: './app.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AppComponent.
+
+
+Error: src/app/app.module.ts:35:46 - error TS2307: Cannot find module './pages/super_admin/super-admin-dashboard/super-admin-dashboard.component' or its corresponding type declarations.
+
+35 import { SuperAdminDashboardComponent } from './pages/super_admin/super-admin-dashboard/super-admin-dashboard.component';
+                                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/app.module.ts:40:17 - error NG1010: Value at position 23 in the NgModule.declarations of AppModule is not a reference
+  Value could not be determined statically.
+
+ 40   declarations: [
+                    ~
+ 41     AppComponent,
+    ~~~~~~~~~~~~~~~~~
+... 
+ 66     AddAdminComponent,
+    ~~~~~~~~~~~~~~~~~~~~~~
+ 67   ],
+    ~~~
+
+  src/app/app.module.ts:64:5[0m
+    64     SuperAdminDashboardComponent,
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Unknown reference.
+
+
+Error: src/app/pages/admin/add-department/add-department.component.html:40:66 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+40                 <input type="text" placeholder="e.g. Cardiology" [(ngModel)]="department.name" name="name">
+                                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/add-department/add-department.component.ts:8:16
+    8   templateUrl: './add-department.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddDepartmentComponent.
+
+
+Error: src/app/pages/admin/add-department/add-department.component.html:40:79 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+40                 <input type="text" placeholder="e.g. Cardiology" [(ngModel)]="department.name" name="name">
+                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/add-department/add-department.component.ts:8:16
+    8   templateUrl: './add-department.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddDepartmentComponent.
+
+
+Error: src/app/pages/admin/add-department/add-department.component.html:50:81 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'textarea'.
+
+50                 <textarea placeholder="Describe department responsibilities..." [(ngModel)]="department.description"
+                                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/add-department/add-department.component.ts:8:16
+    8   templateUrl: './add-department.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddDepartmentComponent.
+
+
+Error: src/app/pages/admin/add-department/add-department.component.html:50:94 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+50                 <textarea placeholder="Describe department responsibilities..." [(ngModel)]="department.description"
+                                                                                                ~~~~~~~~~~~~~~~~~~~~~~~
+51                     name="description">
+   ~~~~~~
+
+  src/app/pages/admin/add-department/add-department.component.ts:8:16
+    8   templateUrl: './add-department.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddDepartmentComponent.
+
+
+Error: src/app/pages/admin/add-doctor/add-doctor.component.html:37:72 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+37                     <input type="text" placeholder="Enter doctor name" [(ngModel)]="doctor.name" name="name" required />
+                                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/add-doctor/add-doctor.component.ts:10:16
+    10   templateUrl: './add-doctor.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddDoctorComponent.
+
+
+Error: src/app/pages/admin/add-doctor/add-doctor.component.html:37:85 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+37                     <input type="text" placeholder="Enter doctor name" [(ngModel)]="doctor.name" name="name" required />
+                                                                                       ~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/add-doctor/add-doctor.component.ts:10:16
+    10   templateUrl: './add-doctor.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddDoctorComponent.
+
+
+Error: src/app/pages/admin/add-doctor/add-doctor.component.html:43:74 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+43                     <input type="email" placeholder="doctor@clinexa.com" [(ngModel)]="doctor.email" name="email"
+                                                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/add-doctor/add-doctor.component.ts:10:16
+    10   templateUrl: './add-doctor.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddDoctorComponent.
+
+
+Error: src/app/pages/admin/add-doctor/add-doctor.component.html:43:87 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+43                     <input type="email" placeholder="doctor@clinexa.com" [(ngModel)]="doctor.email" name="email"
+                                                                                         ~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/add-doctor/add-doctor.component.ts:10:16
+    10   templateUrl: './add-doctor.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddDoctorComponent.
+
+
+Error: src/app/pages/admin/add-doctor/add-doctor.component.html:50:73 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+50                     <input type="text" placeholder="Enter phone number" [(ngModel)]="doctor.phone" name="phone"
+                                                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/add-doctor/add-doctor.component.ts:10:16
+    10   templateUrl: './add-doctor.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddDoctorComponent.
+
+
+Error: src/app/pages/admin/add-doctor/add-doctor.component.html:50:86 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+50                     <input type="text" placeholder="Enter phone number" [(ngModel)]="doctor.phone" name="phone"
+                                                                                        ~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/add-doctor/add-doctor.component.ts:10:16
+    10   templateUrl: './add-doctor.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddDoctorComponent.
+
+
+Error: src/app/pages/admin/add-doctor/add-doctor.component.html:66:15 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+66             " [(ngModel)]="doctor.password" name="password" [required]="!isEditMode" />
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/add-doctor/add-doctor.component.ts:10:16
+    10   templateUrl: './add-doctor.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddDoctorComponent.
+
+
+Error: src/app/pages/admin/add-doctor/add-doctor.component.html:66:28 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+66             " [(ngModel)]="doctor.password" name="password" [required]="!isEditMode" />
+                              ~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/add-doctor/add-doctor.component.ts:10:16
+    10   templateUrl: './add-doctor.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddDoctorComponent.
+
+
+Error: src/app/pages/admin/add-doctor/add-doctor.component.html:72:29 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'select'.
+
+72                     <select [(ngModel)]="doctor.active" name="active">
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/add-doctor/add-doctor.component.ts:10:16
+    10   templateUrl: './add-doctor.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddDoctorComponent.
+
+
+Error: src/app/pages/admin/add-doctor/add-doctor.component.html:72:42 - error TS2322: Type 'Event' is not assignable to type 'boolean'.
+
+72                     <select [(ngModel)]="doctor.active" name="active">
+                                            ~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/add-doctor/add-doctor.component.ts:10:16
+    10   templateUrl: './add-doctor.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddDoctorComponent.
+
+
+Error: src/app/pages/admin/add-doctor/add-doctor.component.html:73:33 - error NG8002: Can't bind to 'ngValue' since it isn't a known property of 'option'.
+
+73                         <option [ngValue]="true">
+                                   ~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/add-doctor/add-doctor.component.ts:10:16
+    10   templateUrl: './add-doctor.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddDoctorComponent.
+
+
+Error: src/app/pages/admin/add-doctor/add-doctor.component.html:77:33 - error NG8002: Can't bind to 'ngValue' since it isn't a known property of 'option'.
+
+77                         <option [ngValue]="false">
+                                   ~~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/add-doctor/add-doctor.component.ts:10:16
+    10   templateUrl: './add-doctor.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddDoctorComponent.
+
+
+Error: src/app/pages/admin/add-doctor/add-doctor.component.html:86:29 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'select'.
+
+86                     <select [(ngModel)]="doctor.departmentId" name="departmentId" required>
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/add-doctor/add-doctor.component.ts:10:16
+    10   templateUrl: './add-doctor.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddDoctorComponent.
+
+
+Error: src/app/pages/admin/add-doctor/add-doctor.component.html:86:42 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+86                     <select [(ngModel)]="doctor.departmentId" name="departmentId" required>
+                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/add-doctor/add-doctor.component.ts:10:16
+    10   templateUrl: './add-doctor.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddDoctorComponent.
+
+
+Error: src/app/pages/admin/add-doctor/add-doctor.component.html:100:29 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'select'.
+
+100                     <select [(ngModel)]="doctor.categoryId" name="categoryId" required>
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/add-doctor/add-doctor.component.ts:10:16
+    10   templateUrl: './add-doctor.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddDoctorComponent.
+
+
+Error: src/app/pages/admin/add-doctor/add-doctor.component.html:100:42 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+100                     <select [(ngModel)]="doctor.categoryId" name="categoryId" required>
+                                             ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/add-doctor/add-doctor.component.ts:10:16
+    10   templateUrl: './add-doctor.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddDoctorComponent.
+
+
+Error: src/app/pages/admin/add-receptionist/add-receptionist.component.html:35:74 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+35                 <input type="text" placeholder="Enter receptionist name" [(ngModel)]="receptionist.name" name="name"
+                                                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/add-receptionist/add-receptionist.component.ts:8:16
+    8   templateUrl: './add-receptionist.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddReceptionistComponent.
+
+
+Error: src/app/pages/admin/add-receptionist/add-receptionist.component.html:35:87 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+35                 <input type="text" placeholder="Enter receptionist name" [(ngModel)]="receptionist.name" name="name"
+                                                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/add-receptionist/add-receptionist.component.ts:8:16
+    8   templateUrl: './add-receptionist.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddReceptionistComponent.
+
+
+Error: src/app/pages/admin/add-receptionist/add-receptionist.component.html:42:76 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+42                 <input type="email" placeholder="receptionist@clinexa.com" [(ngModel)]="receptionist.email" name="email"
+                                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/add-receptionist/add-receptionist.component.ts:8:16
+    8   templateUrl: './add-receptionist.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddReceptionistComponent.
+
+
+Error: src/app/pages/admin/add-receptionist/add-receptionist.component.html:42:89 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+42                 <input type="email" placeholder="receptionist@clinexa.com" [(ngModel)]="receptionist.email" name="email"
+                                                                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/add-receptionist/add-receptionist.component.ts:8:16
+    8   templateUrl: './add-receptionist.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddReceptionistComponent.
+
+
+Error: src/app/pages/admin/add-receptionist/add-receptionist.component.html:49:72 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+49                 <input type="text" placeholder="10 digit phone number" [(ngModel)]="receptionist.phone" name="phone"
+                                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/add-receptionist/add-receptionist.component.ts:8:16
+    8   templateUrl: './add-receptionist.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddReceptionistComponent.
+
+
+Error: src/app/pages/admin/add-receptionist/add-receptionist.component.html:49:85 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+49                 <input type="text" placeholder="10 digit phone number" [(ngModel)]="receptionist.phone" name="phone"
+                                                                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/add-receptionist/add-receptionist.component.ts:8:16
+    8   templateUrl: './add-receptionist.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddReceptionistComponent.
+
+
+Error: src/app/pages/admin/add-receptionist/add-receptionist.component.html:65:13 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+65           " [(ngModel)]="receptionist.password" name="password" [required]="!isEdit" />
+               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/add-receptionist/add-receptionist.component.ts:8:16
+    8   templateUrl: './add-receptionist.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddReceptionistComponent.
+
+
+Error: src/app/pages/admin/add-receptionist/add-receptionist.component.html:65:26 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+65           " [(ngModel)]="receptionist.password" name="password" [required]="!isEdit" />
+  [0m                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/add-receptionist/add-receptionist.component.ts:8:16
+    8   templateUrl: './add-receptionist.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddReceptionistComponent.
+
+
+Error: src/app/pages/admin/admin-dashboard/admin-dashboard.component.html:126:56 - error NG8004: No pipe found with name 'timeAgo'.
+
+126                         <small>{{ activity.createdAt | timeAgo }}</small>
+                                                           ~~~~~~~
+
+  src/app/pages/admin/admin-dashboard/admin-dashboard.component.ts:13:16
+    13   templateUrl: './admin-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AdminDashboardComponent.
+
+
+Error: src/app/pages/admin/manage-departments/manage-departments.component.html:32:90 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+32             <input type="text" placeholder="Search by department name or description..." [(ngModel)]="searchText" />
+                                                                                            ~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/manage-departments/manage-departments.component.ts:8:16
+    8   templateUrl: './manage-departments.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ManageDepartmentsComponent.
+
+
+Error: src/app/pages/admin/manage-departments/manage-departments.component.html:32:103 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+32             <input type="text" placeholder="Search by department name or description..." [(ngModel)]="searchText" />
+                                                                                                         ~~~~~~~~~~~~~~
+33         </div>
+   ~~~
+
+  src/app/pages/admin/manage-departments/manage-departments.component.ts:8:16
+    8   templateUrl: './manage-departments.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ManageDepartmentsComponent.
+
+
+Error: src/app/pages/admin/manage-doctors/manage-doctors.component.html:32:80 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+32             <input type="text" placeholder="Search doctor by name or email..." [(ngModel)]="searchText" />
+                                                                                  ~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/manage-doctors/manage-doctors.component.ts:10:16
+    10   templateUrl: './manage-doctors.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ManageDoctorsComponent.
+
+
+Error: src/app/pages/admin/manage-doctors/manage-doctors.component.html:32:93 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+32             <input type="text" placeholder="Search doctor by name or email..." [(ngModel)]="searchText" />
+                                                                                               ~~~~~~~~~~~~~~
+33         </div>
+   ~~~
+
+  src/app/pages/admin/manage-doctors/manage-doctors.component.ts:10:16
+    10   templateUrl: './manage-doctors.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ManageDoctorsComponent.
+
+
+Error: src/app/pages/admin/manage-doctors/manage-doctors.component.html:35:17 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'select'.
+
+35         <select [(ngModel)]="selectedDepartment">
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/manage-doctors/manage-doctors.component.ts:10:16
+    10   templateUrl: './manage-doctors.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ManageDoctorsComponent.
+
+
+Error: src/app/pages/admin/manage-doctors/manage-doctors.component.html:35:30 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+35         <select [(ngModel)]="selectedDepartment">
+                                ~~~~~~~~~~~~~~~~~~~~
+36             <option value="">
+   ~~~~~
+
+  src/app/pages/admin/manage-doctors/manage-doctors.component.ts:10:16
+    10   templateUrl: './manage-doctors.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ManageDoctorsComponent.
+
+
+Error: src/app/pages/admin/manage-doctors/manage-doctors.component.html:45:17 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'select'.
+
+45         <select [(ngModel)]="selectedCategory">
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/manage-doctors/manage-doctors.component.ts:10:16
+    10   templateUrl: './manage-doctors.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ManageDoctorsComponent.
+
+
+Error: src/app/pages/admin/manage-doctors/manage-doctors.component.html:45:30 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+45         <select [(ngModel)]="selectedCategory">
+                                ~~~~~~~~~~~~~~~~~~
+46             <option value="">
+   ~~~~~
+
+  src/app/pages/admin/manage-doctors/manage-doctors.component.ts:10:16
+    10   templateUrl: './manage-doctors.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ManageDoctorsComponent.
+
+
+Error: src/app/pages/admin/manage-doctors/manage-doctors.component.html:116:56 - error NG8002: Can't bind to 'routerLink' since it isn't a known property of 'button'.
+
+116                 <button class="edit-btn" type="button" [routerLink]="['/edit-doctor', doctor.id]">
+                                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/manage-doctors/manage-doctors.component.ts:10:16
+    10   templateUrl: './manage-doctors.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ManageDoctorsComponent.
+
+
+Error: src/app/pages/admin/manage-receptionists/manage-receptionists.component.html:32:80 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+[7m32             <input type="text" placeholder="Search by name, email or phone..." [(ngModel)]="searchText" />
+                                                                                  ~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/manage-receptionists/manage-receptionists.component.ts:7:16
+    7   templateUrl: './manage-receptionists.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ManageReceptionistsComponent.
+
+
+Error: src/app/pages/admin/manage-receptionists/manage-receptionists.component.html:32:93 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+32             <input type="text" placeholder="Search by name, email or phone..." [(ngModel)]="searchText" />
+                                                                                               ~~~~~~~~~~~~~~
+33         </div>
+   ~~~
+
+  src/app/pages/admin/manage-receptionists/manage-receptionists.component.ts:7:16
+    7   templateUrl: './manage-receptionists.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ManageReceptionistsComponent.
+
+
+Error: src/app/pages/admin/manage-receptionists/manage-receptionists.component.html:85:56 - error NG8002: Can't bind to 'routerLink' since it isn't a known property of 'button'.
+
+85                 <button class="edit-btn" type="button" [routerLink]="['/edit-receptionist', receptionist.id]">
+                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/admin/manage-receptionists/manage-receptionists.component.ts:7:16
+    7   templateUrl: './manage-receptionists.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ManageReceptionistsComponent.
+
+
+Error: src/app/pages/auth/forgot-password/forgot-password.component.html:25:61 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+25                 <input id="email" type="email" name="email" [(ngModel)]="email" placeholder="Enter your email address"
+                                                               ~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/auth/forgot-password/forgot-password.component.ts:9:16
+    9   templateUrl: './forgot-password.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ForgotPasswordComponent.
+
+
+Error: src/app/pages/auth/forgot-password/forgot-password.component.html:25:74 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+25                 <input id="email" type="email" name="email" [(ngModel)]="email" placeholder="Enter your email address"
+                                                                            ~~~~~~~~~~~~~
+
+  src/app/pages/auth/forgot-password/forgot-password.component.ts:9:16
+    9   templateUrl: './forgot-password.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ForgotPasswordComponent.
+
+
+Error: src/app/pages/auth/login/login.component.html:24:68 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+24                 <input type="email" placeholder="Enter your email" [(ngModel)]="email" name="email" required />
+                                                                      ~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/auth/login/login.component.ts:9:16
+    9   templateUrl: './login.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component LoginComponent.
+
+
+Error: src/app/pages/auth/login/login.component.html:24:81 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+24                 <input type="email" placeholder="Enter your email" [(ngModel)]="email" name="email" required />
+                                                                                   ~~~~~~~~~~~~~
+
+  src/app/pages/auth/login/login.component.ts:9:16
+    9   templateUrl: './login.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component LoginComponent.
+
+
+Error: src/app/pages/auth/login/login.component.html:30:74 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+30                 <input type="password" placeholder="Enter your password" [(ngModel)]="password" name="password"
+                                                                            ~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/auth/login/login.component.ts:9:16
+    9   templateUrl: './login.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component LoginComponent.
+
+
+Error: src/app/pages/auth/login/login.component.html:30:87 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+30                 <input type="password" placeholder="Enter your password" [(ngModel)]="password" name="password"
+                                                                                         ~~~~~~~~~~~~~~~~
+
+  src/app/pages/auth/login/login.component.ts:9:16
+    9   templateUrl: './login.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component LoginComponent.
+
+
+Error: src/app/pages/auth/login/login.component.html:51:43 - error NG8004: No pipe found with name 'titlecase'.
+
+51                 <strong>{{ selectedRole | titlecase }}</strong>
+                                             ~~~~~~~~~
+
+  src/app/pages/auth/login/login.component.ts:9:16
+    9   templateUrl: './login.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component LoginComponent.
+
+
+Error: src/app/pages/auth/register/register.component.html:25:62 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+25                     <input id="name" type="text" name="name" [(ngModel)]="name" placeholder="Enter your full name"
+                                                                ~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/auth/register/register.component.ts:9:16
+    9   templateUrl: './register.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component RegisterComponent.
+
+
+Error: src/app/pages/auth/register/register.component.html:25:75 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+25                     <input id="name" type="text" name="name" [(ngModel)]="name" placeholder="Enter your full name"
+                                                                             ~~~~~~~~~~~~
+
+  src/app/pages/auth/register/register.component.ts:9:16
+    9   templateUrl: './register.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component RegisterComponent.
+
+
+Error: src/app/pages/auth/register/register.component.html:34:65 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+34                     <input id="email" type="email" name="email" [(ngModel)]="email" placeholder="Enter your email"
+                                                                   ~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/auth/register/register.component.ts:9:16
+    9   templateUrl: './register.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component RegisterComponent.
+
+
+Error: src/app/pages/auth/register/register.component.html:34:78 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+34                     <input id="email" type="email" name="email" [(ngModel)]="email" placeholder="Enter your email"
+                                                                                ~~~~~~~~~~~~~
+
+  src/app/pages/auth/register/register.component.ts:9:16
+    9   templateUrl: './register.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component RegisterComponent.
+
+
+Error: src/app/pages/auth/register/register.component.html:43:63 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+43                     <input id="phone" type="tel" name="phone" [(ngModel)]="phone" placeholder="Enter phone number"
+                                                                 ~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/auth/register/register.component.ts:9:16
+    9   templateUrl: './register.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component RegisterComponent.
+
+
+Error: src/app/pages/auth/register/register.component.html:43:76 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+43                     <input id="phone" type="tel" name="phone" [(ngModel)]="phone" placeholder="Enter phone number"
+                                                                              ~~~~~~~~~~~~~
+
+  src/app/pages/auth/register/register.component.ts:9:16
+    9   templateUrl: './register.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component RegisterComponent.
+
+
+Error: src/app/pages/auth/register/register.component.html:52:55 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'select'.
+
+52                     <select id="gender" name="gender" [(ngModel)]="gender" required>
+                                                         ~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/auth/register/register.component.ts:9:16
+    9   templateUrl: './register.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component RegisterComponent.
+
+
+Error: src/app/pages/auth/register/register.component.html:52:68 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+52                     <select id="gender" name="gender" [(ngModel)]="gender" required>
+                                                                      ~~~~~~~~~~~~~~
+
+  src/app/pages/auth/register/register.component.ts:9:16
+    9   templateUrl: './register.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component RegisterComponent.
+
+
+Error: src/app/pages/auth/register/register.component.html:76:60 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+76                     <input id="dob" type="date" name="dob" [(ngModel)]="dob" required />
+                                                              ~~~~~~~~~~~~~~~~~
+
+  src/app/pages/auth/register/register.component.ts:9:16
+    9   templateUrl: './register.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component RegisterComponent.
+
+
+Error: src/app/pages/auth/register/register.component.html:76:73 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+76                     <input id="dob" type="date" name="dob" [(ngModel)]="dob" required />
+                                                                           ~~~~~~~~~~~
+
+  src/app/pages/auth/register/register.component.ts:9:16
+    9   templateUrl: './register.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component RegisterComponent.
+
+
+Error: src/app/pages/auth/register/register.component.html:84:74 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+84                     <input id="password" type="password" name="password" [(ngModel)]="password"
+                                                                            ~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/auth/register/register.component.ts:9:16
+    9   templateUrl: './register.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component RegisterComponent.
+
+
+Error: src/app/pages/auth/register/register.component.html:84:87 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+84                     <input id="password" type="password" name="password" [(ngModel)]="password"
+                                                                                         ~~~~~~~~~
+85                         placeholder="Minimum 6 characters" required />
+   ~~~~~~
+
+  src/app/pages/auth/register/register.component.ts:9:16
+    9   templateUrl: './register.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component RegisterComponent.
+
+
+Error: src/app/pages/auth/register/register.component.html:93:88 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+93                     <input id="confirmPassword" type="password" name="confirmPassword" [(ngModel)]="confirmPassword"
+                                                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/auth/register/register.component.ts:9:[93m16
+    9   templateUrl: './register.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component RegisterComponent.
+
+
+Error: src/app/pages/auth/register/register.component.html:93:101 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+93                     <input id="confirmPassword" type="password" name="confirmPassword" [(ngModel)]="confirmPassword"
+                                                                                                       ~~~~~~~~~~~~~~~~
+94                         placeholder="Re-enter your password" required />
+   ~~~~~~
+
+  src/app/pages/auth/register/register.component.ts:9:16
+    9   templateUrl: './register.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component RegisterComponent.
+
+
+Error: src/app/pages/auth/register/register.component.html:102:59 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'textarea'.
+
+102                     <textarea id="address" name="address" [(ngModel)]="address" placeholder="Enter your address"
+                                                              ~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/auth/register/register.component.ts:9:16
+    9   templateUrl: './register.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component RegisterComponent.
+
+
+Error: src/app/pages/auth/register/register.component.html:102:72 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+102                     <textarea id="address" name="address" [(ngModel)]="address" placeholder="Enter your address"
+                                                                           ~~~~~~~~~~~~~~~
+
+  src/app/pages/auth/register/register.component.ts:9:16
+    9   templateUrl: './register.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component RegisterComponent.
+
+
+Error: src/app/pages/auth/reset-password/reset-password.component.html:25:68 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+25                 <input [type]="hidePassword ? 'password' : 'text'" [(ngModel)]="newPassword" name="newPassword"
+                                                                      ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/auth/reset-password/reset-password.component.ts:9:16
+    9   templateUrl: './reset-password.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ResetPasswordComponent.
+
+
+Error: src/app/pages/auth/reset-password/reset-password.component.html:25:81 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+25                 <input [type]="hidePassword ? 'password' : 'text'" [(ngModel)]="newPassword" name="newPassword"
+                                                                                   ~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/auth/reset-password/reset-password.component.ts:9:16
+    9   templateUrl: './reset-password.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ResetPasswordComponent.
+
+
+Error: src/app/pages/auth/reset-password/reset-password.component.html:34:75 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+34                 <input [type]="hideConfirmPassword ? 'password' : 'text'" [(ngModel)]="confirmPassword"
+                                                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/auth/reset-password/reset-password.component.ts:9:16
+    9   templateUrl: './reset-password.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ResetPasswordComponent.
+
+
+Error: src/app/pages/auth/reset-password/reset-password.component.html:34:88 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+34                 <input [type]="hideConfirmPassword ? 'password' : 'text'" [(ngModel)]="confirmPassword"
+                                                                                          ~~~~~~~~~~~~~~~~
+35                     name="confirmPassword" placeholder="Confirm password" required>
+   ~~~~~~
+
+  src/app/pages/auth/reset-password/reset-password.component.ts:9:16
+    9   templateUrl: './reset-password.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ResetPasswordComponent.
+
+
+Error: src/app/pages/auth/verify-forgot-password/verify-forgot-password.component.html:19:46 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+19             <input type="text" maxlength="6" [(ngModel)]="otp" placeholder="Enter OTP" />
+                                                ~~~~~~~~~~~~~~~~~
+
+  src/app/pages/auth/verify-forgot-password/verify-forgot-password.component.ts:9:16
+    9   templateUrl: './verify-forgot-password.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component VerifyForgotPasswordComponent.
+
+
+Error: src/app/pages/auth/verify-forgot-password/verify-forgot-password.component.html:19:59 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+19             <input type="text" maxlength="6" [(ngModel)]="otp" placeholder="Enter OTP" />
+                                                             ~~~~~~~~~~~
+
+  src/app/pages/auth/verify-forgot-password/verify-forgot-password.component.ts:9:16
+    9   templateUrl: './verify-forgot-password.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component VerifyForgotPasswordComponent.
+
+
+Error: src/app/pages/auth/verify-otp/verify-otp.component.html:20:46 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+20             <input type="text" maxlength="6" [(ngModel)]="otp" placeholder="Enter OTP" />
+                                                ~~~~~~~~~~~~~~~~~
+
+  src/app/pages/auth/verify-otp/verify-otp.component.ts:9:16
+    9   templateUrl: './verify-otp.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component VerifyOtpComponent.
+
+
+Error: src/app/pages/auth/verify-otp/verify-otp.component.html:20:59 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+20             <input type="text" maxlength="6" [(ngModel)]="otp" placeholder="Enter OTP" />
+                                                             ~~~~~~~~~~~
+
+  src/app/pages/auth/verify-otp/verify-otp.component.ts:9:16
+    9   templateUrl: './verify-otp.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component VerifyOtpComponent.
+
+
+Error: src/app/pages/doctor/doctor-dashboard/doctor-dashboard.component.html:132:17 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+132                 [(ngModel)]="searchText" />
+                    ~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/doctor/doctor-dashboard/doctor-dashboard.component.ts:338:16
+    338   templateUrl: './doctor-dashboard.component.html',
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component DoctorDashboardComponent.
+
+
+Error: src/app/pages/doctor/doctor-dashboard/doctor-dashboard.component.html:132:30 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+132                 [(ngModel)]="searchText" />
+                                 ~~~~~~~~~~~~~~
+133         </div>
+    ~~~
+
+  src/app/pages/doctor/doctor-dashboard/doctor-dashboard.component.ts:338:16
+    338   templateUrl: './doctor-dashboard.component.html',
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component DoctorDashboardComponent.
+
+
+Error: src/app/pages/doctor/doctor-dashboard/doctor-dashboard.component.html:140:21 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'select'.
+
+140             <select [(ngModel)]="selectedStatus">
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/doctor/doctor-dashboard/doctor-dashboard.component.ts:338:16
+    338   templateUrl: './doctor-dashboard.component.html',
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component DoctorDashboardComponent.
+
+
+Error: src/app/pages/doctor/doctor-dashboard/doctor-dashboard.component.html:140:34 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+140             <select [(ngModel)]="selectedStatus">
+                                     ~~~~~~~~~~~~~~~~
+141                 <option value="">All Status</option>
+    ~~~~~
+
+  src/app/pages/doctor/doctor-dashboard/doctor-dashboard.component.ts:338:16
+    338   templateUrl: './doctor-dashboard.component.html',
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component DoctorDashboardComponent.
+
+
+Error: src/app/pages/doctor/doctor-dashboard/doctor-dashboard.component.html:189:17 - error NG8002: Can't bind to 'ngClass' since it isn't a known property of 'article'.
+
+189                 [ngClass]="getStatusClass(appointment.status)" (click)="openAppointmentDetails(appointment)">
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/doctor/doctor-dashboard/doctor-dashboard.component.ts:338:16
+    338   templateUrl: './doctor-dashboard.component.html',
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component DoctorDashboardComponent.
+
+
+Error: src/app/pages/doctor/doctor-dashboard/doctor-dashboard.component.html:203:48 - error NG8002: Can't bind to 'ngClass' since it isn't a known property of 'span'.
+
+203                     <span class="status-badge" [ngClass]="getStatusClass(appointment.status)">
+                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/doctor/doctor-dashboard/doctor-dashboard.component.ts:338:16
+    338   templateUrl: './doctor-dashboard.component.html',
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component DoctorDashboardComponent.
+
+
+Error: src/app/pages/doctor/doctor-dashboard/doctor-dashboard.component.html:310:48 - error NG8002: Can't bind to 'ngClass' since it isn't a known property of 'span'.
+
+310                     <span class="status-badge" [ngClass]="getStatusClass(selectedAppointment.status)">
+                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/doctor/doctor-dashboard/doctor-dashboard.component.ts:338:16
+    338   templateUrl: './doctor-dashboard.component.html',
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component DoctorDashboardComponent.
+
+
+Error: src/app/pages/doctor/doctor-dashboard/doctor-dashboard.component.html:358:44 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'textarea'.
+
+358                         <textarea rows="3" [(ngModel)]="selectedAppointment.diagnosis"
+                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/doctor/doctor-dashboard/doctor-dashboard.component.ts:338:16
+    338   templateUrl: './doctor-dashboard.component.html',
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component DoctorDashboardComponent.
+
+
+Error: src/app/pages/doctor/doctor-dashboard/doctor-dashboard.component.html:363:44 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'textarea'.
+
+363                         <textarea rows="3" [(ngModel)]="selectedAppointment.prescription"
+                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/doctor/doctor-dashboard/doctor-dashboard.component.ts:338:16
+    338   templateUrl: './doctor-dashboard.component.html',
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component DoctorDashboardComponent.
+
+
+Error: src/app/pages/doctor/doctor-dashboard/doctor-dashboard.component.html:368:44 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'textarea'.
+
+368                         <textarea rows="3" [(ngModel)]="selectedAppointment.doctorNotes"
+                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/doctor/doctor-dashboard/doctor-dashboard.component.ts:338:16
+    338   templateUrl: './doctor-dashboard.component.html',
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component DoctorDashboardComponent.
+
+
+Error: src/app/pages/doctor/doctor-dashboard/doctor-dashboard.component.html:373:44 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+373                         <input type="date" [(ngModel)]="selectedAppointment.followUpDate" />
+                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/doctor/doctor-dashboard/doctor-dashboard.component.ts:338:16
+    338   templateUrl: './doctor-dashboard.component.html',
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component DoctorDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:158:54 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+158                 <input id="doctorSearch" type="text" [(ngModel)]="searchText"
+                                                         ~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:158:67 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+158                 <input id="doctorSearch" type="text" [(ngModel)]="searchText"
+                                                                      ~~~~~~~~~~~
+159                     placeholder="Search doctor, department or category" />
+    ~~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:165:47 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'select'.
+
+165                 <select id="departmentFilter" [(ngModel)]="selectedDepartmentId">
+                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:165:60 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+165                 <select id="departmentFilter" [(ngModel)]="selectedDepartmentId">
+                                                               ~~~~~~~~~~~~~~~~~~~~~~
+166                     <option value="">All Departments</option>
+    ~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:177:45 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'select'.
+
+177                 <select id="categoryFilter" [(ngModel)]="selectedCategoryId">
+                                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:177:58 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+177                 <select id="categoryFilter" [(ngModel)]="selectedCategoryId">
+                                                             ~~~~~~~~~~~~~~~~~~~~
+178                     <option value="">All Categories</option>
+    ~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:281:17 - error NG8002: Can't bind to 'ngClass' since it isn't a known property of 'article'.
+
+281                 [ngClass]="getStatusClass(appointment.status)" (click)="openAppointmentDetails(appointment)">
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:299:48 - error NG8002: Can't bind to 'ngClass' since it isn't a known property of 'span'.
+
+299                     <span class="status-badge" [ngClass]="getStatusClass(appointment.status)">
+                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:474:31 - error TS2531: Object is possibly 'null'.
+
+474         <h2>{{ selectedDoctor.name }}</h2>
+                                  ~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:477:31 - error TS2531: Object is possibly 'null'.
+
+477             {{ selectedDoctor.category?.name || 'General Specialist' }}
+                                  ~~~~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:485:39 - error TS2531: Object is possibly 'null'.
+
+485                     {{ selectedDoctor.department?.name || 'Not assigned' }}
+                                          ~~~~~~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:491:43 - error TS2531: Object is possibly 'null'.
+
+491                 <strong>{{ selectedDoctor.email || 'Not available' }}</strong>
+                                              ~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:496:43 - error TS2531: Object is possibly 'null'.
+
+496                 <strong>{{ selectedDoctor.phone || 'Not available' }}</strong>
+                                              ~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:536:44 - error TS2531: Object is possibly 'null'.
+
+536                     {{ selectedAppointment.doctor?.name || 'Doctor' }}
+                                               ~~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:540:44 - error TS2531: Object is possibly 'null'.
+
+540                     {{ selectedAppointment.doctor?.department?.name || 'Department not assigned' }}
+                                               ~~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:546:34 - error NG8002: Can't bind to 'ngClass' since it isn't a known property of 'div'.
+
+546         <div class="status-pill" [ngClass]="getStatusClass(selectedAppointment.status)">
+                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20m:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:546:80 - error TS2531: Object is possibly 'null'.
+
+546         <div class="status-pill" [ngClass]="getStatusClass(selectedAppointment.status)">
+                                                                                   ~~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:547:36 - error TS2531: Object is possibly 'null'.
+
+547             {{ selectedAppointment.status }}
+                                       ~~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:557:52 - error TS2531: Object is possibly 'null'.
+
+557                     <strong>{{ selectedAppointment.appointmentDate || 'Not available' }}</strong>
+                                                       ~~~~~~~~~~~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:566:52 - error TS2531: Object is possibly 'null'.
+
+566                     <strong>{{ selectedAppointment.slotTime || 'Not available' }}</strong>
+                                                       ~~~~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:575:52 - error TS2531: Object is possibly 'null'.
+
+575                     <strong>{{ selectedAppointment.doctor?.name || 'Not available' }}</strong>
+                                                       ~~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:584:52 - error TS2531: Object is possibly 'null'.
+
+584                     <strong>{{ selectedAppointment.description || 'Not provided' }}</strong>
+                                                       ~~~~~~~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:704:25 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'select'.
+
+704                 <select [(ngModel)]="rescheduleForm.doctorId">
+                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:704:38 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+704                 <select [(ngModel)]="rescheduleForm.doctorId">
+                                         ~~~~~~~~~~~~~~~~~~~~~~~~~
+705                     <option value="">Select Doctor</option>
+    ~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:716:36 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+716                 <input type="date" [(ngModel)]="rescheduleForm.appointmentDate" [min]="today" />
+                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:716:49 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+716                 <input type="date" [(ngModel)]="rescheduleForm.appointmentDate" [min]="today" />
+                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:722:36 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+722                 <input type="time" [(ngModel)]="rescheduleForm.slotTime" />
+                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:722:49 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+722                 <input type="time" [(ngModel)]="rescheduleForm.slotTime" />
+                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+723             </div>
+    ~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:754:31 - error TS2531: Object is possibly 'null'.
+
+754             {{ selectedDoctor.name }}
+                                  ~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:761:36 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+761                 <input type="text" [(ngModel)]="bookingForm.patientName" placeholder="Patient name" />
+                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:761:49 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+761                 <input type="text" [(ngModel)]="bookingForm.patientName" placeholder="Patient name" />
+                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:767:36 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+767                 <input type="text" [(ngModel)]="bookingForm.phone" placeholder="10 digit phone number" maxlength="10" />
+                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:767:49 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+767                 <input type="text" [(ngModel)]="bookingForm.phone" placeholder="10 digit phone number" maxlength="10" />
+                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:773:38 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+773                 <input type="number" [(ngModel)]="bookingForm.age" placeholder="Age" min="1" max="120" />
+                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:773:51 - error TS2322: Type 'Event' is not assignable to type 'number'.
+
+773                 <input type="number" [(ngModel)]="bookingForm.age" placeholder="Age" min="1" max="120" />
+                                                      ~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~m
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:779:25 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'select'.
+
+779                 <select [(ngModel)]="bookingForm.gender">
+                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:779:38 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+779                 <select [(ngModel)]="bookingForm.gender">
+                                         ~~~~~~~~~~~~~~~~~~~~
+780                     <option value="">Select gender</option>
+    ~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:790:36 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+790                 <input type="date" [(ngModel)]="bookingForm.appointmentDate" [min]="today" />
+                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:790:49 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+790                 <input type="date" [(ngModel)]="bookingForm.appointmentDate" [min]="today" />
+                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:796:36 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+796                 <input type="time" [(ngModel)]="bookingForm.slotTime" />
+                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:796:49 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+796[0m                 <input type="time" [(ngModel)]="bookingForm.slotTime" />
+                                                    ~~~~~~~~~~~~~~~~~~~~~~~~
+797             </div>
+    ~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:802:36 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'textarea'.
+
+802                 <textarea rows="3" [(ngModel)]="bookingForm.description" placeholder="Describe your issue"></textarea>
+                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/patient/patient-dashboard/patient-dashboard.component.html:802:49 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+802                 <textarea rows="3" [(ngModel)]="bookingForm.description" placeholder="Describe your issue"></textarea>
+                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/patient/patient-dashboard/patient-dashboard.component.ts:20:16
+    20   templateUrl: './patient-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PatientDashboardComponent.
+
+
+Error: src/app/pages/receptionist/add-patient/add-patient.component.html:42:78 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+42                     <input type="text" placeholder="Enter patient full name" [(ngModel)]="patient.name" name="name"
+                                                                                ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/receptionist/add-patient/add-patient.component.ts:9:16
+    9   templateUrl: './add-patient.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddPatientComponent.
+
+
+Error: src/app/pages/receptionist/add-patient/add-patient.component.html:42:91 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+42                     <input type="text" placeholder="Enter patient full name" [(ngModel)]="patient.name" name="name"
+                                                                                             ~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/receptionist/add-patient/add-patient.component.ts:9:16
+    9   templateUrl: './add-patient.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddPatientComponent.
+
+
+Error: src/app/pages/receptionist/add-patient/add-patient.component.html:49:75 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+49                     <input type="email" placeholder="patient@example.com" [(ngModel)]="patient.email" name="email"
+                                                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/receptionist/add-patient/add-patient.component.ts:9:16
+    9   templateUrl: './add-patient.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddPatientComponent.
+
+
+Error: src/app/pages/receptionist/add-patient/add-patient.component.html:49:88 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+49                     <input type="email" placeholder="patient@example.com" [(ngModel)]="patient.email" name="email"
+                                                                                          ~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/receptionist/add-patient/add-patient.component.ts:9:16
+    9   templateUrl: './add-patient.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddPatientComponent.
+
+
+Error: src/app/pages/receptionist/add-patient/add-patient.component.html:56:76 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+56                     <input type="text" placeholder="10 digit phone number" [(ngModel)]="patient.phone" name="phone"
+                                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/receptionist/add-patient/add-patient.component.ts:9:16
+    9   templateUrl: './add-patient.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddPatientComponent.
+
+
+Error: src/app/pages/receptionist/add-patient/add-patient.component.html:56[0m:89 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+56                     <input type="text" placeholder="10 digit phone number" [(ngModel)]="patient.phone" name="phone"
+                                                                                           ~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/receptionist/add-patient/add-patient.component.ts:9:16
+    9   templateUrl: './add-patient.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddPatientComponent.
+
+
+Error: src/app/pages/receptionist/add-patient/add-patient.component.html:63:29 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'select'.
+
+63                     <select [(ngModel)]="patient.gender" name="gender" required>
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/receptionist/add-patient/add-patient.component.ts:9:16
+    9   templateUrl: './add-patient.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddPatientComponent.
+
+
+Error: src/app/pages/receptionist/add-patient/add-patient.component.html:63:42 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+63                     <select [(ngModel)]="patient.gender" name="gender" required>
+                                            ~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/receptionist/add-patient/add-patient.component.ts:9:16
+    9   templateUrl: './add-patient.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddPatientComponent.
+
+
+Error: src/app/pages/receptionist/add-patient/add-patient.component.html:85:40 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+85                     <input type="date" [(ngModel)]="patient.dob" name="dob" [max]="maxDate" required />
+                                          ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/receptionist/add-patient/add-patient.component.ts:9:16
+    9   templateUrl: './add-patient.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddPatientComponent.
+
+
+Error: src/app/pages/receptionist/add-patient/add-patient.component.html:85:53 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+85                     <input type="date" [(ngModel)]="patient.dob" name="dob" [max]="maxDate" required />
+                                                       ~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/receptionist/add-patient/add-patient.component.ts:9:16
+    9   templateUrl: './add-patient.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddPatientComponent.
+
+
+Error: src/app/pages/receptionist/add-patient/add-patient.component.html:91:68 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'textarea'.
+
+91                     <textarea placeholder="Enter complete address" [(ngModel)]="patient.address" name="address"
+                                                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/receptionist/add-patient/add-patient.component.ts:9:16
+    9   templateUrl: './add-patient.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddPatientComponent.
+
+
+Error: src/app/pages/receptionist/add-patient/add-patient.component.html:91:81 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+91                     <textarea placeholder="Enter complete address" [(ngModel)]="patient.address" name="address"
+                                                                                   ~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/receptionist/add-patient/add-patient.component.ts:9:16
+    9   templateUrl: './add-patient.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddPatientComponent.
+
+
+Error: src/app/pages/receptionist/manage-patients/manage-patients.component.html:33:17 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+33                 [(ngModel)]="searchText" />
+                   ~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/receptionist/manage-patients/manage-patients.component.ts:9:16
+    9   templateUrl: './manage-patients.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ManagePatientsComponent.
+
+
+Error: src/app/pages/receptionist/manage-patients/manage-patients.component.html:33:30 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+33                 [(ngModel)]="searchText" />
+                                ~~~~~~~~~~~~~~
+34         </div>
+   ~~~
+
+  src/app/pages/receptionist/manage-patients/manage-patients.component.ts:9:16
+    9   templateUrl: './manage-patients.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ManagePatientsComponent.
+
+
+Error: src/app/pages/receptionist/receptionist-dashboard/receptionist-dashboard.component.html:145:36 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+145                 <input type="text" [(ngModel)]="searchText"
+                                       ~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/receptionist/receptionist-dashboard/receptionist-dashboard.component.ts:13:16
+    13   templateUrl: './receptionist-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ReceptionistDashboardComponent.
+
+
+Error: src/app/pages/receptionist/receptionist-dashboard/receptionist-dashboard.component.html:145:49 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+145                 <input type="text" [(ngModel)]="searchText"
+                                                    ~~~~~~~~~~~
+146                     placeholder="Search patient, doctor, phone, department or date..." />
+    ~~~~~~
+
+  src/app/pages/receptionist/receptionist-dashboard/receptionist-dashboard.component.ts:13:16
+    13   templateUrl: './receptionist-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ReceptionistDashboardComponent.
+
+
+Error: src/app/pages/receptionist/receptionist-dashboard/receptionist-dashboard.component.html:193:17 - error NG8002: Can't bind to 'ngClass' since it isn't a known property of 'article'.
+
+193                 [ngClass]="getStatusClass(appointment.status)" (click)="openAppointmentDetails(appointment)">
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/receptionist/receptionist-dashboard/receptionist-dashboard.component.ts:13:16
+    13   templateUrl: './receptionist-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ReceptionistDashboardComponent.
+
+
+Error: src/app/pages/receptionist/receptionist-dashboard/receptionist-dashboard.component.html:204:48 - error NG8002: Can't bind to 'ngClass' since it isn't a known property of 'span'.
+
+204                     <span class="status-badge" [ngClass]="getStatusClass(appointment.status)">
+                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/receptionist/receptionist-dashboard/receptionist-dashboard.component.ts:13:16
+    13   templateUrl: './receptionist-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ReceptionistDashboardComponent.
+
+
+Error: src/app/pages/receptionist/receptionist-dashboard/receptionist-dashboard.component.html:328:51 - error NG8002: Can't bind to 'ngClass' since it isn't a known property of 'span'.
+
+328         <span class="status-badge details-status" [ngClass]="getStatusClass(selectedAppointment.status)">
+                                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/receptionist/receptionist-dashboard/receptionist-dashboard.component.ts:13:16
+    13   templateUrl: './receptionist-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ReceptionistDashboardComponent.
+
+
+Error: src/app/pages/receptionist/receptionist-dashboard/receptionist-dashboard.component.html:426:25 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'select'.
+
+426                 <select [(ngModel)]="rescheduleForm.doctorId">
+                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/receptionist/receptionist-dashboard/receptionist-dashboard.component.ts:13:16
+    13   templateUrl: './receptionist-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ReceptionistDashboardComponent.
+
+
+Error: src/app/pages/receptionist/receptionist-dashboard/receptionist-dashboard.component.html:426:38 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+426                 <select [(ngModel)]="rescheduleForm.doctorId">
+                                         ~~~~~~~~~~~~~~~~~~~~~~~~~
+427                     <option value="">Select Doctor</option>
+    ~~~~~
+
+  src/app/pages/receptionist/receptionist-dashboard/receptionist-dashboard.component.ts:13:16
+    13   templateUrl: './receptionist-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ReceptionistDashboardComponent.
+
+
+Error: src/app/pages/receptionist/receptionist-dashboard/receptionist-dashboard.component.html:437:36 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+437                 <input type="date" [(ngModel)]="rescheduleForm.appointmentDate" [min]="today" />
+                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/receptionist/receptionist-dashboard/receptionist-dashboard.component.ts:13:16
+    13   templateUrl: './receptionist-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ReceptionistDashboardComponent.
+
+
+Error: src/app/pages/receptionist/receptionist-dashboard/receptionist-dashboard.component.html:437:49 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+437                 <input type="date" [(ngModel)]="rescheduleForm.appointmentDate" [min]="today" />
+                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/pages/receptionist/receptionist-dashboard/receptionist-dashboard.component.ts:13:16
+    13   templateUrl: './receptionist-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ReceptionistDashboardComponent.
+
+
+Error: src/app/pages/receptionist/receptionist-dashboard/receptionist-dashboard.component.html:442:36 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+442                 <input type="time" [(ngModel)]="rescheduleForm.slotTime" />
+                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  msrc/app/pages/receptionist/receptionist-dashboard/receptionist-dashboard.component.ts:13:16
+    13   templateUrl: './receptionist-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ReceptionistDashboardComponent.
+
+
+Error: src/app/pages/receptionist/receptionist-dashboard/receptionist-dashboard.component.html:442:49 - error TS2322: Type 'Event' is not assignable to type 'string'.
+
+442                 <input type="time" [(ngModel)]="rescheduleForm.slotTime" />
+                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+443             </div>
+    ~~~
+
+  src/app/pages/receptionist/receptionist-dashboard/receptionist-dashboard.component.ts:13:16
+    13   templateUrl: './receptionist-dashboard.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ReceptionistDashboardComponent.
+
+
+

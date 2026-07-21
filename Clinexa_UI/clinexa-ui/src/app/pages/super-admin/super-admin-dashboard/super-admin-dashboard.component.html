@@ -1,0 +1,324 @@
+<div class="dashboard-page">
+
+    <!-- ========================= -->
+    <!-- TOP NAVIGATION -->
+    <!-- ========================= -->
+
+    <header class="topbar">
+
+        <div class="brand-section">
+
+            <div class="brand-icon">
+                C
+            </div>
+
+            <div>
+                <h1>Clinexa</h1>
+                <span>Super Admin Control Center</span>
+            </div>
+
+        </div>
+
+        <div class="topbar-actions">
+
+            <div class="admin-badge">
+                <div class="admin-avatar">
+                    SA
+                </div>
+
+                <div class="admin-info">
+                    <strong>Super Admin</strong>
+                    <span>System Administrator</span>
+                </div>
+            </div>
+
+            <button class="logout-btn" (click)="logout()">
+                <span class="logout-icon">↗</span>
+                Logout
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- ========================= -->
+    <!-- MAIN CONTENT -->
+    <!-- ========================= -->
+
+    <main class="dashboard-container">
+
+        <!-- ========================= -->
+        <!-- HERO SECTION -->
+        <!-- ========================= -->
+
+        <section class="hero-section">
+
+            <div class="hero-content">
+
+                <div class="hero-badge">
+                    SYSTEM ADMINISTRATION
+                </div>
+
+                <h2>
+                    Welcome back,
+                    <span>Super Admin</span>
+                </h2>
+
+                <p>
+                    Manage administrators, control system access and monitor
+                    Clinexa's administrative operations from one centralized dashboard.
+                </p>
+
+                <div class="hero-actions">
+
+                    <button class="primary-btn" (click)="goToAddAdmin()">
+                        <span>+</span>
+                        Create New Admin
+                    </button>
+
+                    <button class="outline-btn" (click)="goToManageAdmins()">
+                        Manage Admins
+                        <span>→</span>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-visual">
+
+                <div class="visual-circle visual-circle-one"></div>
+                <div class="visual-circle visual-circle-two"></div>
+
+                <div class="shield-card">
+
+                    <div class="shield-icon">
+                        🛡️
+                    </div>
+
+                    <h3>System Control</h3>
+
+                    <p>
+                        Full administrative access
+                    </p>
+
+                    <div class="security-status">
+                        <span class="status-dot"></span>
+                        Secure Session Active
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================= -->
+        <!-- STATS -->
+        <!-- ========================= -->
+
+        <section class="stats-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon total-icon">
+                        👥
+                    </div>
+
+                    <span class="stat-label">
+                        Total Admins
+                    </span>
+
+                </div>
+
+                <div class="stat-value">
+                    {{ totalAdmins }}
+                </div>
+
+                <div class="stat-footer">
+                    Registered administrators
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon active-icon">
+                        ✓
+                    </div>
+
+                    <span class="stat-label">
+                        Active Admins
+                    </span>
+
+                </div>
+
+                <div class="stat-value">
+                    {{ activeAdmins }}
+                </div>
+
+                <div class="stat-footer active-text">
+                    Currently active accounts
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon inactive-icon">
+                        !
+                    </div>
+
+                    <span class="stat-label">
+                        Inactive Admins
+                    </span>
+
+                </div>
+
+                <div class="stat-value">
+                    {{ inactiveAdmins }}
+                </div>
+
+                <div class="stat-footer inactive-text">
+                    Restricted accounts
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================= -->
+        <!-- MANAGEMENT -->
+        <!-- ========================= -->
+
+        <section class="management-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="section-badge">
+                        ADMIN MANAGEMENT
+                    </span>
+
+                    <h3>
+                        Administrative Controls
+                    </h3>
+
+                    <p>
+                        Quick access to your most important administrator management tools.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="action-grid">
+
+                <!-- CREATE ADMIN -->
+
+                <div class="action-card" (click)="goToAddAdmin()">
+
+                    <div class="action-icon create-icon">
+                        +
+                    </div>
+
+                    <div class="action-content">
+
+                        <h4>
+                            Create Administrator
+                        </h4>
+
+                        <p>
+                            Add a new administrator account with secure credentials.
+                        </p>
+
+                        <span class="action-link">
+                            Create Admin →
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MANAGE ADMINS -->
+
+                <div class="action-card" (click)="goToManageAdmins()">
+
+                    <div class="action-icon manage-icon">
+                        ⚙
+                    </div>
+
+                    <div class="action-content">
+
+                        <h4>
+                            Manage Administrators
+                        </h4>
+
+                        <p>
+                            View administrator accounts and manage their access status.
+                        </p>
+
+                        <span class="action-link">
+                            Manage Accounts →
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================= -->
+        <!-- SYSTEM INFO -->
+        <!-- ========================= -->
+
+        <section class="system-info-card">
+
+            <div>
+
+                <span class="system-label">
+                    SYSTEM STATUS
+                </span>
+
+                <h4>
+                    Clinexa Administration System
+                </h4>
+
+                <p>
+                    All core administrative services are operational.
+                </p>
+
+            </div>
+
+            <div class="system-status">
+
+                <span class="live-dot"></span>
+
+                <div>
+                    <strong>Operational</strong>
+                    <span>All systems running normally</span>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>

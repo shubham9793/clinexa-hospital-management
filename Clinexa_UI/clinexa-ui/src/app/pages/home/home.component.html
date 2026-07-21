@@ -34,6 +34,7 @@
                 <a routerLink="/login/doctor" (click)="closeLoginMenu()">👨‍⚕️ Doctor Login</a>
                 <a routerLink="/login/receptionist" (click)="closeLoginMenu()">👩‍💼 Receptionist Login</a>
                 <a routerLink="/login/admin" (click)="closeLoginMenu()">🛡️ Admin Login</a>
+                <a routerLink="/login/super_admin" (click)="closeLoginMenu()">🛡️ Super Admin Login</a>
             </div>
         </div>
     </nav>
@@ -83,8 +84,10 @@
                 </div>
 
                 <div class="hospital-mini">
-                    <span>🏥</span>
-                    <strong>Clinexa Care</strong>
+                    <div class="hospital-brand">
+                        <span class="hospital-icon">🏥</span>
+                        <strong>Clinexa Care</strong>
+                    </div>
                     <small>Digital healthcare operations</small>
                 </div>
             </div>
@@ -342,6 +345,7 @@
             <a routerLink="/login/doctor">Doctor</a>
             <a routerLink="/login/receptionist">Receptionist</a>
             <a routerLink="/login/admin">Admin</a>
+            <a routerLink="/login/super_admin">Super Admin</a>
         </div>
 
         <div class="footer-links">

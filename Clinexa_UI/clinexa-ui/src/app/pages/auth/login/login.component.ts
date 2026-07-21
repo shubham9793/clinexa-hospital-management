@@ -47,6 +47,10 @@ export class LoginComponent {
 
         const actualRole = res.role?.toLowerCase();
 
+        const roleMatches =
+          actualRole === this.selectedRole ||
+          (actualRole === 'super_admin' && this.selectedRole === 'super-admin');
+
         if (!res.token || !actualRole) {
           Swal.fire({
             icon: 'error',
@@ -57,7 +61,7 @@ export class LoginComponent {
           return;
         }
 
-        if (actualRole !== this.selectedRole) {
+        if (!roleMatches) {
           Swal.fire({
             icon: 'error',
             title: 'Access denied',
@@ -99,11 +103,13 @@ export class LoginComponent {
     if (this.selectedRole === 'receptionist') return 'Receptionist Portal';
     if (this.selectedRole === 'doctor') return 'Doctor Portal';
     if (this.selectedRole === 'patient') return 'Patient Portal';
+    if (this.selectedRole === 'super_admin') return 'Super Admin Portal';
     return 'Clinexa Portal';
   }
 
   get portalIcon(): string {
     if (this.selectedRole === 'admin') return '🛡️';
+    if (this.selectedRole === 'super_admin') return '⚙️';
     if (this.selectedRole === 'receptionist') return '👩‍💼';
     if (this.selectedRole === 'doctor') return '👨‍⚕️';
     if (this.selectedRole === 'patient') return '👤';
@@ -119,7 +125,7 @@ export class LoginComponent {
       this.router.navigate(['/doctor-dashboard']);
     } else if (role === 'patient') {
       this.router.navigate(['/patient-dashboard']);
-    } else if (role === 'super-admin') {
+    } else if (role === 'super_admin') {
       this.router.navigate(['/super-admin-dashboard']);
     } else {
       this.authService.logout();

@@ -41,7 +41,7 @@ export class RoleGuard implements CanActivate {
       return this.router.createUrlTree(['/doctor-dashboard']);
     }
 
-    if (actualRole === 'super-admin') {
+    if (actualRole === 'super_admin') {
       return this.router.createUrlTree(['/super-admin-dashboard']);
     }
 

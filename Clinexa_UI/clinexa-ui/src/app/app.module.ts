@@ -32,6 +32,9 @@ import { VerifyOtpComponent } from './pages/auth/verify-otp/verify-otp.component
 import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-password.component';
 import { VerifyForgotPasswordComponent } from './pages/auth/verify-forgot-password/verify-forgot-password.component';
 import { ResetPasswordComponent } from './pages/auth/reset-password/reset-password.component';
+import { SuperAdminDashboardComponent } from './pages/super-admin/super-admin-dashboard/super-admin-dashboard.component';
+import { ManageAdminsComponent } from './pages/super-admin/manage-admins/manage-admins.component';
+import { AddAdminComponent } from './pages/super-admin/add-admin/add-admin.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +61,9 @@ import { ResetPasswordComponent } from './pages/auth/reset-password/reset-passwo
     ForgotPasswordComponent,
     VerifyForgotPasswordComponent,
     ResetPasswordComponent,
+    SuperAdminDashboardComponent,
+    ManageAdminsComponent,
+    AddAdminComponent,
   ],
   imports: [
     BrowserModule,

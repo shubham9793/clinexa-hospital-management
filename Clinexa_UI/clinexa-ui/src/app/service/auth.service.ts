@@ -96,7 +96,6 @@
 //   }
 // }
 
-
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -148,7 +147,7 @@ export class AuthService {
       this.router.navigate(['/receptionist-dashboard']);
     } else if (role === 'doctor') {
       this.router.navigate(['/doctor-dashboard']);
-    } else if (role === 'super-admin') {
+    } else if (role === 'super_admin') {
       this.router.navigate(['/super-admin-dashboard']);
     } else {
       this.logout();

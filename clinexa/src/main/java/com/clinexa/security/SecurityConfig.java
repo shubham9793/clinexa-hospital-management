@@ -132,6 +132,10 @@ public class SecurityConfig {
                                 "PATIENT",
                                 "RECEPTIONIST"
                         )
+                        .requestMatchers(
+                                "/super-admin/**"
+                        )
+                        .hasAuthority("SUPER_ADMIN")
                         .anyRequest()
                         .denyAll()
 

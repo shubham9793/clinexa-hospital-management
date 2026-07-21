@@ -1,0 +1,69 @@
+- Generating browser application bundles (phase: setup)...
+✔ Browser application bundle generation complete.
+✔ Browser application bundle generation complete.
+- Copying assets...
+✔ Copying assets complete.
+- Generating index html...
+✔ Index html generation complete.
+
+Initial Chunk Files           | Names         |  Raw Size | Estimated Transfer Size
+main.bcbe9c40a6a34226.js      | main          |   1.11 MB |               250.55 kB
+styles.24abd7605bb94df0.css   | styles        |  73.27 kB |                 7.56 kB
+polyfills.e113520da7c40c62.js | polyfills     |  33.13 kB |                10.65 kB
+runtime.34f7c4f43f562aa1.js   | runtime       |   3.22 kB |                 1.50 kB
+
+| Initial Total |   1.22 MB |               270.26 kB
+
+Lazy Chunk Files              | Names         |  Raw Size | Estimated Transfer Size
+159.8b4861a4dd0ff95e.js       | html2canvas   | 195.55 kB |                36.66 kB
+399.7da3c1f3574123d4.js       | canvg         | 148.98 kB |                42.89 kB
+678.26185b1009136890.js       | dompurify     |  27.24 kB |                 9.20 kB
+
+Build at: 2026-07-21T13:34:37.673Z - Hash: 73850bf4ed99a20d - Time: 59166ms
+
+Warning: C:\Users\SHUBHAM\Desktop\clinexa\Clinexa_UI\clinexa-ui\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.index-of.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\SHUBHAM\Desktop\clinexa\Clinexa_UI\clinexa-ui\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.iterator.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\SHUBHAM\Desktop\clinexa\Clinexa_UI\clinexa-ui\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.reduce.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\SHUBHAM\Desktop\clinexa\Clinexa_UI\clinexa-ui\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.reverse.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\SHUBHAM\Desktop\clinexa\Clinexa_UI\clinexa-ui\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.promise.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\SHUBHAM\Desktop\clinexa\Clinexa_UI\clinexa-ui\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.regexp.to-string.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\SHUBHAM\Desktop\clinexa\Clinexa_UI\clinexa-ui\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.ends-with.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\SHUBHAM\Desktop\clinexa\Clinexa_UI\clinexa-ui\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.includes.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\SHUBHAM\Desktop\clinexa\Clinexa_UI\clinexa-ui\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.match.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\SHUBHAM\Desktop\clinexa\Clinexa_UI\clinexa-ui\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.replace.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\SHUBHAM\Desktop\clinexa\Clinexa_UI\clinexa-ui\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.split.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\SHUBHAM\Desktop\clinexa\Clinexa_UI\clinexa-ui\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.starts-with.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\SHUBHAM\Desktop\clinexa\Clinexa_UI\clinexa-ui\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.trim.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\SHUBHAM\Desktop\clinexa\Clinexa_UI\clinexa-ui\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/web.dom-collections.iterator.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\SHUBHAM\Desktop\clinexa\Clinexa_UI\clinexa-ui\node_modules\canvg\lib\index.es.js depends on 'raf'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+

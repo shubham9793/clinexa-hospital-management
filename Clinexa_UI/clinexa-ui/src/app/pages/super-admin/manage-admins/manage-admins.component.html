@@ -1,0 +1,104 @@
+<div class="page-container">
+
+    <div class="page-header">
+
+        <div>
+            <p class="eyebrow">
+                SUPER ADMIN
+            </p>
+
+            <h2>
+                Manage Admins
+            </h2>
+
+            <p>
+                View and control administrator access across Clinexa.
+            </p>
+        </div>
+
+        <a routerLink="/add-admin" class="add-btn">
+            + Create Admin
+        </a>
+
+    </div>
+
+    <div class="loading" *ngIf="isLoading">
+        Loading admins...
+    </div>
+
+    <div class="empty-state" *ngIf="!isLoading && admins.length === 0">
+        <h3>No admins found</h3>
+
+        <p>
+            Create your first administrator account.
+        </p>
+
+        <a routerLink="/add-admin" class="add-btn">
+            Create Admin
+        </a>
+    </div>
+
+    <div class="table-card" *ngIf="!isLoading && admins.length > 0">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr *ngFor="let admin of admins">
+
+                    <td>
+                        <div class="admin-name">
+                            <div class="avatar">
+                                {{ admin.name?.charAt(0)?.toUpperCase() }}
+                            </div>
+
+                            <span>
+                                {{ admin.name }}
+                            </span>
+                        </div>
+                    </td>
+
+                    <td>
+                        {{ admin.email }}
+                    </td>
+
+                    <td>
+                        {{ admin.phone }}
+                    </td>
+
+                    <td>
+
+                        <span class="status" [class.active]="admin.enabled" [class.inactive]="!admin.enabled">
+                            {{ admin.enabled ? 'Active' : 'Inactive' }}
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <button class="status-btn" [class.deactivate]="admin.enabled" [class.activate]="!admin.enabled"
+                            (click)="toggleStatus(admin)">
+                            {{ admin.enabled ? 'Deactivate' : 'Activate' }}
+                        </button>
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
