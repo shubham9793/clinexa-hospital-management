@@ -1,161 +1,36 @@
-<!-- <div class="home-page">
+<div class="home-page">
 
     <div class="background-circle circle-one"></div>
     <div class="background-circle circle-two"></div>
-
-    <header class="hero-section">
-
-        <div class="brand-badge">
-            🏥 Smart Hospital Management
-        </div>
-
-        <h1 class="title">
-            Clinexa
-        </h1>
-
-        <p class="subtitle">
-            A modern care system for patients, doctors and hospital teams.
-        </p>
-
-        <p class="hero-description">
-            Choose your portal to continue securely and manage healthcare operations
-            with speed, clarity and confidence.
-        </p>
-
-    </header>
-
-    <section class="card-container">
-
-        <div class="role-card patient-card" routerLink="/manage-patient">
-            <div class="icon-box">
-                👤
-            </div>
-
-            <h2>Patient</h2>
-
-            <p>
-                Register, login, find doctors and manage appointments.
-            </p>
-
-            <span class="card-link">
-                Continue →
-            </span>
-        </div>
-
-        <div class="role-card receptionist-card" routerLink="/login/receptionist">
-            <div class="icon-box">
-                👩‍💼
-            </div>
-
-            <h2>Receptionist</h2>
-
-            <p>
-                Manage patients, daily bookings and front-desk operations.
-            </p>
-
-            <span class="card-link">
-                Continue →
-            </span>
-        </div>
-
-        <div class="role-card doctor-card" routerLink="/login/doctor">
-            <div class="icon-box">
-                👨‍⚕️
-            </div>
-
-            <h2>Doctor</h2>
-
-            <p>
-                View schedules, confirm appointments and complete visits.
-            </p>
-
-            <span class="card-link">
-                Continue →
-            </span>
-        </div>
-
-        <div class="role-card admin-card" routerLink="/login/admin">
-            <div class="icon-box">
-                🛡️
-            </div>
-
-            <h2>Admin</h2>
-
-            <p>
-                Manage doctors, departments, staff and hospital activity.
-            </p>
-
-            <span class="card-link">
-                Continue →
-            </span>
-        </div>
-
-        <div class="role-card super-card" routerLink="/login/super-admin">
-            <div class="icon-box">
-                ⚙️
-            </div>
-
-            <h2>Super Admin</h2>
-
-            <p>
-                Full system control, configuration and advanced access.
-            </p>
-
-            <span class="card-link">
-                Continue →
-            </span>
-        </div>
-
-    </section>
-
-    <section class="info-strip">
-
-        <div class="info-item">
-            <strong>24/7</strong>
-            <span>Digital Access</span>
-        </div>
-
-        <div class="info-item">
-            <strong>Secure</strong>
-            <span>Role Based Login</span>
-        </div>
-
-        <div class="info-item">
-            <strong>Fast</strong>
-            <span>Appointment Flow</span>
-        </div>
-
-    </section>
-
-</div> -->
-
-
-<div class="home-page">
+    <div class="background-circle circle-three"></div>
 
     <!-- NAVBAR -->
     <nav class="navbar">
         <div class="logo" routerLink="/">
-            <span class="logo-icon">🏥</span>
-            <span>Clinexa</span>
+            <span class="logo-mark">✚</span>
+            <div>
+                <strong>Clinexa</strong>
+                <small>Hospital Management</small>
+            </div>
         </div>
 
         <div class="nav-links">
             <a href="#home">Home</a>
-            <a href="#about">About Us</a>
-            <a href="#services">Services</a>
             <a href="#features">Features</a>
             <a href="#modules">Modules</a>
-            <a href="#contact">Contact Us</a>
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
         </div>
 
         <div class="login-wrapper">
             <button class="login-btn" type="button" (click)="toggleLoginMenu()">
-                Login
+                Login Portal
                 <span>⌄</span>
             </button>
 
             <div class="login-menu" *ngIf="showLoginMenu">
-                <a routerLink="/login/patient" (click)="closeLoginMenu()">👤 Patient Login</a>
+                <a routerLink="/manage-patient" (click)="closeLoginMenu()">👤 Patient Portal</a>
                 <a routerLink="/login/doctor" (click)="closeLoginMenu()">👨‍⚕️ Doctor Login</a>
                 <a routerLink="/login/receptionist" (click)="closeLoginMenu()">👩‍💼 Receptionist Login</a>
                 <a routerLink="/login/admin" (click)="closeLoginMenu()">🛡️ Admin Login</a>
@@ -166,7 +41,7 @@
     <!-- HERO -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <span class="hero-badge">Smart Healthcare Solution</span>
+            <span class="hero-badge">🏥 Smart Hospital Management</span>
 
             <h1>
                 Smart Hospital
@@ -174,9 +49,8 @@
             </h1>
 
             <p>
-                Clinexa is a modern and secure platform that helps hospitals manage
-                patients, appointments, doctors, medical records and daily operations
-                efficiently in one place.
+                Clinexa is a modern, secure and role-based hospital management platform
+                for patients, doctors, receptionists and administrators.
             </p>
 
             <div class="hero-actions">
@@ -190,37 +64,34 @@
             </div>
 
             <div class="trust-row">
-                <span>🛡️ Secure</span>
-                <span>⚡ Fast</span>
+                <span>🔐 JWT Security</span>
                 <span>📧 Email OTP</span>
-                <span>📱 Responsive</span>
+                <span>📅 Appointment Flow</span>
+                <span>📱 Responsive UI</span>
             </div>
         </div>
 
         <div class="hero-visual">
-            <div class="hero-circle"></div>
+            <div class="visual-glow"></div>
 
-            <div class="doctor-card">
-                <div class="doctor-avatar">👩‍⚕️</div>
-                <div>
-                    <strong>Dr. Priya Sharma</strong>
-                    <span>Cardiologist</span>
+            <div class="doctor-panel">
+                <div class="doctor-illustration">
+                    <div class="doctor-head">👩‍⚕️</div>
+                    <div class="doctor-body">
+                        <div class="tablet">📋</div>
+                    </div>
+                </div>
+
+                <div class="hospital-mini">
+                    <span>🏥</span>
+                    <strong>Clinexa Care</strong>
+                    <small>Digital healthcare operations</small>
                 </div>
             </div>
 
-            <div class="floating-card appointment-card">
-                ✅ Appointment Booked
-            </div>
-
-            <div class="floating-card otp-card">
-                🔐 OTP Verified
-            </div>
-
-            <div class="hospital-box">
-                <div class="hospital-icon">🏥</div>
-                <h3>Clinexa Care</h3>
-                <p>Digital healthcare operations</p>
-            </div>
+            <div class="floating-card appointment-card">✅ Appointment Booked</div>
+            <div class="floating-card otp-card">🔐 OTP Verified</div>
+            <div class="floating-card secure-card">🛡️ Secure Login</div>
         </div>
     </section>
 
@@ -230,67 +101,67 @@
             <span class="section-badge">Why Choose Clinexa</span>
             <h2>Everything your hospital needs in one secure platform</h2>
             <p>
-                Clinexa helps hospitals digitize appointment booking, patient care,
-                doctor workflows and administrative operations.
+                Clinexa digitizes appointment booking, patient care, doctor workflows
+                and administrative operations with a clean Angular interface.
             </p>
         </div>
-    
+
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon">🩺</div>
                 <h3>Appointment Management</h3>
                 <p>Book, reschedule, cancel and track appointments with smart validations.</p>
             </div>
-    
+
             <div class="feature-card">
                 <div class="feature-icon">🔐</div>
                 <h3>Secure Authentication</h3>
-                <p>JWT login, role-based access, email OTP verification and password recovery.</p>
+                <p>JWT login, BCrypt, role-based access and email OTP verification.</p>
             </div>
-    
+
             <div class="feature-card">
                 <div class="feature-icon">📧</div>
                 <h3>Email OTP System</h3>
-                <p>Secure email verification, resend OTP and forgot password using Gmail SMTP.</p>
+                <p>Verify email, resend OTP and reset password using Gmail SMTP.</p>
             </div>
-    
+
             <div class="feature-card">
                 <div class="feature-icon">📊</div>
                 <h3>Smart Dashboards</h3>
-                <p>Dedicated dashboards for admin, doctor, receptionist and patient workflows.</p>
+                <p>Dedicated dashboards for admin, doctor, receptionist and patient modules.</p>
             </div>
-    
+
             <div class="feature-card">
                 <div class="feature-icon">📋</div>
                 <h3>Medical Records</h3>
-                <p>Doctor notes, prescriptions, diagnosis and patient visit summaries.</p>
+                <p>Doctor notes, diagnosis, prescriptions and patient visit summaries.</p>
             </div>
-    
+
             <div class="feature-card">
                 <div class="feature-icon">📱</div>
                 <h3>Responsive UI</h3>
-                <p>Modern Angular interface designed for desktop, tablet and mobile screens.</p>
+                <p>Modern, mobile-friendly Angular UI with polished interactions.</p>
             </div>
         </div>
     </section>
-    
+
     <!-- STATS -->
     <section class="stats-section">
         <div class="stat-box">
             <strong>4+</strong>
             <span>User Roles</span>
         </div>
-    
+
         <div class="stat-box">
             <strong>100%</strong>
             <span>Secure Login</span>
         </div>
-    
+
         <div class="stat-box">
             <strong>24/7</strong>
             <span>Digital Access</span>
         </div>
-    
+
         <div class="stat-box">
             <strong>Fast</strong>
             <span>Appointment Flow</span>
@@ -306,33 +177,33 @@
                 Every user gets a focused dashboard designed for their daily workflow.
             </p>
         </div>
-    
+
         <div class="modules-grid">
-            <div class="module-card">
+            <div class="module-card patient-card">
                 <div class="module-icon">👤</div>
                 <h3>Patient Portal</h3>
                 <ul>
                     <li>Self registration</li>
                     <li>Book appointments</li>
                     <li>View history</li>
-                    <li>Download prescriptions</li>
+                    <li>Forgot password and OTP</li>
                 </ul>
                 <button routerLink="/manage-patient">Patient Portal →</button>
             </div>
-    
-            <div class="module-card">
+
+            <div class="module-card doctor-card">
                 <div class="module-icon">👨‍⚕️</div>
                 <h3>Doctor Portal</h3>
                 <ul>
-                    <li>View appointments</li>
-                    <li>Confirm visits</li>
-                    <li>Add diagnosis</li>
-                    <li>Manage prescriptions</li>
+                    <li>View own appointments</li>
+                    <li>Confirm or cancel visits</li>
+                    <li>Complete appointments</li>
+                    <li>Add notes and prescriptions</li>
                 </ul>
                 <button routerLink="/login/doctor">Doctor Login →</button>
             </div>
-    
-            <div class="module-card">
+
+            <div class="module-card receptionist-card">
                 <div class="module-icon">👩‍💼</div>
                 <h3>Receptionist Portal</h3>
                 <ul>
@@ -343,21 +214,21 @@
                 </ul>
                 <button routerLink="/login/receptionist">Receptionist Login →</button>
             </div>
-    
-            <div class="module-card">
+
+            <div class="module-card admin-card">
                 <div class="module-icon">🛡️</div>
                 <h3>Admin Portal</h3>
                 <ul>
                     <li>Manage doctors</li>
-                    <li>Departments</li>
-                    <li>Categories</li>
-                    <li>Hospital analytics</li>
+                    <li>Departments and categories</li>
+                    <li>Hospital dashboard</li>
+                    <li>Role-based operations</li>
                 </ul>
                 <button routerLink="/login/admin">Admin Login →</button>
             </div>
         </div>
     </section>
-    
+
     <!-- SERVICES -->
     <section id="services" class="services-section">
         <div class="section-header light">
@@ -367,7 +238,7 @@
                 Clinexa supports important hospital services through a secure and simple digital workflow.
             </p>
         </div>
-    
+
         <div class="services-grid">
             <div class="service-card">📅 <span>Appointment Booking</span></div>
             <div class="service-card">🧾 <span>Patient Records</span></div>
@@ -389,33 +260,33 @@
                 <p>Secure, organized and fast hospital workflow management.</p>
             </div>
         </div>
-    
+
         <div class="about-content">
             <span class="section-badge">About Clinexa</span>
-    
+
             <h2>Built to simplify hospital operations</h2>
-    
+
             <p>
-                Clinexa is designed to help hospitals manage patients, doctors,
-                receptionists, appointments, medical records and authentication through
-                one modern digital system.
+                Clinexa helps healthcare teams manage patients, doctors,
+                receptionists, appointments, authentication and medical records from
+                one secure digital system.
             </p>
-    
+
             <div class="about-points">
-                <div>✅ Secure JWT authentication</div>
+                <div>✅ JWT authentication</div>
                 <div>✅ Email OTP verification</div>
                 <div>✅ Role-based dashboards</div>
-                <div>✅ Appointment lifecycle management</div>
-                <div>✅ Patient history and prescriptions</div>
+                <div>✅ Appointment lifecycle</div>
+                <div>✅ Patient history</div>
                 <div>✅ Responsive Angular UI</div>
             </div>
-    
+
             <button routerLink="/manage-patient">
                 Start as Patient →
             </button>
         </div>
     </section>
-    
+
     <!-- CONTACT -->
     <section id="contact" class="contact-section">
         <div class="section-header">
@@ -425,20 +296,20 @@
                 Connect with the Clinexa team for support, collaboration or project queries.
             </p>
         </div>
-    
+
         <div class="contact-grid">
             <div class="contact-card">
                 <div>📍</div>
                 <h3>Location</h3>
                 <p>India</p>
             </div>
-    
+
             <div class="contact-card">
                 <div>📧</div>
                 <h3>Email</h3>
                 <p>clinexa.hms@gmail.com</p>
             </div>
-    
+
             <div class="contact-card">
                 <div>🕒</div>
                 <h3>Support</h3>
@@ -446,40 +317,40 @@
             </div>
         </div>
     </section>
-    
+
     <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-brand">
-            <h2>🏥 Clinexa</h2>
+            <h2>✚ Clinexa</h2>
             <p>
                 A modern Hospital Management System built with Spring Boot,
                 Angular, PostgreSQL and JWT Security.
             </p>
         </div>
-    
+
         <div class="footer-links">
             <h3>Quick Links</h3>
             <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
             <a href="#features">Features</a>
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
         </div>
-    
+
         <div class="footer-links">
             <h3>Portals</h3>
-            <a routerLink="/login/patient">Patient</a>
+            <a routerLink="/manage-patient">Patient</a>
             <a routerLink="/login/doctor">Doctor</a>
             <a routerLink="/login/receptionist">Receptionist</a>
             <a routerLink="/login/admin">Admin</a>
         </div>
-    
+
         <div class="footer-links">
             <h3>Built By</h3>
             <p>Shubham Sahu</p>
             <p>Java • Spring Boot • Angular</p>
         </div>
     </footer>
-    
+
     <div class="copyright">
         © 2026 Clinexa. All rights reserved.
     </div>
